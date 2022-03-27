@@ -207,16 +207,7 @@ int main(int argc, char **argv, char **env)
 	general->paths = get_env_paths(general->env);
 
 
-	int i = -1;
-	char *temp;
-	while (general->paths[++i])
-	{
-		temp = general->paths[i];
-		general->paths[i] = ft_strjoin(general->paths[i], "/");
-		free(temp);
-	}
-
-	minishell(general);
+	// minishell(general);
 
 	ft_clear_data(general);
     return (0);

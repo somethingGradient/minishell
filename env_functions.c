@@ -10,7 +10,6 @@ char	**copy_env(char	**env)
 	i = -1;
 	while (env[++i])
 		res += ft_strlen(env[i]);
-
 	copy = NULL;
 	copy = (char **)malloc(sizeof(char **) * res * i + 1);
 	if (!copy)
@@ -49,11 +48,19 @@ char	**get_env_paths(char **env)
 {
 	char	*temp;
 	char	**paths;
+	int		i;
 
 	paths = NULL;
 	temp = NULL;
 	temp = ft_get_env(env, "PATH");
 	paths = ft_split(temp, ':');
 	free(temp);
+	i = -1;
+	while (paths[++i])
+	{
+		temp = paths[i];
+		paths[i] = ft_strjoin(paths[i], "/");
+		free(temp);
+	}
 	return (paths);
 }
