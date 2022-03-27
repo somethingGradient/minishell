@@ -64,3 +64,58 @@ char	**get_env_paths(char **env)
 	}
 	return (paths);
 }
+
+void	ft_show_env(char **env)
+{
+	int	i;
+
+	i = -1;
+	while (env[++i])
+	{
+		ft_putstr_fd(env[i], 1);
+		ft_putchar_fd('\n', 1);
+	}
+}
+
+void	change_env(char	**env, char *key, char *value)
+{
+	int	i;
+	char *temp;
+
+	key = ft_strjoin(temp, "=");
+	i = -1;
+	while (env[++i])
+	{
+		if (ft_strnstr(env[i], key, ft_strlen(key)))
+		{
+			temp = env[i];
+			env[i] = ft_strjoin(key, value);
+			free(temp);
+		}
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

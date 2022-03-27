@@ -20,5 +20,8 @@ int	ft_cd(t_general *general)
 		return (-1);	
 	}
 	general->title = get_title(getenv("CWD"));
+	temp = getcwd(NULL, 512);
+	change_env(general->env, "PWD", temp);
+	free(temp);
 	return (0);
 }

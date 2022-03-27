@@ -57,9 +57,15 @@ void	pre_parser_double_quotes(char **str, int *i, int *flag)
 			*i += 2;
 			if ((*str)[*i] && (*str)[(*i) + 1]
 				&& (*str)[*i] == '\\' && (*str)[(*i) + 1] == '\\')
+			{
 				i += 2;
+				continue ;
+			}
 			if (!(*str)[*i] || (*str)[*i] == '"'
-				|| ((*str)[*i] != ' ' && !ft_isprint((*str)[*i])))
+				|| (
+					(*str)[*i] != ' ' && !ft_isprint((*str)[*i])
+					)
+				)
 			{
 				*flag = 1;
 				return ;

@@ -72,7 +72,7 @@ int	parse_backslash(char **str, int *i)
 			ft_putchar_fd((*str)[*i], 1);
 			(*i)++;
 		}
-		if (!((*str))[*i])
+		if (!((*str))[*i] || (*str)[*i] == '"')
 			return (0);
 	}
 	return (1);
@@ -82,8 +82,7 @@ void	write_double_quotes(char **str, int *i)
 {
 	while ((*str)[++(*i)] && (*str)[*i] != '"')
 	{
-		if (!parse_backslash(str, i))
-			return ;
+		parse_backslash(str, i);
 		if ((*str)[(*i)] == '$' && (ft_isalnum((*str)[(*i) + 1]) || (*str)[(*i) + 1] == '{'))
 		{
 			if (write_env_var(str, i) == 0)
@@ -121,7 +120,14 @@ int	main_echo(t_general *general, int n)
 			while (general->line[++i] && general->line[i] != '\'')
 				ft_putchar_fd(general->line[i], 1);
 		}
-		if (general->line[i] && ft_isprint(general->line[i]))
+		if (general->line[i] == '$' && (ft_isalnum(general->line[i + 1]) || general->line[i + 1] == '{'))
+		{
+			if (write_env_var(&general->line, &i) == 0)
+				continue ;
+			if (general->line[i + 1])
+				i--;
+		}
+		else if (general->line[i] && ft_isprint(general->line[i]))
 			ft_putchar_fd(general->line[i], 1);
 	}
 	if (!n)

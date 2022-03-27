@@ -17,7 +17,6 @@
 #include <readline/readline.h>
 #include <readline/history.h>
 
-
 #define BLOD  "\001\033[1m\002"						// Подчеркнуть, жирным шрифтом, выделить
 #define BEGIN(x,y) "\001\033["#x";"#y"m\002"	// x: background, y: foreground
 #define CLOSE "\001\033[0m\002"						// Закрыть все свойства
@@ -45,6 +44,9 @@ char *get_title(char *cwd);
 char	**copy_env(char	**env);
 char	*ft_get_env(char **env, char *str);
 char	**get_env_paths(char **env);
+void	change_env(char	**env, char *key, char *value);
+void	ft_show_env(char **env);
+
 
 int	pre_parser(char *str);
 
@@ -56,7 +58,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	*ft_strnstr(const char *big, const char *little, size_t n);
 char	*ft_strdup(const char *s);
 void	*ft_calloc(size_t n, size_t size);
-int	ft_isprint(int c);
+int		ft_isprint(int c);
 int		ft_isalnum(int c);
 void	ft_putchar_fd(char c, int fd);
 void	ft_putstr_fd(char *s, int fd);

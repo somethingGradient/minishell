@@ -62,11 +62,11 @@ void	ft_clear_data(t_general *general)
 int	execute_cmd(t_general *general)
 {
 	char	*temp;
+	char 	*str;
 
 	general->split_line = ft_split(general->line, ' ');
 	if (!general->split_line)
 		return (0);
-	
 	general->cmd = ft_strdup(general->split_line[0]);
 	if (!general->cmd)
 		return (0);
@@ -74,23 +74,26 @@ int	execute_cmd(t_general *general)
 	if (!ft_strcmp(general->cmd, "echo"))
 	{
 		ft_echo(general);
-		return 1;
+		return (0);
 	}
 	if (!ft_strcmp(general->cmd, "cd"))
 	{
 		ft_cd(general);
-		return 1;
+		return (0);
 	}
-	// if (!ft_strcmp(general->cmd, "pwd"))
-	// {
-	// 	ft_pwd(general);
-	// 	return 1;
-	// }
-	// 	if (!ft_strcmp(general->cmd, "env"))
-	// {
-	// 	// ft_env(general);
-	// 	return 1;
-	// }
+	if (!ft_strcmp(general->cmd, "pwd"))
+	{
+		temp = ft_get_env(general->env, "PWD");
+		ft_putstr_fd(temp, 1);
+		free(temp);
+		return (1);
+	}
+	if (!ft_strcmp(general->cmd, "env"))
+	{
+		ft_show_env(general->env);
+		return (0);
+	}
+
 	if (!ft_strcmp(general->cmd, "exit"))
 		exit(EXIT_SUCCESS);
 	
@@ -153,15 +156,14 @@ void	sig_handler(int signal)
 void	minishell(t_general *general)
 {
 	char	*title;
-	
-	read_history("history");
 
+	read_history("history");
 	if (signal(SIGINT, sig_handler) == SIG_ERR)
 		printf("failed to register interrupts with kernel\n");
-
 	while (1)
 	{
 		general->line = readline(general->title);
+
 		if (general->line && *(general->line))
 		{
 			add_history(general->line);
@@ -206,8 +208,7 @@ int main(int argc, char **argv, char **env)
 	general->title = get_title(NULL);
 	general->paths = get_env_paths(general->env);
 
-
-	// minishell(general);
+	minishell(general);
 
 	ft_clear_data(general);
     return (0);

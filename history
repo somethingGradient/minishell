@@ -1005,3 +1005,120 @@ env
 env
 echo "alo"
 alo
+cd alo
+env
+env
+env
+cd
+echo hey | cat
+echo alo
+echo $SHELL
+echo $ALO
+echo $USER$PATH
+echo $PATH
+echo $PATH$USER
+echo $SHELL$USER
+echo $SHELL$USER
+echo $SHELL$USER
+echo $SHELL$USER
+echo $SHELL$USER
+echo $SHELL$USER
+echo $SHELL$USER
+echo $SHELL$USER 
+echo $SHELL$USER das
+echo $SHELL$USER das
+echo $SHELL$USER
+echo $SHELL$USER 
+echo $SHELL$USER dsa
+echo $SHELL$USER
+echo $SHELL$USER
+echo $SHELL$USER 
+echo $SHELL$USER das
+echo $SHELL$USER das
+echo $SHELL${USER} das
+echo $SHELLfasda${USER} das
+echo $SHELLfasd a${USER} das
+echo $SHELLfasd a${USER} das
+echo $SHELLfasd ${USER} das
+echo $SHELLfasd${USER} das
+echo $SHELLfasd${USER} "das"
+echo $SHELLfasd${USER} "das$SHELL"
+echo $SHELLfasd${USER} "das $SHELL"
+echo $SHELLfasd${USER} "das $SHELL\\"
+echo "\\"
+echo "$SHELL\a"
+echo "$SHELL\\\""
+echo "$SHELL\\\\"
+echo "\\\\"
+echo "\\"
+echo "\\\"
+echo "\\\\"
+echo "\\\\"
+echo "\\\\"
+echo "\\\\"
+echo "\\\\\"
+echo "\\\\\"
+echo "\\\\\"
+echo "\\\"
+echo "\\"
+echo "\\ \\"
+echo "\\  \\"
+echo "\\ \\"
+echo "\\a \\"
+echo "\\a\\"
+echo "\\a\\"
+echo "\\\\"
+echo "\\\\"
+echo "\\\\"
+echo "\\\\"
+echo "\\\\"
+echo "\\\\"
+echo "\\\\"
+echo "\\\\"
+echo "\\\\"
+echo "\\\\"
+echo "\\\\"
+echo "\\\\"
+echo "\\\\"
+echo "\\\\"
+echo \\\\
+echo \
+echo \\
+echo "\\"
+echo "\\\\"
+echo "\\a\\"
+echo "\\\\"
+echo "\\\\"
+echo "\\\\"
+echo "\\\\"
+echo "\\\\"
+echo "\\\\"
+echo "\\\\"
+echo "\\\\"
+echo "\\\\"
+echo "\\\\"
+echo "\\\\"
+echo "\\\\"
+echo "\\\\"
+echo "\\ \\"
+echo "\\\\"
+echo "\\\\"
+echo "\\\\"
+echo "\\\\"
+echo "\\\\"
+echo "\\\\"
+echo "\\\\"
+echo "\\\\"
+echo "\\\\"
+echo "\\\\"
+echo "\\\\"
+echo "\\\\"
+echo "\\\\"
+echo "\\\\"
+echo "\\\\"
+echo "\"
+echo "\\"
+echo "\\a"
+echo "\\\a"
+echo "\\a"
+echo "\\a"
