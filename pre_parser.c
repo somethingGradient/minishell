@@ -12,102 +12,106 @@
 
 #include "minishell.h"
 
-void	pre_parser_single_quotes(char **str, int *i, int *flag)
+typedef struct s_flags
 {
+	int	dobles_quotes;
+	int	single_quotes;
+	int	braces;
+	int	backslash;
+}	t_flags;
+
+void	pre_parser_single_quotes(char **str, int *i, t_flags *flags)
+{
+	flags->single_quotes = 1;
 	while ((*str)[++(*i)])
 	{
 		if ((*str)[*i] == '\'')
 		{
-			*flag = 1;
+			flags->single_quotes = 0;
 			return ;
 		}
 	}
 }
 
-int	pre_parser_dollar_quotes(char **str, int *i, int *flag)
+void	pre_parser_dollar_quotes(char **str, int *i, t_flags *flags)
 {
 	if ((*str)[*i] == '$')
 	{
-		if (((*str)[(*i) + 1]) == '{')
+		(*i)++;
+		if ((*str)[*i] == '{')
 		{
-			*flag = 0;
+			flags->braces = 1;
 			while ((*str)[++(*i)])
 			{
+				if (!ft_isalnum((*str)[*i]) && (*str)[*i] != '}')
+					return ;
 				if ((*str)[*i] == '}')
 				{
 					(*i)++;
-					*flag = 1;
-					break ;
+					flags->braces = 0;
+					return ;
 				}
 			}
 		}
 	}
-	if (*flag == 1)
-		return (1);
-	else
-		return (0);
 }
 
-void	pre_parser_double_quotes(char **str, int *i, int *flag)
+void	pre_parser_backslash(char **str, int *i, t_flags *flags)
 {
+	if ((*str)[*i] == '\\')
+	{
+		flags->backslash = 1;
+		(*i)++;
+		if (ft_isprint((*str)[*i]))
+		{
+			(*i)++;
+			flags->backslash = 0;
+		}
+		pre_parser_backslash(str, i, flags);
+	}
+}
+
+void	pre_parser_double_quotes(char **str, int *i, t_flags *flags)
+{
+	flags->dobles_quotes = 1;
 	while ((*str)[++(*i)])
 	{
-		if ((*str)[*i] == '\\' && (*str)[(*i) + 1] == '\\')
+		pre_parser_backslash(str, i, flags);
+		pre_parser_dollar_quotes(str, i, flags);
+		if ((*str)[*i] == '"')
 		{
-			*i += 2;
-			if ((*str)[*i] && (*str)[(*i) + 1]
-				&& (*str)[*i] == '\\' && (*str)[(*i) + 1] == '\\')
-			{
-				i += 2;
-				continue ;
-			}
-			if (!(*str)[*i] || (*str)[*i] == '"'
-				|| (
-					(*str)[*i] != ' ' && !ft_isprint((*str)[*i])
-					)
-				)
-			{
-				*flag = 1;
-				return ;
-			}
-		}
-		if (((*str)[*i] == '"' && (!((*str)[(*i) + 1])
-			|| ((*str)[(*i) + 1]) == ' ') && ((*str)[(*i) - 1]) != '\\')
-			|| ((*str)[*i] == '"' && *flag != 1 && (*str)[(*i) - 1] != '\\'))
-		{
-			*flag = 1;
+			flags->dobles_quotes = 0;
 			return ;
 		}
-		if (pre_parser_dollar_quotes(str, i, flag))
-			continue ;
 	}
 }
 
+/* return 1 if line unclosed */
 int	pre_parser(char *str)
 {
-	int	i;
-	int	flag;
-	int	counter;
+	t_flags	*flags;
+	int		i;
 
+	flags = NULL;
+	flags = (t_flags *)malloc(sizeof(*flags));
+	flags->dobles_quotes = 0;
+	flags->single_quotes = 0;
+	flags->braces = 0;
+	flags->backslash = 0;
 	i = -1;
-	counter = 0;
-	flag = 1;
 	while (str[++i])
 	{
-		if (str[i] == '\\' && !str[i + 1])
-			return (0);
-		else if (str[i] == '\'' && str[i - 1] != '\\')
-		{
-			flag = 0;
-			pre_parser_single_quotes(&str, &i, &flag);
-		}
-		else if (str[i] == '"' && str[i - 1] != '\\' )
-		{
-			flag = 0;
-			pre_parser_double_quotes(&str, &i, &flag);
-		}
+		pre_parser_backslash(&str, &i, flags);
+		if (str[i] == '\'')
+			pre_parser_single_quotes(&str, &i, flags);
+		else if (str[i] == '"') 
+			pre_parser_double_quotes(&str, &i, flags);
 	}
-	if (!flag)
-		return (0);
-	return (1);
+	if (flags->dobles_quotes || flags->single_quotes
+		|| flags->braces || flags->backslash)
+		i = 1;
+	else
+		i = 0;
+	free(flags);
+	return (i);
 }

@@ -1122,3 +1122,920 @@ echo "\\a"
 echo "\\\a"
 echo "\\a"
 echo "\\a"
+alo
+echo "alo"
+echo "\\"
+echo "\\\\"
+echo "\\\"
+echo "\\\\"
+echo "\\\\"
+echo "\\\\"
+echo "\\\\"
+echo "\\\\"
+echo "\\\\"
+echo "\\\\"
+echo "\\\\"
+echo "\\\\"
+echo "\\\\\\"
+echo "\\ \\"
+echo "\\ \\ \\"
+echo "\\\\\\"
+echo "\\\\\\\\"
+echo "\\\"
+echo "\\\\"
+echo "\\\\"
+echo "\\\\"
+echo "\\a\\"
+echo "\\\\\"
+echo "\\\\\\\"
+echo "\\\\\\\\\\"
+echo "\\\\\\\\\\\\\\"
+echo "\\"
+echo "\\"
+echo "\\"
+echo "\\\\"
+echo "\\\\"
+echo "\\\\"
+echo "\\\\"
+echo "\\\\"
+echo "\\\\"
+echo "\\\\"
+echo "\\\\\\"
+echo "\\\\\\\\"
+echo "\\\\\\\\as"
+echo "\a"
+echo "\a"
+echo "\a"
+echo "\a"
+echo "\a2"
+echo "\a2"
+echo "\a"
+echo "\a\\"
+echo "\\"
+echo "\\\\"
+echo "\\\\"
+echo "\\\\\\"
+echo "\\\\\\a"
+echo "\\a"
+echo "\\a"
+echo "\\a"
+echo "\\"
+echo "\\\\"
+echo "\\\\\\"
+echo "\\a"
+echo "\\d"
+echo "\\"
+echo "\\"
+echo "\\\\"
+echo "\\"
+echo "\\\\"
+echo "\\\\"
+echo "\\\\"
+echo "\\\\"
+echo "\\\\"
+echo "\\\\"
+echo "\\\\"
+echo "\\\\"
+echo "\\\\"
+echo "\\\\"
+echo "\\\\"
+echo "\\\\"
+echo "\\\\"
+echo "\\\\"
+echo "\\\\"
+echo "\\\\"
+echo "\\\\"
+echo "\\\\"
+echo "\\\\"
+echo "\\\\"
+echo "\\\\"
+echo "\\\\"
+echo "\\\\"
+echo "\\\\"
+echo "\\\\"
+echo "\\\\"
+echo "\\\\"
+echo "\\\\"
+echo "\\\\\\"
+echo "\\a\\"
+echo "\\ \\"
+echo "\\ "
+echo " \\ "
+echo ""
+echo ""
+echo "a"
+echo "adsa"
+echo "a"
+echo "a\"
+echo "a\\"
+echo "a\\\\"
+echo "\\"
+echo "\\\\"
+echo "\\\\a"
+echo "\\\\adsa"
+echo "\\\\"
+echo "asda"
+echo "\\"
+echo "\\\\\\\\"
+echo "\\\\\\\"
+echo "\\\\\\"
+echo "\\\\\"
+echo "\\ \\ \"
+echo "\\\\\"
+echo "
+echo ""
+echo \
+echo \\
+echo \'
+echo "
+echo ""
+echo ""
+echo "a"
+echo "a
+echo a
+echo 'a'
+echo ""
+echo "a"
+echo "a"
+echo "a"
+echo "a"
+echo "a"
+echo "a"
+echo "\\"
+echo "
+echo '
+echo '
+echo '
+echo ''
+echo 'a'
+echo 'a'
+echo 'a''
+echo 'a''
+echo 'a'
+echo 'a'
+echo 'a''
+echo 'a'''
+echo 'a'''
+echo 'a'
+echo 'a'
+echo "alo"
+echo "alo"
+echo "alo"
+echo "alo"
+echo "alo\"
+echo "alo\"
+echo "alo"
+echo "alo"
+echo "alo"
+echo "alo
+echo "a"lo
+echo "a'"lo
+echo "a""lo
+echo "\\"
+echo "\"
+echo "\"
+echo "\"
+echo "\"
+echo ""
+echo "\\"
+echo "\"
+echo "\"
+echo "\"
+echo "\"
+echo 'a'
+echo "a"
+echo "\a"
+echo "\\a"
+echo "\\ a"
+echo "\\"
+echo "\\"
+echo "a"
+echo "\\"
+echo "\\\"
+echo "\\\"
+echo "\\"
+echo "asda"
+echo "asda
+echo \
+echo \\
+echo \\\
+echo \\\\
+echo \\
+echo \\\
+echo "\\"
+echo "\"
+echo "\"
+echo "\\"
+echo "\\\\"
+echo "\\\"
+echo "\\"
+echo "\\"
+echo "\\"
+echo "\\"
+echo "\\"
+echo "\\"
+echo "\"
+echo "\"
+echo "\"
+echo "\"
+echo "\"
+echo "\"
+echo "\\"
+echo "\\"
+echo "\"
+echo "\"
+echo "\"
+echo "\"
+echo "\"
+echo "\\"
+echo "\\"
+echo ""
+echo ""
+echo "\"
+echo "\"
+echo "\\"
+echo "\\\\"
+echo "\"
+echo "\"
+echo "\"
+echo "\"
+echo "\"
+echo "\"
+echo "\"
+echo "\\"
+echo "\\"
+echo "\\"
+echo ""
+echo ""
+echo "\"
+echo "\"
+echo "\"
+echo "\\"
+echo "\"
+echo "\"
+echo ""
+echo ""
+echo ""
+echo ""
+echo ""
+echo "\"
+echo "\\"
+echo "dasdas"
+echo "dasdas"
+echo "dasdas"
+echo "aa"
+echo ""
+echo ""
+echo ""
+echo "\"
+echo "\sad"
+echo "d"
+echo "d"
+echo "d"
+echo "d"
+echo "d"
+echo "d"
+echo "d"
+echo "d"
+echo "d
+echo ""
+echo "da"
+echo "\\"
+echo "\"
+echo "\"
+echo "\"
+echo ""
+echo "
+echo "asd"
+echo "asd"
+echo "asd"
+echo "asd
+echo "asd""
+echo "asd""
+echo "asd""
+echo "asd""
+echo """
+echo """
+echo ""
+echo ""
+echo ""
+echo """
+echo """
+echo """
+echo """
+echo """
+echo """|
+echo """|dsa
+echo """|ds"
+echo """"
+echo ""
+echo "a"
+echo "a""
+echo "a""
+echo "a""
+echo "a""
+echo "a""
+echo "a"
+echo "a""asdasd"
+echo "a""asdasd" "
+echo "a""asdasd"dsa
+echo "a""asda""sddsa
+echo "a""asda""s"ddsa
+echo "a"
+echo ""
+echo "a"
+echo "a"sad
+echo "a"sad
+echo "a"
+echo "\"
+echo "\\"
+echo "\\"
+echo "sad"
+echo ""
+echo "\"
+echo "\\"
+echo "\\\\"
+echo "\\a"
+echo "\\a\\"
+echo "\\a\\"
+echo "\\a\\"
+echo "\\a\\"
+echo "\\a\\"
+echo "\\\\"
+echo "\\\"
+echo "\\\"
+echo "\\\"
+echo "\\"
+echo "\\\\"
+echo "\\\\\\"
+echo "\\\\"
+echo "\\\"
+echo "\\\"
+echo "\\"
+echo "\"
+echo ""
+echo "\"
+echo "\\"
+echo "\\"
+echo "\"
+echo "\ "
+echo "\ "
+echo "\\"
+echo "\\\"
+echo "\\\"
+echo "\\"
+echo "\\\\"
+echo "\\\"
+echo "\\\ "
+echo "\\\ \"
+echo "\\\ \\"
+echo "\\ \ \ \"
+echo "\"
+echo "\a"
+echo """
+echo ""\"
+echo "\""
+echo "\""
+echo "\\"
+echo "\ \ "
+echo "\ \ \\"
+echo "\ \ \\\"
+echo "\ \ \\ \"
+echo "\ \ \\ \a"
+echo "aaadsa\ \ \\ \a"
+echo fsa\
+echo fsa"
+echo fsa"
+echo fsa"
+echo fsa"
+echo "fsa"
+echo "\""
+echo fsa"
+echo "\""
+echo "\""
+echo fsa"
+echo fsa"
+echo fsa"
+echo fsa"
+echo "fsa"
+echo "\\\ \"
+echo fsa"
+echo fsa
+echo fsa
+echo "
+echo ""
+echo "{"
+echo "{}"
+echo "{a}"
+echo "{a"}"
+echo "{a\"}"
+echo "{a\}"
+echo "{a\""}"
+echo "{a\"}"
+echo "{a\\\}"
+echo "{a\\\"
+echo "{a\\\das"
+echo "${"
+echo "${}"
+echo "${a}"
+echo "${\}"
+echo "${\}"
+echo "${\}"
+echo "${}"
+echo "${asd}"
+echo "${asd"
+echo "${\\}"
+echo "${\\}"
+echo "${a}"
+echo "${a\}"
+echo "${af}"
+echo "${#af}"
+echo "${a#f}"
+echo "${a}f}"
+echo "${a}f}"
+echo "${a\f}"
+echo "${af"
+echo "$af"
+echo "{"
+echo "}"
+echo "\"
+echo "\\"
+echo \\
+echo \
+echo \
+echo \\
+echo \\sda
+echo \\sda"
+echo \\"sda"
+echo \\\"sda"
+echo \\\"dsasda"
+echo \\\"dsas$da"
+echo \\ \ "dsas$da"
+echo \\ \ "dsas$da"
+echo \\ \ "dsas$da" ''
+echo \\ \ "dsas$da" '
+echo \\ \ "dsas$da" \'
+echo "alo"
+echo "\\"
+echo "\\"
+echo "\\"
+echo "\\"
+echo "a"
+echo "\a"
+echo "\a"
+echo "\a"
+echo "\a"
+echo "\a"
+echo "\\"
+echo "\\"
+echo "\\dsa"
+echo "a"
+echo "\a"
+echo "\\a"
+echo "\\ a"
+echo "\\dasdasa"
+echo "\\dasdasa\"
+echo "\\dasdasa\dsad"
+echo "\\dasdasa\$dsad"
+echo "\\dasdasa\"dsad"
+echo "\\"
+echo "\\'"
+echo "\\"'
+echo "\\"'a'
+echo "\\"' a'
+echo "\\"' a$'
+echo "\\"' a$\'
+echo "\"
+echo "\\"
+echo "$alo"
+echo "$alo"
+echo "$alo"
+echo "$alo"
+echo "$SHELL"
+echo "$SHELL"
+echo "$SHELL$USER"
+echo "$SHELL$USER"
+echo "$SHELL $USER"
+echo "$SHELL"
+echo "$SHELL"
+echo "$SHELL"
+echo "$SHELL"
+echo "$SHELL"
+echo "$SHELL"
+echo "$SHELL$USER"
+echo "$SHELL$USER"
+echo "$SHELL$USER"
+echo "$SHELLasd$USER"
+echo "$SHELL"
+echo "$SHELL"
+echo "$SHELL$USER"
+echo "$SHELL$USER"
+echo "$SHELL$USER"
+echo "$SHELL$USER"
+echo "$SHELL $USER"
+echo "$SHELL $USERasd"
+echo "$"
+echo "\$"
+echo "\\$"
+echo "\\$SHELL"
+echo "\\$SHELL$USER"
+echo "\\$SHELL$USER"
+echo "\\$SHELL$USER"
+echo "\\$SHELL$USER"
+echo "\\$SHELL$USER"
+echo "\\$SHELL$USER"
+echo "\\$SHELL$USER"
+echo "\\$SHELLa$USER"
+echo "\\$SHELL a$USER"
+echo "\\$SHELL a$dUSER"
+echo "\\$SHELL a\$USER"
+echo ""
+echo ""
+echo ""
+echo ""
+echo "\\$SHELL a\$USER"
+echo "\\$SHELL a$dUSER"
+echo "\\$SHELL a$dUSER"
+echo "\\$SHELL a$dUSER"
+echo "\\$SHELL$USER"
+echo "\\$SHELL$USER"
+echo "\\$SHELL$USER"
+echo "\\$SHELL$USER"
+echo "\\$SHELL$USER"
+echo "\\$SHELL$USER"
+echo "\\$SHELL$USER"
+echo "\\$SHELL$USER"
+echo "\\$SHELLDASD$USER"
+echo "\\$SHELLDASD$USERFAS"
+echo "\\$SHELLDASD$USERFAS$"
+echo "\\$SHELLDASD$USERFAS\$"
+echo "\\$SHELLDASD$USERFAS\$"
+echo "\\$SHELLDASD$USERFAS\$"
+echo "\\$SHELLDASD$USERFAS\$"
+echo "\\$SHELL$USER"
+echo "\\$SHELL$USER"
+echo "\\$SHELLDASD$USERFAS\$"
+echo "\\$SHELL$USER"
+echo "\\$SHELLDASD$USERFAS\$"
+echo "\\$SHELLDASD$USERFAS\$"
+echo "\\$SHELL$USER"
+echo "\\$SHELL$USER"
+echo "\\$SHELLDASD$USERFAS\$"
+echo "\\$SHELLDASD$USERFAS\\$"
+echo "\\$SHELLDASD$USERFAS\$"
+echo "\\$SHELLDASD$USERFAS \$"
+echo "SHELL"
+echo "$SHELL"
+echo "$SHELL$USER"
+echo "$SHE$QT_FONT_DPI"
+echo "$SHE$QT_FONT_DPI"
+echo $USER
+echo "$SHE$" $QT_FONT_DPI
+echo "$SHE$QT_FONT_DPI"
+echo """
+echo "$""
+echo "$$"$$"
+echo "$das$"dsa$$dsa"
+echo "$das$" "$$dsa"
+echo "$das$" "$dsa"
+echo "$SHE$QT_FONT_DPI"
+echo "$SHE$"QT_FONT_DPI"
+echo "$SHE$" $QT_FONT_DPI"
+echo "$SHE$" $QT_FONT_DPI
+echo "$SHE\$" $QT_FONT_DPI
+echo "$SHE \$" $QT_FONT_DPI
+echo "$SHE\$" $QT_FONT_DPI
+echo "$SHE\$" $QT_FONT_DPI
+echo "$SHEd\$" $QT_FONT_DPI
+echo "$SHE d\$" $QT_FONT_DPI
+echo "$SHE d\$" $QT_FONT_DPI
+echo "$SHE d\$" $QT_FONT_DPI
+echo "$SHE d\$" $QT_FONT_DPI
+echo "$SHE d\$"
+echo "$SHE d$"
+echo "$"
+echo "$a"
+echo "a$"
+echo "a$"
+echo "a$adasd"
+echo "a$adasd dsa"
+echo "a$adasd dsa" "alo"
+echo "a$adasd dsa" " alo"
+echo "a$adasd dsa" "alo"
+echo "a$adasd dsa" "alo" 'a'
+echo "a$adasd dsa" "al'fas'o" 'a'
+echo "a$adasd dsa" '"al'fas'o"' 'a'
+echo "a$adasd dsa" '"al'fas'o"' 'a\'
+ls -l
+echo  -n "a$adasd dsa" '"al'fas'o"' 'a\'
+echo -n "a$adasd dsa" '"al'fas'o"' 'a\'
+echo a    -n "a$adasd dsa" '"al'fas'o"' 'a\'
+echo     -n "a$adasd dsa" '"al'fas'o"' 'a\'
+echo -n alo
+echo  -n alo
+echo   -n alo
+echo -n "alo"
+echo "alo"
+echo "alo$SHELL"
+echo "alo$SHELL$USER"
+echo "alo$SHELL$USERdsa"
+echo "alo$SHELL$USERdsa\"
+echo "alo$SHELL$USERdsa\\"
+echo "$SHELL$USERdsa\\"
+echo "$SHELL$USERdsa\\"
+echo "$SHELL$USERdsa\\"
+echo "$SHELL$USERdsa\\"
+echo "$SHELL$USERdsa\\"
+echo "$SHELL$USERdsa"
+echo "$SHELL$USERdsadsa"
+echo "$SHELL$USERds\\ad"
+echo "$SHELL$USERdsad\\"
+echo "$SHELL$USERdsad\\"
+echo "$SHELL$USERdsad\\"
+echo "\\"
+echo "\\"
+echo "\\"
+echo "$SHELL\\"
+echo "$SHELL\\"
+echo "\\"
+echo "a\\"
+echo "aasd\\"
+echo "aasd\\""
+echo "\\$USER"
+echo "\\"
+echo "$USER \\"
+echo "$USER\\"
+echo "$USER\\"
+echo "$USER\\"
+echo "$USER\\ "
+echo "$USER\\"
+echo "$USER\\"
+echo "$USER\\"
+echo "$USER\\dsad"
+echo "\\$USER\\dsad"
+echo "\\ $USER\\dsad"
+echo "\\$USER"
+echo "\\$USER"
+echo "\\$USER"
+echo "\\$USER"
+echo "\\$USER"
+echo "\\$USER"
+echo "\\$USER"
+echo "\\$USER"
+echo "\\$USERdsa"
+echo "$USER\\dsa"
+echo "$USER\\"
+echo "$USER\"
+echo "$USER\a"
+echo "$USER\?"
+echo "a$USER"
+echo "?$USER"
+echo "\$USER"
+echo "\\$USER"
+echo -n "\\$USER"
+echo "-n" "\\$USER"
+echo     "-n" "\\$USER"
+echo     "-n" "a"
+echo     "-n" "a"
+echo     "-n" "a"
+echo     "-n" "a"
+echo     "-n" "a"
+echo     "-n" "a"
+echo     "-n" "a"
+echo "-n" "a"
+echo"-n" "a"
+echo "-n" "a"
+echo "-n" "a"
+echo "-n" "a"
+echo "-n"  "a"
+echo  "-n"  "a"
+echo   "-n"  "a"
+echo   "-n"  "a"
+echo   "-n"  "a"
+echo   "-n"  "a"
+echo   "-n"  "a"
+echo   "-n"  "a"
+echo   "-n"  "a"
+echo   "-n"  "a"
+echo   "-n" "a"
+echo "-n" "a"
+echo "-n"  "a"
+echo "-n"   "a"
+echo  "-n"   "a"
+echo      "-n"   "a"
+echo      "-n"   "a"
+echo "-n"   "a"
+echo "-n""a"
+echo "-n""a"
+echo "-n" "a"
+echo "-n" "a"
+echo "-n" "a"
+echo "-n" "a"
+echo  "-n"  "a"
+echo  "-n"  "a"
+echo  "-n"  "a"
+echo  "-n"  "a"
+echo  "-n"  "a"
+echo  "-n"  "a"
+echo  "-n"     "a"
+echo  "-n"     "adasdas"
+echo  "-n"     das
+echo  "-n"     dasfsa
+echo  "-n"     dasfsa
+echo  "-n"     dasfsa
+echo         "-n"     dasfsa
+echo              dasfsa
+echo              dasfsa
+echo              dasfsa
+echo           -n   dasfsa
+echo           -ndsa   dasfsa
+      echo           -ndsa   dasfsa
+      echo           -ndsa   dasfsa
+      echo           -ndsa   dasfsa
+      echo           -ndsa   dasfsa
+      echo           -ndsa   dasfsa
+      echo           -ndsa   dasfsa
+      echo           -ndsa   dasfsa
+      echo          -ndsa   dasfsa
+     echo          -ndsa   dasfsa
+     echo          -ndsa   dasfsa
+     echo          -ndsa   dasfsa
+     echo          -ndsa   dasfsa
+     echo          -ndsa   dasfsa
+     echo          -ndsa   dasfsa "alo"
+     echo          -n   dasfsa "alo"
+     echo  \\  -n   dasfsa "alo"
+     echo  \\  -n   dasfsa "alo"
+     echo  "asddsa"
+     echo  "asddsa\\"
+     echo  "asddsa\\"
+     echo  "asddsa\"
+     echo  "asddsa\ "
+     echo  "asddsa\dsa "
+echo  "asddsa\dsa "
+echo  "Gasddsa\dsa "
+echo  A"Gasddsa\dsa "
+echo  A "Gasddsa\dsa "
+echo  A "Gasddsa\dsa " sad
+echo \\
+echo \\
+echo alo
+   echo  alo
+   echo           alo
+        echo           alo
+        echo          -n alo
+echo $SHELL
+echo "$SHELL"
+echo asdasd
+echo asdasd asdsad
+echo asdasd asdsad f
+echo asdasd asdsad f $SHELL
+echo asdasd asdsad f $SHELL a
+echo asdasd asdsad f $SHELL a
+echo asdasd asdsad f $SHELL 
+echo asdasd asdsad f $SHELL
+echo asdasd asdsad f $SHELL
+echo asdasd asdsad f $SHELL
+echo asdasd asdsad f $SHELL$USER
+echo asdasd asdsad f $SHELL$U SER
+echo $U
+echo -n $U
+echo "-n" "a"$""U
+echo $
+echo "-n" "a"$""U
+echo "-n" "a"$ ""U
+echo "-n" "a"$ ""U
+echo "-n" "a"$""U
+echo "-n" "a"$""U
+echo "-n" "a"$?""U
+echo "-n" "a"$?""U
+echo "-n" asd
+echo "-n" $SHELL
+env
+echo "-n" $XDG_VTNR
+echo "-n" $SHLVL
+echo "-n" $LS_CLR
+echo "-n" $LS_COLORS
+e $LS_COLORS
+echo $LS_COLORS
+echo "$LS_COLORS"
+echo '$LS_COLORS'
+echo '$LS_COLORS'
+echo "$LS_COLORS"
+echo $ALO
+echo $ALO
+echo $ALO
+echo $ALO
+echo $ALO
+echo $ALO
+echo $SHELL
+echo $SHELL"$USER"
+echo $SHELL"$USER\\"
+echo $SHELL"$USER \\"
+echo $SHELL"$USER \a\"
+echo $SHELL"$USER \a"
+              echo $SHELL"$USER \a"
+              echo $SHELL"$USER \a"
+              echo $SHELL"$USER \a"
+              echo $SHELL"$DEVICES \a"
+              echo $SHELL"$DEVICES \a"
+              echo $SHELL"$DEVICES \a$USER"
+              echo $SHELL"$DEVICES \a$USER"$USER
+echo $USER
+echo $USER$USER
+echo "$USER"$USER
+echo "a$USER"$USER
+echo "a$USER "$USER
+echo "$USER"$USER
+              echo $SHELL"$DEVICES \a$USER"$USER
+              echo $SHELL"$DEVICES \a$USER"$USER
+              echo $SHELL"$DEVICES \a$USER"$USER $SHELL
+echo $DEVISEC"$USER"$USER
+echo $DEVISEC "$USER"$USER
+echo $DEVISEC "$USER"$ USER
+echo $DEVISEC "$USER"$USER
+echo $DEVISEC "\a$USER"$USER
+echo \a$USER
+echo \a$USER
+echo \a$USER
+echo \a$USER
+echo \a$USER
+echo \\a$USER
+echo \$a$USER
+echo \\\a$USER
+echo \\\ a$USER
+echo a$USER
+echo a$USER
+echo $$USER
+echo $USER
+echo x$USER
+echo \$USER
+echo \a$USER
+echo \\$USER
+echo "\\$USER"
+echo "\\$USER"
+echo "\\$USER"
+echo "\\$USER"
+echo "\\$USER"
+echo "\\$USER"
+echo "\\$USER"
+echo "\\$USER"
+echo "\\$USER"
+echo "\\$USER"
+echo "\\a$USER"
+echo "\\ $USER"
+echo \\ $USER
+echo \\$USER
+echo \\$USER
+echo \\$USER
+echo \\$USER
+echo \\$USER
+echo \\$USER
+echo \\ $USER
+echo \\$#
+echo \\$a
+echo \\$a
+echo \\ $a
+echo \\ $a
+echo \\a$a
+echo \\$a
+echo \\$a
+echo \\$a
+echo \\$a
+echo \\$a
+echo \\$a
+echo \\ $a
+echo \\a$a
+echo "\\a$a"
+echo "\\$a"
+echo \\$a
+echo \\$USER
+echo \\ aUSER
+echo \\ aUSER \\
+echo \\ aUSER \\$U
+echo \\ aUSER \\$SHLVL
+echo \\ aUSER \"$SHLVL
+echo \\ aUSER \"$SHLVL\"
+echo \\ aUSER \"$SHLVL\"
+echo \\ aUSER \"$SHLVL\"
+echo \\ aUSER \"$SHLVL\"
+echo \\ aUSER \"$SHLVL\"
+echo \\ aUSER \"$SHLVL\"
+echo \\ aUSER \"$SHLVL\"$USER
+echo \\ aUSER \"$SHLVL\"$USER
+echo "\\ aUSER \"$SHLVL\"$USER"
+echo "\\ aUSER \"$SHLVL\"$USER"
+echo "\\ aUSER\\ \"$SHLVL\"$USER"
+echo "\\ aUSER\\$ALO \"$SHLVL\"$USER"
+echo "\\ aUSER\\$ALO$USER \"$SHLVL\"$USER"
+echo '\\ aUSER\\$ALO$USER \"$SHLVL\"$USER\'
+echo '\\ aUSER\\$ALO$USER \"$SHLVL\"$USER\'\
+echo '\\ aUSER\\$ALO$USER \"$SHLVL\"$USER\'
+\echo '\\ aUSER\\$ALO$USER \"$SHLVL\"$USER\'
+"echo" '\\ aUSER\\$ALO$USER \"$SHLVL\"$USER\'
+al
+make re
+make fclean
+ls -l
+ls -l
+git

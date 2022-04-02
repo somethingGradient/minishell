@@ -11,11 +11,13 @@
 #include <sys/wait.h>
 #include <signal.h>
 
-// #include "/usr/include/readline/readline.h"
-// #include "/usr/include/readline/history.h"
+/* for Linux */
+#include "/usr/include/readline/readline.h"
+#include "/usr/include/readline/history.h" 
 
-#include <readline/readline.h>
-#include <readline/history.h>
+/* for Mac */
+// #include <readline/readline.h>
+// #include <readline/history.h>
 
 #define BLOD  "\001\033[1m\002"						// Подчеркнуть, жирным шрифтом, выделить
 #define BEGIN(x,y) "\001\033["#x";"#y"m\002"	// x: background, y: foreground
@@ -46,7 +48,7 @@ char	*ft_get_env(char **env, char *str);
 char	**get_env_paths(char **env);
 void	change_env(char	**env, char *key, char *value);
 void	ft_show_env(char **env);
-
+int		write_env_var(char **str, int *i);
 
 int	pre_parser(char *str);
 

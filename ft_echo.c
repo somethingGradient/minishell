@@ -1,134 +1,84 @@
 
 #include "minishell.h"
 
-int	write_env_var(char **str, int *i)
+int	parse_backslash(char **str, int *i)
 {
-	char	*buf;
-	char	*temp;
-	int		flag;
-	int		k;
-
+	if ((*str)[*i] != '\\')
+		return (0);
 	(*i)++;
-	k = -1;
-	flag = 0;
-	buf = ft_calloc(sizeof(char), 512);
-	if ((*str)[*i] == '{')
+	if (((*str)[*i] == '\\' || (*str)[*i] == '$')
+		|| (*str)[*i] == '"')
+		ft_putchar_fd((*str)[*i], 1);
+	else
 	{
-		flag = 1;
-		(*i)++;
+		ft_putchar_fd('\\', 1);
+		ft_putchar_fd((*str)[*i], 1);
 	}
-	while ((*str)[*i] && ((ft_isalnum((*str)[*i]) || (*str)[*i] == '_')
-		&& (*str)[*i] != ' '
-		&& (*str)[*i] != '"'))
-	{
-		if (flag == 1)
-		{
-			if ((*str)[(*i)] == '}')
-			{
-				i++;
-				break ;
-			}
-			buf[++k] = (*str)[(*i)++];
-		}
-		else
-			buf[++k] = (*str)[(*i)++];
-	}
-	if (flag)
-		(*i)++;
-	buf[k + 1] = '\0';
-	temp = getenv(buf);
-	free(buf);
-	if (!temp)
-	{
-		if ((*str)[*i] != '"') 
-			(*i)--;
-		return (0) ;
-	}
-	ft_putstr_fd(temp, 1);
+	(*i)++;
 	return (1);
 }
 
-int	parse_backslash(char **str, int *i)
+void	parse_env_and_bs(char **str, int *i)
 {
-	if ((*str)[*i] == '\\')
-	{
-		if ((*str)[(*i) + 1] == '\\')
-		{
-			ft_putchar_fd('\\', 1);
-			(*i) += 2;
-		}
-		else if ((*str)[(*i) + 1] == '$')
-		{
-			ft_putchar_fd('$', 1);
-			(*i) += 2;
-		}
-		else if ((*str)[(*i) + 1] == '"')
-		{
-			ft_putchar_fd('"', 1);
-			(*i) += 2;
-		}
-		else
-		{
-			ft_putchar_fd((*str)[*i], 1);
-			(*i)++;
-		}
-		if (!((*str))[*i] || (*str)[*i] == '"')
-			return (0);
-	}
-	return (1);
+	while (parse_backslash(str, i)
+		|| write_env_var(str, i))
+		parse_env_and_bs(str, i);
 }
 
 void	write_double_quotes(char **str, int *i)
 {
-	while ((*str)[++(*i)] && (*str)[*i] != '"')
+	while ((*str)[++(*i)])
 	{
-		parse_backslash(str, i);
-		if ((*str)[(*i)] == '$' && (ft_isalnum((*str)[(*i) + 1]) || (*str)[(*i) + 1] == '{'))
-		{
-			if (write_env_var(str, i) == 0)
-				continue ;
-		}
-		if ((*str)[(*i)] == '$' && (ft_isalnum((*str)[(*i) + 1]) || (*str)[(*i) + 1] == '{'))
-		{
-			(*i) -= 1;
-			continue ;
-		}
-		if ((*str)[(*i)] && (*str)[(*i) + 1] && (*str)[(*i) + 1] == '"')
-		{
-			ft_putchar_fd((*str)[(*i)++], 1);
-			continue;
-		}
-		if ((*str)[(*i)] && (*str)[(*i)] != '"' && (*str)[(*i)] != '}')
-			ft_putchar_fd((*str)[(*i)], 1);
+		parse_env_and_bs(str, i);
+		if ((*str)[*i] == '"' || !(*str)[*i])
+			return ;
+		ft_putchar_fd((*str)[*i], 1);
 	}
 }
 
-int	main_echo(t_general *general, int n)
+/* DELETING SPACEs CHARS FROM BEGIN STR */
+int	str_trim(char *str, int n)
+{
+	int	i;
+
+	i = 4;
+	if (!n)
+	{
+		while (str[i] == ' ')
+			i++;
+	}
+	else
+	{
+		while (str[i] == ' ')
+			i++;
+		while (ft_isprint(str[i]) && str[i] != ' ')
+			i++;
+		while (str[i] == ' ')
+			i++;
+	}
+	i--;
+	return (i);
+}
+
+int	main_echo(char *str, int n)
 {
 	int		i;
 
-	if (!n)
-		i = 4;
-	else
-		i = n;
-	while (general->line[++i])
+	i = str_trim(str, n);
+	while (str[++i])
 	{
-		if (general->line[i] == '"')
-			write_double_quotes(&(general->line), &i);
-		if (general->line[i] == '\'')
+		parse_env_and_bs(&str, &i);
+		if (!str[i])
+			break ;
+		else if (str[i] == '"')
+			write_double_quotes(&(str), &i);
+		else if (str[i] == '\'')
 		{
-			while (general->line[++i] && general->line[i] != '\'')
-				ft_putchar_fd(general->line[i], 1);
+			while (str[++i] && str[i] != '\'')
+				ft_putchar_fd(str[i], 1);
 		}
-		if (general->line[i] == '$' && (ft_isalnum(general->line[i + 1]) || general->line[i + 1] == '{'))
-		{
-			if (write_env_var(&general->line, &i) == 0)
-				continue ;
-			if (general->line[i + 1])
-				i--;
-		}
-		else if (general->line[i] && ft_isprint(general->line[i]))
-			ft_putchar_fd(general->line[i], 1);
+		else if (str[i] && ft_isprint(str[i]))
+			ft_putchar_fd(str[i], 1);
 	}
 	if (!n)
 		ft_putchar_fd('\n', 1);
@@ -138,25 +88,26 @@ int	main_echo(t_general *general, int n)
 int check_n(char *str)
 {
 	if (!ft_strcmp(str, "-n"))
-		return (7);
+		return (2);
 	if (ft_strlen(str) != 4)
 		return (0);
-	if (str[0] == '\'' && str[1] == '-' && str[2] == 'n')
-		return (9);
-	else if (str[0] == '\"' && str[1] == '-' && str[2] == 'n')
-		return (9);
+	if ((str[0] == '\'' && str[1] == '-' && str[2] == 'n')
+		|| (str[0] == '\"' && str[1] == '-' && str[2] == 'n'))
+		return (4);
 	else
 		return (0);
 }
 
 int	ft_echo(t_general *general)
 {
-	int i;
-	int flag;
+	char	*temp;
+	char	*str;
 
-	i = -1;
-	flag = 1;
-	general->line[ft_strlen(general->line) + 1] = '\0';
-	main_echo(general, check_n(general->split_line[1]));
-	return (1);
+	str = ft_strdup(general->line);
+	temp = str;
+	while (*str == ' ')
+		str++;
+	main_echo(str, check_n(general->split_line[1]));
+	free(temp);
+	return (0);
 }

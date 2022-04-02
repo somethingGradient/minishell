@@ -163,11 +163,12 @@ void	minishell(t_general *general)
 	while (1)
 	{
 		general->line = readline(general->title);
+		general->line[ft_strlen(general->line)] = '\0';
 
 		if (general->line && *(general->line))
 		{
 			add_history(general->line);
-			if (!pre_parser(general->line))
+			if (pre_parser(general->line))
 			{
 				printf("%s\n", "EXIT! NOT CLOSED QUOTE.");
 				continue ;
