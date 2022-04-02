@@ -2039,3 +2039,7 @@ make fclean
 ls -l
 ls -l
 git
+ls
+pwd
+ls
+pwd
