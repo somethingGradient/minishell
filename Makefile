@@ -1,8 +1,6 @@
 
 NAME	=	minishell
 
-LIBNAME =	minishell.a
-
 INCLUDES =	-lreadline
 
 CC		=	gcc

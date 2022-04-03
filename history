@@ -2039,3 +2039,28 @@ make fclean
 ls -l
 ls -l
 git
+alo
+echo alo
+ls
+"ls"
+ls'
+'ls'
+'ls'
+'ls'
+'ls'
+'ls'
+'ls'
+"ls"
+ls
+""ls""
+""ls""
+"""ls"""
+'"""ls"""'
+'ls'
+'''ls'''
+'''ls'''
+'''ls''
+'ls -l'
+ls -l
+wc -c
+wc -l

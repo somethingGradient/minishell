@@ -1,11 +1,27 @@
 #include "minishell.h"
 
+int	ft_exit(char *msg, int exit_code)
+{
+	if (msg)
+		ft_putstr_fd(msg, 3);
+	exit(exit_code);
+}
+
 char	*mk_cmd(t_general *general, char *cmd)
 {
 	char	*temp;
 	int		i;
+	char	c;
 
-	temp = cmd;
+	if (*cmd == '\'' || *cmd == '"')
+	{
+		c = *cmd;
+		i = 0;
+		while (cmd[i] == c)
+			i++;
+		cmd[ft_strlen(cmd) - i] = '\0';
+		cmd += i;
+	}
 	i = -1;
 	if (access(cmd, F_OK) > -1)
 		return (cmd);
@@ -93,7 +109,6 @@ int	execute_cmd(t_general *general)
 		ft_show_env(general->env);
 		return (0);
 	}
-
 	if (!ft_strcmp(general->cmd, "exit"))
 		exit(EXIT_SUCCESS);
 	
@@ -105,6 +120,19 @@ int	execute_cmd(t_general *general)
 	int child = fork();
 
 	char *cmd = general->cmd;
+	int	i;
+	temp = cmd;
+
+	char	c;
+	if (*cmd == '\'' || *cmd == '"')
+	{
+		c = *cmd;
+		i = 0;
+		while (cmd[i] == c)
+			i++;
+		cmd[ft_strlen(cmd) - i] = '\0';
+		cmd += i;
+	}
 	if (child == 0)
 	{
 		if (access(cmd, F_OK) > -1)
@@ -115,7 +143,7 @@ int	execute_cmd(t_general *general)
 				exit(EXIT_FAILURE);
 			}
 		}
-		int i = -1;
+		i = -1;
 		while (general->paths[++i])
 		{
 			temp = cmd;
@@ -133,7 +161,7 @@ int	execute_cmd(t_general *general)
 		}
 		if (!flag)
 		{
-			printf("Command '%s' not found.\n", cmd);
+			printf("Command '%s' not found.\n", cmd );
 			exit(EXIT_FAILURE);
 		}
 		exit(EXIT_SUCCESS);
@@ -152,14 +180,14 @@ void	sig_handler(int signal)
 	rl_redisplay();
 }
 
-
-void	minishell(t_general *general)
+int	minishell(t_general *general)
 {
 	char	*title;
 
 	read_history("history");
 	if (signal(SIGINT, sig_handler) == SIG_ERR)
 		printf("failed to register interrupts with kernel\n");
+
 	while (1)
 	{
 		general->line = readline(general->title);
@@ -178,18 +206,12 @@ void	minishell(t_general *general)
 		if (!general->line)
 		{
 			ft_putstr_fd("exit\n", 1);
-			exit(0);
+			return (0);
 		}
 		write_history("history");
 		free(general->line);
 	}
-}
-
-int	ft_exit(char *msg, int exit_code)
-{
-	if (msg)
-		ft_putstr_fd(msg, 3);
-	exit(exit_code);
+	return (0);
 }
 
 int main(int argc, char **argv, char **env)

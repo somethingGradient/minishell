@@ -35,6 +35,8 @@ typedef	struct s_general
 	char	**split_line;
 	char	*cmd;
 
+	int		exit_status;
+
 }	t_general;
 
 int	ft_exit(char *msg, int exit_code);
