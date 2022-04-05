@@ -14,6 +14,7 @@ CPPFLAGS	= "-I/Users/akitty/.brew/opt/readline/include"
 SRC		=	main.c \
 			pre_parser.c env_functions.c write_env_var.c \
 			get_title.c	ft_echo.c ft_cd.c \
+			ft_export.c \
 			
 
 OBJ		=	$(SRC:.c=.o)
@@ -27,7 +28,7 @@ LIBFT		=	libft/libft.a
 all: $(NAME)
 
 $(NAME): $(OBJ)
-		@$(MAKE) all -C $(LIBFT_PATH)
+		#@$(MAKE) all -C $(LIBFT_PATH)
 		@$(CC) -g $(OBJ) $(LIBFT) -lreadline -o $(NAME) # for Linux
 		#$(CC) $(OBJ) $(LIBFT) -lreadline $(LDFLAGS) -o $(NAME) # for Mac
 		
@@ -38,11 +39,11 @@ $(NAME): $(OBJ)
 		@$(CC) -c -o $@ $< $(CPPFLAGS)
 
 clean:
-		$(MAKE) clean -C $(dir $(LIBFT))
+		#$(MAKE) clean -C $(dir $(LIBFT))
 		@rm -rf $(OBJ)
 		
 fclean: clean
-		$(MAKE) fclean -C $(dir $(LIBFT))
+		#$(MAKE) fclean -C $(dir $(LIBFT))
 		@rm -rf $(NAME)
 
 re: fclean all

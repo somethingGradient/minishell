@@ -2039,6 +2039,7 @@ make fclean
 ls -l
 ls -l
 git
+<<<<<<< HEAD
 alo
 echo alo
 ls
@@ -2064,3 +2065,165 @@ ls
 ls -l
 wc -c
 wc -l
+=======
+ls
+pwd
+ls
+pwd
+>>>>>>> 8f6285c7dc5222eb71d76cffc57a7dafdb5caada
+alo
+alo
+alo
+clean
+clear
+echo "ALO"
+echo "ALO d"
+env
+echo "ALO"
+echo
+echo
+echo
+echo
+echo
+echo
+echo
+echo
+echo
+echo
+echo
+echo a
+echo
+echo
+echo
+echo
+echo
+echo
+echo
+alo
+alo
+alo
+alo
+echo
+echo
+echo
+alo
+alo
+echo
+echo a
+echo 
+echo
+echo
+echo
+echo
+echo
+echo
+fork
+fork
+fork
+fork
+fork
+echo
+echo|
+"echo"
+"echo"
+"echos"
+dsa
+cd
+ls
+ls
+ls
+ls
+ls
+/usr/bin/ls
+/usr/bin/cat
+dsa
+dsa
+dsa
+alo
+ls
+ls -l
+echo "alo"
+echo "alo"
+echo "alo"
+echo "-alo"
+echo -n "-alo"
+echo "-n" "-alo"
+echo "-n"        "-alo"
+echo '"-n"'        "-alo"
+echo \'"-n"        "-alo"
+echo \'-n        "-alo"
+echo -n''        "-alo"
+echo -n\\        "-alo"
+subl
+exit
+ls
+alo
+export
+export
+export 
+export
+asd
+export
+export
+export
+export
+export
+alo
+echo a
+export a
+export a
+export a
+export a
+export
+export a
+export a
+export a
+export a
+export alo
+export "alo"
+export        "alo"
+export        "al
+export        "al=sa"
+export "a"
+export aa"
+export aa
+export a
+export a
+export "a"
+export "a"
+export "#"
+export ""
+export #
+export #
+env
+export alo
+export alo
+export alo
+export alo
+export alo=
+export al2o=
+export al2od=
+export al2od=
+export al2od=a
+export al2od=a
+export al2od=a
+export al2od=a
+export al2od=adsdsaa
+export al2od=123
+export "al2od=123"
+export "al2od="123q""
+export "al2od="123q""
+export "al2od=123q"
+export "al2od=123q"
+export al2od=123q
+export al32od=123q
+export al32od=123q
+export al32od=123q
+export
+export a=a
+export
+env
+export a=a
+env
+export a="'Cca'"
+ls

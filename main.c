@@ -7,33 +7,42 @@ int	ft_exit(char *msg, int exit_code)
 	exit(exit_code);
 }
 
-char	*mk_cmd(t_general *general, char *cmd)
+int	mk_cmd(t_general *general)
 {
 	char	*temp;
 	int		i;
 	char	c;
 
-	if (*cmd == '\'' || *cmd == '"')
+	if (*(general->cmd) == '\'' || *(general->cmd) == '"')
 	{
-		c = *cmd;
+		c = *(general->cmd);
 		i = 0;
-		while (cmd[i] == c)
+		while (general->cmd[i] == c)
 			i++;
-		cmd[ft_strlen(cmd) - i] = '\0';
-		cmd += i;
+		general->cmd[ft_strlen(general->cmd) - i] = '\0';
+		general->cmd += i;
 	}
+	if (!ft_strcmp(general->cmd, "echo") || !ft_strcmp(general->cmd, "cd")
+		|| !ft_strcmp(general->cmd, "pwd") || !ft_strcmp(general->cmd, "env")
+		|| !ft_strcmp(general->cmd, "exit") || !ft_strcmp(general->cmd, "export"))
+		return (0);
 	i = -1;
-	if (access(cmd, F_OK) > -1)
-		return (cmd);
-	general->paths = ft_split(getenv("PATH"), ':');
+	if (access(general->cmd, F_OK) > -1)
+		return (0);
+	general->paths = get_env_paths(general->env);
 	while (general->paths[++i])
 	{
-		cmd = ft_strjoin(general->paths[i], temp);
-		if (access(cmd, F_OK) > -1)
-			return (cmd);
-		free(cmd);
+		temp = general->cmd;
+		general->cmd = ft_strjoin(general->paths[i], general->cmd);
+		if (access(general->cmd, F_OK) > -1)
+		{
+			free(temp);
+			return (0);
+		}
+		free(general->cmd);
+		general->cmd = temp;
 	}
-	return (NULL);
+	return (1);
 }
 
 void	ft_clear_data(t_general *general)
@@ -74,11 +83,56 @@ void	ft_clear_data(t_general *general)
 	}
 }
 
+int	command_fork(t_general *general)
+{
+	int status = 0;
+
+	if (!ft_strcmp(general->cmd, "echo"))
+		ft_echo(general);	
+	else if (!ft_strcmp(general->cmd, "cd"))
+		ft_cd(general);
+	else if (!ft_strcmp(general->cmd, "pwd"))
+	{
+		char *temp;
+
+		temp = ft_get_env(general->env, "PWD");
+		ft_putstr_fd(temp, 1);
+		free(temp);
+		return (0);
+	}
+	else if (!ft_strcmp(general->cmd, "export"))
+	{
+		ft_export(general);
+		return (0);
+	}
+	else if (!ft_strcmp(general->cmd, "env"))
+		ft_show_env(general->env);
+	else if (!ft_strcmp(general->cmd, "exit"))
+		return (0);
+	else
+	{
+		int child = fork();
+		
+		if (child < 0)
+			return (0);
+		else if (child == 0)
+		{
+			if (execve(general->cmd, general->split_line, general->env) < 0)
+			{
+				printf("ERROR EXECVE.");
+				return (-1);
+			}
+		}
+		else
+			waitpid(child, &status, 0);
+	}
+	return (status);
+}
 
 int	execute_cmd(t_general *general)
 {
 	char	*temp;
-	char 	*str;
+	char	*str;
 
 	general->split_line = ft_split(general->line, ' ');
 	if (!general->split_line)
@@ -86,89 +140,12 @@ int	execute_cmd(t_general *general)
 	general->cmd = ft_strdup(general->split_line[0]);
 	if (!general->cmd)
 		return (0);
-
-	if (!ft_strcmp(general->cmd, "echo"))
+	if (mk_cmd(general))
 	{
-		ft_echo(general);
-		return (0);
+		printf("Command '%s' not found.\n", general->cmd );
+		return (-1);
 	}
-	if (!ft_strcmp(general->cmd, "cd"))
-	{
-		ft_cd(general);
-		return (0);
-	}
-	if (!ft_strcmp(general->cmd, "pwd"))
-	{
-		temp = ft_get_env(general->env, "PWD");
-		ft_putstr_fd(temp, 1);
-		free(temp);
-		return (1);
-	}
-	if (!ft_strcmp(general->cmd, "env"))
-	{
-		ft_show_env(general->env);
-		return (0);
-	}
-	if (!ft_strcmp(general->cmd, "exit"))
-		exit(EXIT_SUCCESS);
-	
-
-
-	int status;
-
-	int flag = 0;
-	int child = fork();
-
-	char *cmd = general->cmd;
-	int	i;
-	temp = cmd;
-
-	char	c;
-	if (*cmd == '\'' || *cmd == '"')
-	{
-		c = *cmd;
-		i = 0;
-		while (cmd[i] == c)
-			i++;
-		cmd[ft_strlen(cmd) - i] = '\0';
-		cmd += i;
-	}
-	if (child == 0)
-	{
-		if (access(cmd, F_OK) > -1)
-		{
-			if (execve(cmd, general->split_line, general->env) < 0)
-			{
-				printf("ERROR EXECVE.");
-				exit(EXIT_FAILURE);
-			}
-		}
-		i = -1;
-		while (general->paths[++i])
-		{
-			temp = cmd;
-			cmd = ft_strjoin(general->paths[i], cmd);
-			if (access(cmd, F_OK) > -1)
-			{
-				flag = 1;
-				if ( execve(cmd, general->split_line, general->env) < 0)
-				{
-					printf("ERROR EXECVE.");
-					exit(EXIT_FAILURE);
-				}
-			}
-			cmd = temp;
-		}
-		if (!flag)
-		{
-			printf("Command '%s' not found.\n", cmd );
-			exit(EXIT_FAILURE);
-		}
-		exit(EXIT_SUCCESS);
-	}
-
-	waitpid(child, &status, 0);
-	return (1);
+	command_fork(general);
 }
 
 
@@ -196,9 +173,9 @@ int	minishell(t_general *general)
 		if (general->line && *(general->line))
 		{
 			add_history(general->line);
-			if (pre_parser(general->line))
+			if (pre_parser_main(general->line) != 0)
 			{
-				printf("%s\n", "EXIT! NOT CLOSED QUOTE.");
+				ft_putstr_fd("Error.\nNot closed quotes.\n", 1);
 				continue ;
 			}
 			execute_cmd(general);

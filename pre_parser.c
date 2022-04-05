@@ -86,18 +86,10 @@ void	pre_parser_double_quotes(char **str, int *i, t_flags *flags)
 	}
 }
 
-/* return 1 if line unclosed */
-int	pre_parser(char *str)
+void	pre_parser(char *str, t_flags *flags)
 {
-	t_flags	*flags;
-	int		i;
-
-	flags = NULL;
-	flags = (t_flags *)malloc(sizeof(*flags));
-	flags->dobles_quotes = 0;
-	flags->single_quotes = 0;
-	flags->braces = 0;
-	flags->backslash = 0;
+	int	i;
+	
 	i = -1;
 	while (str[++i])
 	{
@@ -105,13 +97,41 @@ int	pre_parser(char *str)
 		if (str[i] == '\'')
 			pre_parser_single_quotes(&str, &i, flags);
 		else if (str[i] == '"') 
-			pre_parser_double_quotes(&str, &i, flags);
+		{
+			flags->dobles_quotes = 1;
+			while (str[++i])
+			{
+				pre_parser_backslash(&str, &i, flags);
+				pre_parser_dollar_quotes(&str, &i, flags);
+				if (str[i] == '"')
+				{
+					flags->dobles_quotes = 0;
+					return ;
+				}
+			}
+		}
 	}
+}
+
+int	pre_parser_main(char *str)
+{
+	t_flags	*flags;
+	int		result;
+
+	flags = NULL;
+	flags = (t_flags *)malloc(sizeof(*flags));
+	if (!flags)
+		return (-1);
+	flags->braces = 0;
+	flags->backslash = 0;
+	flags->single_quotes = 0;
+	flags->dobles_quotes = 0;
+	pre_parser(str, flags);
 	if (flags->dobles_quotes || flags->single_quotes
 		|| flags->braces || flags->backslash)
-		i = 1;
+		result = -1;
 	else
-		i = 0;
+		result = 0;
 	free(flags);
-	return (i);
+	return (result);
 }

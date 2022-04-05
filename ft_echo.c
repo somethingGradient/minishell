@@ -36,7 +36,6 @@ void	write_double_quotes(char **str, int *i)
 	}
 }
 
-/* DELETING SPACEs CHARS FROM BEGIN STR */
 int	str_trim(char *str, int n)
 {
 	int	i;
@@ -104,6 +103,8 @@ int	ft_echo(t_general *general)
 	char	*str;
 
 	str = ft_strdup(general->line);
+	if (!str)
+		return (0);
 	temp = str;
 	while (*str == ' ')
 		str++;
