@@ -2227,3 +2227,22 @@ export a=a
 env
 export a="'Cca'"
 ls
+cd 
+ls
+pwd
+grep
+export
+export a="'Cca'"
+ls
+k
+try
+дщд
+цй
+ыоыоыоыыо
+ls -l
+ls | pwd
+ls | wc -l
+wc -l
+ls
+env
+./minishell

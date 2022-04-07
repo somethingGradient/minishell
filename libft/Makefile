@@ -33,21 +33,21 @@ OBJ			= ${SRCS:.c=.o}
 BONUS_OBJ	= ${BONUS_SRCS:.c=.o}
 
 $(NAME):	${OBJ}
-				ar rcs $(NAME) ${OBJ}
+				@ar rcs $(NAME) ${OBJ}
 
 %.o : 		%.c
-				gcc $(FLAGS) -c $< -o ${<:.c=.o}
+				@gcc $(FLAGS) -c $< -o ${<:.c=.o}
 
 all :		$(NAME)
 
 bonus :		${NAME} ${OBJ} ${BONUS_OBJ}
-				ar rcs $(NAME) ${OBJ} ${BONUS_OBJ}
+				@ar rcs $(NAME) ${OBJ} ${BONUS_OBJ}
 
 clean :
-				rm -f $(OBJ) $(BONUS_OBJ)
+				@rm -f $(OBJ) $(BONUS_OBJ)
 
 fclean : 	clean
-				rm -f $(NAME)
+				@rm -f $(NAME)
 
 re :		fclean all
 
