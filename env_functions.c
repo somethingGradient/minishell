@@ -32,6 +32,7 @@ char	*ft_get_env(char **env, char *str)
 	int		len;
 	char	*env_value;
 
+	env_value = NULL;
 	if (!str)
 		return (NULL);
 	i = -1;
@@ -94,28 +95,3 @@ void	change_env(char	**env, char *key, char *value)
 		}
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

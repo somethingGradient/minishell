@@ -18,18 +18,18 @@ int	parse_backslash(char **str, int *i)
 	return (1);
 }
 
-void	parse_env_and_bs(char **str, int *i)
+void	parse_env_and_bs(t_general *general, char **str, int *i)
 {
 	while (parse_backslash(str, i)
-		|| write_env_var(str, i))
-		parse_env_and_bs(str, i);
+		|| print_env_var(general, str, i))
+		parse_env_and_bs(general, str, i);
 }
 
-void	write_double_quotes(char **str, int *i)
+void	write_double_quotes(t_general *general, char **str, int *i)
 {
 	while ((*str)[++(*i)])
 	{
-		parse_env_and_bs(str, i);
+		parse_env_and_bs(general, str, i);
 		if ((*str)[*i] == '"' || !(*str)[*i])
 			return ;
 		ft_putchar_fd((*str)[*i], 1);
@@ -59,18 +59,18 @@ int	str_trim(char *str, int n)
 	return (i);
 }
 
-int	main_echo(char *str, int n)
+int	main_echo(t_general *general, char *str, int n)
 {
 	int		i;
 
 	i = str_trim(str, n);
 	while (str[++i])
 	{
-		parse_env_and_bs(&str, &i);
+		parse_env_and_bs(general, &str, &i);	
 		if (!str[i])
 			break ;
 		else if (str[i] == '"')
-			write_double_quotes(&(str), &i);
+			write_double_quotes(general, &(str), &i);
 		else if (str[i] == '\'')
 		{
 			while (str[++i] && str[i] != '\'')
@@ -108,7 +108,7 @@ int	ft_echo(t_general *general)
 	temp = str;
 	while (*str == ' ')
 		str++;
-	main_echo(str, check_n(general->split_line[1]));
+	main_echo(general, str, check_n(general->split_line[1]));
 	free(temp);
 	return (0);
 }

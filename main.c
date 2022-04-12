@@ -146,6 +146,7 @@ int	execute_cmd(t_general *general)
 		return (-1);
 	}
 	command_fork(general);
+	return (0);
 }
 
 
@@ -203,6 +204,7 @@ int main(int argc, char **argv, char **env)
 	general->line = NULL;
 	general->cmd = NULL;
 	general->split_line = NULL;
+	general->exit_code = 0;
 
 	general->env = copy_env(env);
 	general->title = get_title(NULL);

@@ -2246,3 +2246,88 @@ wc -l
 ls
 env
 ./minishell
+alo
+echo $?
+echo "$?"
+echo "$?"
+echo "$?"
+echo "$?"
+echo "$?"
+echo "$?"
+echo $?
+echo $?
+echo asdas
+echo asdas""
+echo "$SHELL"
+echo "$SHELL$USER"
+echo "$SHELL/$USER"
+echo $?
+echo $?
+echo $?
+echo $?
+echo $?$USER
+echo $? $USER
+echo $? $USER
+echo $?$USER
+echo $?$USER
+echo $?$USER
+echo $?$USER
+echo $?$USER
+echo $USER
+echo $USER
+echo $USER
+echo $USER
+echo $USER
+echo $USER$?
+echo $?
+echo $?
+echo $?
+echo $?
+echo $?
+echo $?
+echo $?
+echo $?
+echo $?
+echo $
+echo $
+echo $
+echo $
+echo $
+echo $a
+echo $asda
+echo $USER
+echo $USER
+echo $USER
+echo $USERa
+echo $USERadas
+echo $USER
+echo $USER
+echo $USER
+echo $USER
+echo $USER
+echo $USER
+echo $USER
+echo $USER
+echo $USERa
+echo $USERadsa
+echo $fasUSERadsa
+echo $fasUSERadsa
+echo $USER
+echo $USER
+echo $USERa
+echo $USERadasdas
+echo $
+echo $das
+echo $das
+echo $?
+echo $?
+echo $?
+echo $?asd
+echo $?$asd
+echo $?$USER
+echo "$?$USER"
+echo "$a?$USER"
+echo "$ a?$USER"
+git
+git status
+exit

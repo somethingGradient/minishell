@@ -6,9 +6,7 @@ int	check_dollar(char **str, int *i)
 	if ((*str)[*i] == '$')
 	{
 		(*i)++;
-		if ((*str)[*i] == '?')
-			// WRITE EXIT CODE
-		if (!ft_isprint((*str)[*i]))
+		if (!ft_isalpha((*str)[*i]) && (*str)[*i] != '?')
 		{
 			ft_putchar_fd('$', 1);
 			return (0);	
@@ -19,7 +17,7 @@ int	check_dollar(char **str, int *i)
 	return (1);
 }
 
-char	buf_env(char **str, int *i, char **buf)
+void	buf_env(char **str, int *i, char **buf)
 {
 	int		flag;
 	int		k;
@@ -48,20 +46,32 @@ char	buf_env(char **str, int *i, char **buf)
 	(*buf)[k + 1] = '\0';
 }
 
-int	write_env_var(char **str, int *i)
+int	print_env_var(t_general *general, char **str, int *i)
 {
 	char	*buf;
 	char	*temp;
 
 	if (!check_dollar(str, i))
 		return (0);
-	buf = ft_calloc(sizeof(char), 512);
-	if (!buf)
-		return (-1);
-	buf_env(str, i, &buf);
-	temp = getenv(buf);
-	free(buf);
-	ft_putstr_fd(temp, 1);
-	write_env_var(str, i);
+	if (ft_isalnum((*str)[*i]))
+	{
+		buf = ft_calloc(sizeof(char), 512);
+		if (!buf)
+			return (-1);
+		buf_env(str, i, &buf);
+		temp = ft_get_env(general->env, buf);
+		free(buf);
+		if (temp)
+		{
+			ft_putstr_fd(temp, 1);
+			free(temp);
+		}
+	}
+	else if ((*str)[*i] == '?')
+	{
+		ft_putnbr_fd(general->exit_code, 1);
+		(*i)++;
+	}
+	print_env_var(general, str, i);
 	return (1);
 }
