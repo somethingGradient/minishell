@@ -86,6 +86,8 @@ int	main_echo(t_general *general, char *str, int n)
 
 int check_n(char *str)
 {
+	if (!str)
+		return (0);
 	if (!ft_strcmp(str, "-n"))
 		return (2);
 	if (ft_strlen(str) != 4)
@@ -104,7 +106,7 @@ int	ft_echo(t_general *general)
 
 	str = ft_strdup(general->line);
 	if (!str)
-		return (0);
+		return (-1);
 	temp = str;
 	while (*str == ' ')
 		str++;
