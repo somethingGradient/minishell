@@ -12,12 +12,12 @@
 #include <signal.h>
 
 /* for Linux */
-// #include "/usr/include/readline/readline.h"
-// #include "/usr/include/readline/history.h" 
+#include "/usr/include/readline/readline.h"
+#include "/usr/include/readline/history.h" 
 
 /* for Mac */
-#include <readline/readline.h>
-#include <readline/history.h>
+// #include <readline/readline.h>
+// #include <readline/history.h>
 
 # define D_QUOTE '\"'
 # define QUOTE '\''

@@ -8,7 +8,8 @@ int	ft_export(t_general *general)
 	char	**edited_env;
 
 	i = -1;
-	if (ft_strlen(general->line) == 6)
+
+	if (ft_strlen(general->cmd) == 6 && !general->split_line[1])
 	{
 		while (general->env[++i])
 		{
@@ -45,10 +46,13 @@ int	ft_export(t_general *general)
 			ft_putstr_fd("bash: export: `", 1);
 			ft_putchar_fd(general->line[k], 1);
 			ft_putstr_fd(": not a valid identifier\n", 1);
+			return (-1);
 		}
 
 		int	j = k;
+
 		while (ft_isalnum(general->line[k]) && general->line[k++] != '=') ;
+
 		key = ft_substr(general->line, j, k - j);
 
 		j = ++k;
@@ -81,8 +85,6 @@ int	ft_export(t_general *general)
 		general->env = edited_env;
 
 	}
-	
-	// printf("declare -x %s\n", general->env[i]);
 
 	return (0);
 }

@@ -28,7 +28,7 @@ int	mk_cmd(t_general *general)
 		return (0);
 	i = -1;
 	if (access(general->cmd, F_OK) > -1)
-		return (0);
+		return (0);	
 	general->paths = get_env_paths(general->env);
 	while (general->paths[++i])
 	{
@@ -102,7 +102,7 @@ int	command_fork(t_general *general)
 	}
 	else if (!ft_strcmp(general->cmd, "export"))
 	{
-		ft_export(general);
+		general->exit_code = ft_export(general);
 		return (0);
 	}
 	else if (!ft_strcmp(general->cmd, "env"))
@@ -117,14 +117,14 @@ int	command_fork(t_general *general)
 			return (0);
 		else if (child == 0)
 		{
-			if (execve(general->cmd, general->split_line, general->env) < 0)
+			if (execve(general->cmd, general->split_line, general->env)< 0)
 			{
 				printf("ERROR EXECVE.");
 				return (-1);
 			}
 		}
 		else
-			waitpid(child, &status, 0);
+			waitpid(child, &(general->exit_code), 0);
 	}
 	return (status);
 }
@@ -219,6 +219,7 @@ int main(int argc, char **argv, char **env)
 	general->cmd = NULL;
 	general->split_line = NULL;
 	general->exit_code = 0;
+
 
 	general->env = copy_env(env);
 	general->title = get_title(NULL);
