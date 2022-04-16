@@ -19,9 +19,41 @@
 #include <readline/readline.h>
 #include <readline/history.h>
 
+# define D_QUOTE '\"'
+# define QUOTE '\''
+# define D_QUOTE_S "\""
+# define QUOTE_S "\'"
+
+# define ERROR_PIPE "minishell: syntax error near unexpected token `|'\n"
+# define ERROR_DIR "No such file or directory\n"
+# define ERROR_HOME "minishell: cd: HOME not set\n"
+# define ERROR_CMD "command not found\n"
+
 #define BLOD  "\001\033[1m\002"						// Подчеркнуть, жирным шрифтом, выделить
 #define BEGIN(x,y) "\001\033["#x";"#y"m\002"	// x: background, y: foreground
 #define CLOSE "\001\033[0m\002"						// Закрыть все свойства
+
+typedef struct s_token
+{
+	char	*to_print;
+	char	*to_exec;
+	char	quote;
+	char	*end;
+	char	*new;
+	int		i;
+	int		init;
+	int		len;
+	int		posic;
+}			t_token;
+
+typedef struct s_split
+{
+	int		n_comand;
+	int		ini;
+	int		len;
+	int		q;
+	int		qtt_pipe;
+}			t_split;
 
 typedef	struct s_general
 {
@@ -34,8 +66,21 @@ typedef	struct s_general
 
 	char	**split_line;
 	char	*cmd;
-
 	int		exit_code;
+
+	bool	is_builtin;
+	char	**path;
+	char	*name_file;
+	char	*error_name_file;
+	char	*home;
+	char	**tokens;
+	int		c;
+	char	*commands[50];
+	int		last_redir;
+	int		out_fd;
+	int		in_fd;
+	t_split	split;
+	t_token	token;
 
 }	t_general;
 
@@ -76,5 +121,20 @@ char	**ft_split(char const *s, char c);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	*ft_strjoin(char const *s1, char const *s2);
 int		ft_strcmp(char *s1, char *s2);
+
+// New split funcs
+void	run_commands(t_general *general);
+void	run_commands_aux(t_general *general);
+void	action(t_general *general);
+void	exec_process(t_general *general, int in, int out);
+void	ft_execve_pipe(t_general *general, int i, char *command);
+void	split_cmd(t_general *general, char *in, int i);
+void	init_split_struct(t_general *general);
+char	*clean_spaces(char *in);
+int		count_pipe(t_general *general, char *in, int i);
+void	redirect_in(t_general *mini, int j, char *aux);
+char	**double_redir(t_general *mini, char **file, int j);
+void	read_until(char *end);
+char	*new_comman(int i, char **str);
 
 #endif
