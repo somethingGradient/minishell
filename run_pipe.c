@@ -98,7 +98,7 @@ void	ft_execve_pipe(t_general *general, int i, char *command)
 	if (general->tokens[0])
 	{
 		g_ret_number = execve(general->tokens[0], &general->tokens[0],
-				general->env.env);
+				general->env);
 		while (general->path && general->path[i] != NULL)
 		{
 			command = ft_strdup(general->path[i]);

@@ -4,14 +4,14 @@ void	split_cmd(t_general *general, char *in, int i)
 {
 	init_split_struct(general);
 	in = clean_spaces(in);
-	while (i < (int)ft_strlen(in))
+	while (i < ft_strlen(in))
 	{
-		if (general->split.q == 0 && (in[i] == D_QUOTE || in[i] == QUOTE))
-			general->split.q = in[i];
+		if (general->split.quote == 0 && (in[i] == D_QUOTE || in[i] == QUOTE))
+			general->split.quote = in[i];
 		else
 		{
-			if (general->split.q == in[i])
-				general->split.q = 0;
+			if (general->split.quote == in[i])
+				general->split.quote = 0;
 			else
 				i = count_pipe(general, in, i);
 		}
@@ -34,7 +34,7 @@ void	init_split_struct(t_general *general)
 	general->split.ini = 0;
 	general->split.len = 0;
 	general->split.qtt_pipe = 0;
-	general->split.q = 0;
+	general->split.quote = 0;
 	general->last_redir = 0;
 }
 
@@ -51,9 +51,9 @@ int	count_pipe(t_general *general, char *in, int i)
 {
 	if (in[i] == '|' || in[i] == '<' || in[i] == '>')
 	{
-		if (in[i] == '|' && general->split.q == 0)
+		if (in[i] == '|' && general->split.quote == 0)
 			general->split.qtt_pipe++;
-		if (general->split.q == 0 && i > 1 && general->split.len > 0)
+		if (general->split.quote == 0 && i > 1 && general->split.len > 0)
 		{
 			general->commands[general->split.n_comand] = ft_substr(in,
 					general->split.ini, general->split.len);

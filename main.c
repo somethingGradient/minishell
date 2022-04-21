@@ -7,6 +7,33 @@ int	ft_exit(char *msg, int exit_code)
 	exit(exit_code);
 }
 
+void	free_char_array2(char **array)
+{
+	int	i;
+
+	i = 0;
+	while (array[i] != NULL)
+	{
+		free(array[i]);
+		array[i] = NULL;
+		i++;
+	}
+}
+
+void	free_char_array(char **array)
+{
+	int	i;
+
+	i = 0;
+	while (array[i] != NULL)
+	{
+		free(array[i]);
+		array[i] = NULL;
+		i++;
+	}
+	free(array);
+}
+
 int	mk_cmd(t_general *general)
 {
 	char	*temp;
@@ -188,7 +215,8 @@ int	minishell(t_general *general)
 		}
 		write_history("history");
 		free(general->line);*/
-		get_line(&general);
+		//get_line(&general);
+		general->line = readline(general->title);
 		if (general->line)
 		{
 			if (ft_strlen(general->line) != 0)

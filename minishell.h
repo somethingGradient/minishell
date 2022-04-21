@@ -10,6 +10,7 @@
 #include <fcntl.h>
 #include <sys/wait.h>
 #include <signal.h>
+#include <stdbool.h>
 
 /* for Linux */
 #include "/usr/include/readline/readline.h"
@@ -33,6 +34,8 @@
 #define BEGIN(x,y) "\001\033["#x";"#y"m\002"	// x: background, y: foreground
 #define CLOSE "\001\033[0m\002"						// Закрыть все свойства
 
+int	g_ret_number;
+
 typedef struct s_token
 {
 	char	*to_print;
@@ -51,7 +54,7 @@ typedef struct s_split
 	int		n_comand;
 	int		ini;
 	int		len;
-	int		q;
+	int		quote;
 	int		qtt_pipe;
 }			t_split;
 
@@ -67,9 +70,8 @@ typedef	struct s_general
 	char	**split_line;
 	char	*cmd;
 	int		exit_code;
-
-	bool	is_builtin;
 	char	**path;
+	bool	is_builtin;
 	char	*name_file;
 	char	*error_name_file;
 	char	*home;
@@ -79,16 +81,39 @@ typedef	struct s_general
 	int		last_redir;
 	int		out_fd;
 	int		in_fd;
+	int		is_append;
+	bool	has_flag;
 	t_split	split;
 	t_token	token;
 
 }	t_general;
 
 int	ft_exit(char *msg, int exit_code);
-
 int	ft_export(t_general *general);
-
 char *get_title(char *cwd);
+void	tokenizer_clean_quotes(t_general *general, char *in, int i, int c);
+int	fixing_for_norminette(t_general *general, char c, char *aux, int nbr);
+int	tokenizer_find_char(char *string, char needle);
+void	tokenizer(t_general *general);
+void	split_cmd(t_general *general, char *in, int i);
+void	init_split_struct(t_general *general);
+char	*clean_spaces(char *in);
+int	count_pipe(t_general *general, char *in, int i);
+void	run_commands(t_general *general);
+void	run_commands_aux(t_general *general);
+void	action(t_general *general);
+void	exec_process(t_general *general, int in, int out);
+void	ft_execve_pipe(t_general *general, int i, char *command);
+int	file_descriptor_handler(int in, int out);
+void	spaces_in_pipe(t_general *general, int i, char *command);
+void	execve_error(t_general *general);
+void	redirect_in(t_general *mini, int j, char *aux);
+char	**double_redir(t_general *mini, char **file, int j);
+void	read_until(char *end);
+char	*new_comman(int i, char **str);
+void	is_builtin(char *cmd, t_general *general);
+void	run_builtin(t_general *general);
+
 
 
 /* ENV FUNCTIONS */

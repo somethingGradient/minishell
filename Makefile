@@ -14,7 +14,10 @@ CPPFLAGS	= "-I/Users/akitty/.brew/opt/readline/include"
 SRC		=	main.c \
 			pre_parser.c env_functions.c print_env_var.c \
 			get_title.c	ft_echo.c ft_cd.c \
-			ft_export.c \
+			ft_export.c pre_parser.c \
+			builtins.c redir_in.c  \
+			run_pipe_aux.c run_pipe.c split_cmd.c \
+			token.c
 			
 
 OBJ		=	$(SRC:.c=.o)
