@@ -168,7 +168,8 @@ int	minishell(t_general *general)
 
 	while (1)
 	{
-		/*general->line = readline(general->title);
+		
+		general->line = readline(general->title);
 		general->line[ft_strlen(general->line)] = '\0';
 
 		if (general->line && *(general->line))
@@ -187,7 +188,8 @@ int	minishell(t_general *general)
 			return (0);
 		}
 		write_history("history");
-		free(general->line);*/
+		free(general->line);
+	/*
 		get_line(&general);
 		if (general->line)
 		{
@@ -202,6 +204,7 @@ int	minishell(t_general *general)
 			}
 			free(general->line);
 		}
+		*/
 	}
 	return (0);
 }
@@ -219,7 +222,6 @@ int main(int argc, char **argv, char **env)
 	general->cmd = NULL;
 	general->split_line = NULL;
 	general->exit_code = 0;
-
 
 	general->env = copy_env(env);
 	general->title = get_title(NULL);

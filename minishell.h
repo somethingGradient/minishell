@@ -33,6 +33,8 @@
 #define BEGIN(x,y) "\001\033["#x";"#y"m\002"	// x: background, y: foreground
 #define CLOSE "\001\033[0m\002"						// Закрыть все свойства
 
+typedef enum {false, true} bool;
+
 typedef struct s_token
 {
 	char	*to_print;
