@@ -73,7 +73,6 @@ void	exec_process(t_general *general, int in, int out)
 	else
 	{
 		pid = fork();
-		run_signals(2);
 		if (pid < 0)
 		{
 			printf("Fork error\n");

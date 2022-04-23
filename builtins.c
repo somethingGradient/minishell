@@ -17,7 +17,7 @@ void	is_builtin(char *cmd, t_general *general)
 void	run_builtin(t_general *general)
 {
 	if (!ft_strncmp(general->tokens[0], "exit", 4))
-		ft_exit(general, 0);
+		ft_exit2(&general);
 	/*if (!ft_strncmp(general->tokens[0], "pwd", 3))
 		ft_pwd(general);*/
 	if (!ft_strncmp(general->tokens[0], "echo", 4))

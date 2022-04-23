@@ -7,6 +7,16 @@ int	ft_exit(char *msg, int exit_code)
 	exit(exit_code);
 }
 
+void	ft_exit2(t_general *general)
+{
+	free_char_array2(general->commands);
+	if (general->path)
+		free_char_array(general->path);
+	free (general->home);
+	printf("exit\n");
+	exit(0);
+}
+
 void	free_char_array2(char **array)
 {
 	int	i;
@@ -221,9 +231,9 @@ int	minishell(t_general *general)
 		{
 			if (ft_strlen(general->line) != 0)
 			{
-				split_cmd(&general, general->line, 0);
+				split_cmd(general, general->line, 0);
 				if (general->split.n_comand > 0 && general->commands[0][0] != '|')
-					run_commands(&general);
+					run_commands(general);
 				if (general->commands[0] && general->commands[0][0] == '|')
 					printf(ERROR_PIPE);
 				free_char_array2(general->commands);

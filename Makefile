@@ -17,7 +17,7 @@ SRC		=	main.c \
 			ft_export.c pre_parser.c \
 			builtins.c redir_in.c  \
 			run_pipe_aux.c run_pipe.c split_cmd.c \
-			token.c
+			token.c token_utils.c redir_out.c
 			
 
 OBJ		=	$(SRC:.c=.o)
@@ -31,8 +31,8 @@ LIBFT		=	libft/libft.a
 all: $(NAME)
 
 $(NAME): $(OBJ)
-		@$(MAKE) all -C $(LIBFT_PATH)
-		@$(CC) -g $(OBJ) $(LIBFT) -lreadline -o $(NAME) # for Linux
+		$(MAKE) all -C $(LIBFT_PATH)
+		#@$(CC) -g $(OBJ) $(LIBFT) -lreadline -o $(NAME) # for Linux
 		@$(CC) $(OBJ) $(LIBFT) -lreadline $(LDFLAGS) -o $(NAME) # for Mac
 		
 

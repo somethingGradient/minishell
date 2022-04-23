@@ -33,10 +33,14 @@ int	fixing_for_norminette(t_general *general, char c, char *aux, int nbr)
 	return (nbr);
 }
 
-void	tokenizer_clean_quotes(t_general *general, char *in, int i, int c)
+void	tokenizer_clean_quotes(t_general *general, char *in)
 {
+	int		i;
+	int		c;
 	char	*aux;
 
+	i = 0;
+	c = 0;
 	general->token.quote = 0;
 	aux = ft_strtrim(in, " ");
 	general->has_flag = false;
@@ -49,7 +53,18 @@ void	tokenizer_clean_quotes(t_general *general, char *in, int i, int c)
 		i++;
 	while (in[i])
 	{
-		c = fixing_for_norminette(general, in[i], aux, c);
+		if (general->token.quote == 0 && (in[i] == QUOTE || in[i] == D_QUOTE))
+			general->token.quote = in[i];
+		else
+		{
+			if (general->token.quote == in[i])
+				general->token.quote = 0;
+			else
+			{
+				aux[c] = in[i];
+				c++;
+			}
+		}
 		i++;
 	}
 	aux[c] = '\0';

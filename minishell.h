@@ -13,12 +13,12 @@
 #include <stdbool.h>
 
 /* for Linux */
-#include "/usr/include/readline/readline.h"
-#include "/usr/include/readline/history.h" 
+//#include "/usr/include/readline/readline.h"
+//#include "/usr/include/readline/history.h" 
 
 /* for Mac */
-// #include <readline/readline.h>
-// #include <readline/history.h>
+ #include <readline/readline.h>
+ #include <readline/history.h>
 
 # define D_QUOTE '\"'
 # define QUOTE '\''
@@ -91,7 +91,7 @@ typedef	struct s_general
 int	ft_exit(char *msg, int exit_code);
 int	ft_export(t_general *general);
 char *get_title(char *cwd);
-void	tokenizer_clean_quotes(t_general *general, char *in, int i, int c);
+void	tokenizer_clean_quotes(t_general *general, char *in);
 int	fixing_for_norminette(t_general *general, char c, char *aux, int nbr);
 int	tokenizer_find_char(char *string, char needle);
 void	tokenizer(t_general *general);
@@ -113,7 +113,17 @@ void	read_until(char *end);
 char	*new_comman(int i, char **str);
 void	is_builtin(char *cmd, t_general *general);
 void	run_builtin(t_general *general);
-
+void	free_char_array2(char **array);
+void	free_char_array(char **array);
+void	finish_tokenizer(t_general *general, t_token *tk);
+void	free_tk(t_token *tk);
+t_token	*init_tk(void);
+void	get_dollar_sign(t_general *general, t_token *tk);
+void	get_home_sign(t_general *general, t_token *tk);
+void	ft_exit2(t_general *general);
+void	redirect_out(t_general *general, int j);
+void	simple_redir_out(t_general *general, int j, int flags);
+int	find_char(char *string, char needle);
 
 
 /* ENV FUNCTIONS */
