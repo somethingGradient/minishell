@@ -231,6 +231,12 @@ int	minishell(t_general *general)
 		{
 			if (ft_strlen(general->line) != 0)
 			{
+				if (pre_parser_main(general->line) != 0)
+				{
+					ft_putstr_fd("Error.\nNot closed quotes.\n", 1);
+					continue ;
+				}
+				execute_cmd(general);
 				split_cmd(general, general->line, 0);
 				if (general->split.n_comand > 0 && general->commands[0][0] != '|')
 					run_commands(general);

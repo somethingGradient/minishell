@@ -4,6 +4,7 @@
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
+#include "libft/libft.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -88,6 +89,40 @@ typedef	struct s_general
 
 }	t_general;
 
+
+
+
+/* ENV FUNCTIONS */
+char	**copy_env(char	**env);
+char	*ft_get_env(char **env, char *str);
+char	**get_env_paths(char **env);
+void	change_env(char	**env, char *key, char *value);
+void	ft_show_env(char **env);
+int		print_env_var(t_general *general, char **str, int *i);
+
+int	pre_parser_main(char *str);
+
+/* BUILTINS */
+int	ft_echo(t_general *general);
+int	ft_cd(t_general *general);
+
+// New split funcs
+void	run_commands(t_general *general);
+void	run_commands_aux(t_general *general);
+void	action(t_general *general);
+void	exec_process(t_general *general, int in, int out);
+//void	ft_execve_pipe(t_general *general, int i, char *command);
+void	split_cmd(t_general *general, char *in, int i);
+void	init_split_struct(t_general *general);
+char	*clean_spaces(char *in);
+int		count_pipe(t_general *general, char *in, int i);
+void	redirect_in(t_general *mini, int j, char *aux);
+char	**double_redir(t_general *mini, char **file, int j);
+void	read_until(char *end);
+char	*new_comman(int i, char **str);
+
+
+
 int	ft_exit(char *msg, int exit_code);
 int	ft_export(t_general *general);
 char *get_title(char *cwd);
@@ -126,50 +161,5 @@ void	simple_redir_out(t_general *general, int j, int flags);
 int	find_char(char *string, char needle);
 
 
-/* ENV FUNCTIONS */
-char	**copy_env(char	**env);
-char	*ft_get_env(char **env, char *str);
-char	**get_env_paths(char **env);
-void	change_env(char	**env, char *key, char *value);
-void	ft_show_env(char **env);
-int		print_env_var(t_general *general, char **str, int *i);
-
-int	pre_parser_main(char *str);
-
-/* BUILTINS */
-int	ft_echo(t_general *general);
-int	ft_cd(t_general *general);
-
-int		ft_isalpha(int c);
-char	*ft_substr(char const *s, unsigned int start, size_t len);
-char	*ft_strnstr(const char *big, const char *little, size_t n);
-char	*ft_strdup(const char *s);
-void	*ft_calloc(size_t n, size_t size);
-int		ft_isprint(int c);
-int		ft_isalnum(int c);
-void	ft_putchar_fd(char c, int fd);
-void	ft_putstr_fd(char *s, int fd);
-void	ft_putnbr_fd(int n, int fd);
-char	*ft_strdup(const char *s);
-int		ft_strlen(const char *str);
-char	**ft_split(char const *s, char c);
-char	*ft_substr(char const *s, unsigned int start, size_t len);
-char	*ft_strjoin(char const *s1, char const *s2);
-int		ft_strcmp(char *s1, char *s2);
-
-// New split funcs
-void	run_commands(t_general *general);
-void	run_commands_aux(t_general *general);
-void	action(t_general *general);
-void	exec_process(t_general *general, int in, int out);
-void	ft_execve_pipe(t_general *general, int i, char *command);
-void	split_cmd(t_general *general, char *in, int i);
-void	init_split_struct(t_general *general);
-char	*clean_spaces(char *in);
-int		count_pipe(t_general *general, char *in, int i);
-void	redirect_in(t_general *mini, int j, char *aux);
-char	**double_redir(t_general *mini, char **file, int j);
-void	read_until(char *end);
-char	*new_comman(int i, char **str);
 
 #endif
