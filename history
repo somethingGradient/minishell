@@ -55,23 +55,73 @@ echo
 export
 echo -n
 alo
-export
-export a
-export
-bash
-export
-exit
-cd
-cd
-cd          
-cd
-cd 
-cd minishell
-cd
-cd
-cd
-cd
-pwd
-export
-cd
-export
+echo -n
+echo
+echo
+echo
+"echo"
+'echo'
+'echo | '
+'echo | a'
+'echo | a'
+'echo | a'
+'echo  a'
+'echo a'
+'echo a | a'
+'echo a | a | a'
+echo a | a | a
+echo a | a | a
+'echo' a
+echo a
+echo a
+'echo' a
+'echo' a
+'echo' a        
+          'echo' a        
+          'echo'            a        
+          'echo'            a        
+'         echo'
+'         echo'
+'echo'
+'echo | a'
+'echo | a'
+'echo | a | a'
+'echo'
+'echo'
+'echo'
+"cho"
+"
+''
+" | "
+" > "
+" > "
+" | "
+ | 
+ |  |
+ 
+>
+<
+<
+d
+>>
+>>>
+>
+>
+>?
+??
+>>
+>>>
+> > >
+||
+| | |
+| | |
+a
+      a        
+"      a        "
+"      a        "
+"      echo        "
+"      echo        | a"
+"      echo        | a" | a
+"      echo        | a"
+"      echo        | a" | a
+"      echo        | a" | a

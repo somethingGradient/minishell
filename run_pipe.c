@@ -6,7 +6,7 @@ void	run_commands(t_general *general)
 	int		fd[2];
 
 	j = 0;
-	general->c = 0;
+	general->indcmd = 0;
 	general->last_redir = 0;
 	while (j < general->split.qtt_pipe)
 	{
@@ -46,15 +46,15 @@ void	run_commands_aux(t_general *general)
 
 void	action(t_general *general)
 {
-	general->line = ft_strdup(general->commands[general->c]);
+	general->line = ft_strdup(general->commands[general->indcmd]);
 	if (general->split.n_comand > 1 )
-		general->c++;
+		general->indcmd++;
 	general->error_name_file = NULL;
-	while (general->commands[general->c] && general->commands[general->c][0] != '|')
+	while (general->commands[general->indcmd] && general->commands[general->indcmd][0] != '|')
 	{
-		redirect_out(general, general->c);
-		redirect_in(general, general->c, NULL);
-		general->c++;
+		redirect_out(general, general->indcmd);
+		redirect_in(general, general->indcmd, NULL);
+		general->indcmd++;
 	}
 	if (general->error_name_file != NULL)
 	{
@@ -73,7 +73,6 @@ void	exec_process(t_general *general, int in, int out)
 	else
 	{
 		pid = fork();
-		run_signals(2);
 		if (pid < 0)
 		{
 			printf("Fork error\n");
@@ -98,7 +97,7 @@ void	ft_execve_pipe(t_general *general, int i, char *command)
 	if (general->tokens[0])
 	{
 		g_ret_number = execve(general->tokens[0], &general->tokens[0],
-				general->env.env);
+				general->env);
 		while (general->path && general->path[i] != NULL)
 		{
 			command = ft_strdup(general->path[i]);

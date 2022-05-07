@@ -7,6 +7,43 @@ int	ft_exit(char *msg, int exit_code)
 	exit(exit_code);
 }
 
+void	ft_exit2(t_general *general)
+{
+	free_char_array2(general->commands);
+	if (general->path)
+		free_char_array(general->path);
+	free (general->home);
+	printf("exit\n");
+	exit(0);
+}
+
+void	free_char_array2(char **array)
+{
+	int	i;
+
+	i = 0;
+	while (array[i] != NULL)
+	{
+		free(array[i]);
+		array[i] = NULL;
+		i++;
+	}
+}
+
+void	free_char_array(char **array)
+{
+	int	i;
+
+	i = 0;
+	while (array[i] != NULL)
+	{
+		free(array[i]);
+		array[i] = NULL;
+		i++;
+	}
+	free(array);
+}
+
 int	mk_cmd(t_general *general)
 {
 	char	*temp;
@@ -168,7 +205,6 @@ int	minishell(t_general *general)
 
 	while (1)
 	{
-		
 		general->line = readline(general->title);
 		general->line[ft_strlen(general->line)] = '\0';
 
@@ -180,7 +216,9 @@ int	minishell(t_general *general)
 				ft_putstr_fd("Error.\nNot closed quotes.\n", 1);
 				continue ;
 			}
-			execute_cmd(general);
+			split_cmd(general, general->line, 0);
+			
+			// execute_cmd(general);
 		}
 		if (!general->line)
 		{
@@ -189,15 +227,23 @@ int	minishell(t_general *general)
 		}
 		write_history("history");
 		free(general->line);
-	/*
-		get_line(&general);
+
+		/*
+		//get_line(&general);
+		general->line = readline(general->title);
 		if (general->line)
 		{
 			if (ft_strlen(general->line) != 0)
 			{
-				split_cmd(&general, general->line, 0);
+				if (pre_parser_main(general->line) != 0)
+				{
+					ft_putstr_fd("Error.\nNot closed quotes.\n", 1);
+					continue ;
+				}
+				execute_cmd(general);
+				
 				if (general->split.n_comand > 0 && general->commands[0][0] != '|')
-					run_commands(&general);
+					run_commands(general);
 				if (general->commands[0] && general->commands[0][0] == '|')
 					printf(ERROR_PIPE);
 				free_char_array2(general->commands);

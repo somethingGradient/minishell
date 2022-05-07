@@ -3,18 +3,23 @@ NAME	=	minishell
 
 INCLUDES =	-lreadline
 
+HEADER = minishell.h
+
 CC		=	gcc
 
 FLAGS	=	-Wall -Wextra -Werror
 
-LDFLAGS		= "-L/Users/akitty/.brew/opt/readline/lib"
-CPPFLAGS	= "-I/Users/akitty/.brew/opt/readline/include"
+LDFLAGS		= "-L/Users/jannabel/.brew/opt/readline/lib"
+CPPFLAGS	= "-I/Users/jannabel/.brew/opt/readline/include"
 
 
 SRC		=	main.c \
-			pre_parser.c env_functions.c print_env_var.c \
+			env_functions.c print_env_var.c \
 			get_title.c	ft_echo.c ft_cd.c \
-			ft_export.c \
+			ft_export.c pre_parser.c \
+			builtins.c redir_in.c  \
+			run_pipe_aux.c run_pipe.c split_cmd.c \
+			token.c token_utils.c redir_out.c
 			
 
 OBJ		=	$(SRC:.c=.o)
@@ -27,23 +32,23 @@ LIBFT		=	libft/libft.a
 
 all: $(NAME)
 
-$(NAME): $(OBJ)
-		@$(MAKE) all -C $(LIBFT_PATH)
-		@$(CC) -g $(OBJ) $(LIBFT) -lreadline -o $(NAME) # for Linux
+$(NAME): $(OBJ) $(HEADER)
+		#$(MAKE) all -C $(LIBFT_PATH)
 		@$(CC) $(OBJ) $(LIBFT) -lreadline $(LDFLAGS) -o $(NAME) # for Mac
+		#@$(CC) -g $(OBJ) $(LIBFT) -lreadline -o $(NAME)  for Linux
 		
 
 #$(MAKE) all -C $(LIBFT_PATH)
 
-%.o: %.c
+%.o: %.c $(HEADER)
 		@$(CC) -c -o $@ $< $(CPPFLAGS)
 
 clean:
-		@$(MAKE) clean -C $(dir $(LIBFT))
+		#@$(MAKE) clean -C $(dir $(LIBFT))
 		@rm -rf $(OBJ)
 		
 fclean: clean
-		@$(MAKE) fclean -C $(dir $(LIBFT))
+		#@$(MAKE) fclean -C $(dir $(LIBFT))
 		@rm -rf $(NAME)
 
 re: fclean all
