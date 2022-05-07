@@ -182,7 +182,7 @@ int	execute_cmd(t_general *general)
 		printf("Command '%s' not found.\n", general->cmd );
 		return (-1);
 	}
-	command_fork(general);
+	//command_fork(general);
 	return (0);
 }
 
@@ -218,8 +218,10 @@ int	minishell(t_general *general)
 			}
 			split_cmd(general, general->line, 0);
 			
-			// execute_cmd(general);
+			execute_cmd(general);
+			
 			run_commands(general);
+
 		}
 		if (!general->line)
 		{

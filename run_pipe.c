@@ -8,40 +8,45 @@ void	run_commands(t_general *general)
 	j = 0;
 	general->indcmd = 0;
 	general->last_redir = 0;
-	while (j < general->split.qtt_pipe)
-	{
-		if (pipe(fd) < 0)
-		{
-			printf("Pipe error\n");
-			g_ret_number = 127;
-		}
-		general->out_fd = fd[1];
-		run_commands_aux(general);
-		close(general->out_fd);
-		if (general->in_fd != 0)
-			close(general->in_fd);
-		general->in_fd = fd[0];
-		j++;
-	}
+	// while (j < general->split.qtt_pipe)
+	// {
+	// 	if (pipe(fd) < 0)
+	// 	{
+	// 		printf("Pipe error\n");
+	// 		g_ret_number = 127;
+	// 	}
+	// 	general->out_fd = fd[1];
+	// 	run_commands_aux(general);
+	// 	close(general->out_fd);
+	// 	if (general->in_fd != 0)
+	// 		close(general->in_fd);
+	// 	general->in_fd = fd[0];
+	// 	j++;
+	// }
 	run_commands_aux(general);
 }
 
 void	run_commands_aux(t_general *general)
 {
-	action(general);
+	//action(general);
 	if (general->commands[0][0] != '>')
 	{
 		tokenizer(general);
+		int i = -1;
+		while (general->tokens[++i])
+			printf("|%s|\n", general->tokens[i]);
+
+
 		if (general->tokens[0])
 			is_builtin(general->tokens[0], general);
 		if (general->in_fd != -1)
 			exec_process(general, general->in_fd, general->out_fd);
-		free_char_array(general->tokens);
-		free(general->token.to_print);
-		free(general->token.to_exec);
+		// free_char_array(general->tokens);
+		// free(general->token.to_print);
+		// free(general->token.to_exec);
 	}
-	if (general->name_file)
-		unlink(general->name_file);
+	// if (general->name_file)
+	// 	unlink(general->name_file);
 }
 
 void	action(t_general *general)
@@ -80,7 +85,7 @@ void	exec_process(t_general *general, int in, int out)
 		}
 		else if (pid == 0)
 		{
-			file_descriptor_handler(in, out);
+			//file_descriptor_handler(in, out);
 			g_ret_number = 127;
 			ft_execve_pipe(general, 0, "");
 			exit(g_ret_number);
