@@ -219,6 +219,7 @@ int	minishell(t_general *general)
 			split_cmd(general, general->line, 0);
 			
 			// execute_cmd(general);
+			run_commands(general);
 		}
 		if (!general->line)
 		{
@@ -226,7 +227,7 @@ int	minishell(t_general *general)
 			return (0);
 		}
 		write_history("history");
-		free(general->line);
+		//free(general->line);
 
 		/*
 		//get_line(&general);
