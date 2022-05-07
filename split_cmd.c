@@ -56,7 +56,7 @@ int	count_pipe(t_general *general, char *in, int i)
 		if (general->split.quote == 0 && i > 1 && general->split.len > 0)
 		{
 			general->commands[general->split.n_comand] = ft_substr(in,
-					general->split.ini, general->split.len);
+					general->split.ini + 1, general->split.len);
 			general->split.ini = i;
 			general->split.len = 0;
 			general->split.n_comand++;

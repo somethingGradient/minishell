@@ -33,7 +33,7 @@ LIBFT		=	libft/libft.a
 all: $(NAME)
 
 $(NAME): $(OBJ) $(HEADER)
-		$(MAKE) all -C $(LIBFT_PATH)
+		#$(MAKE) all -C $(LIBFT_PATH)
 		@$(CC) $(OBJ) $(LIBFT) -lreadline $(LDFLAGS) -o $(NAME) # for Mac
 		#@$(CC) -g $(OBJ) $(LIBFT) -lreadline -o $(NAME)  for Linux
 		
@@ -44,11 +44,11 @@ $(NAME): $(OBJ) $(HEADER)
 		@$(CC) -c -o $@ $< $(CPPFLAGS)
 
 clean:
-		@$(MAKE) clean -C $(dir $(LIBFT))
+		#@$(MAKE) clean -C $(dir $(LIBFT))
 		@rm -rf $(OBJ)
 		
 fclean: clean
-		@$(MAKE) fclean -C $(dir $(LIBFT))
+		#@$(MAKE) fclean -C $(dir $(LIBFT))
 		@rm -rf $(NAME)
 
 re: fclean all

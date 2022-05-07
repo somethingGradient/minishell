@@ -205,7 +205,7 @@ int	minishell(t_general *general)
 
 	while (1)
 	{
-		/*general->line = readline(general->title);
+		general->line = readline(general->title);
 		general->line[ft_strlen(general->line)] = '\0';
 
 		if (general->line && *(general->line))
@@ -216,7 +216,9 @@ int	minishell(t_general *general)
 				ft_putstr_fd("Error.\nNot closed quotes.\n", 1);
 				continue ;
 			}
-			execute_cmd(general);
+			split_cmd(general, general->line, 0);
+			
+			// execute_cmd(general);
 		}
 		if (!general->line)
 		{
@@ -224,7 +226,9 @@ int	minishell(t_general *general)
 			return (0);
 		}
 		write_history("history");
-		free(general->line);*/
+		free(general->line);
+
+		/*
 		//get_line(&general);
 		general->line = readline(general->title);
 		if (general->line)
@@ -237,7 +241,7 @@ int	minishell(t_general *general)
 					continue ;
 				}
 				execute_cmd(general);
-				split_cmd(general, general->line, 0);
+				
 				if (general->split.n_comand > 0 && general->commands[0][0] != '|')
 					run_commands(general);
 				if (general->commands[0] && general->commands[0][0] == '|')
@@ -246,6 +250,7 @@ int	minishell(t_general *general)
 			}
 			free(general->line);
 		}
+		*/
 	}
 	return (0);
 }
