@@ -6,7 +6,7 @@ void	redirect_out(t_general *general, int j)
 	char	*file;
 
 	flags = O_WRONLY | O_CREAT;
-	j = general->c;
+	j = general->indcmd;
 	if (general->commands[j] && general->commands[j][0] == '>')
 	{
 		if (general->commands[j] && general->commands[j][1] == '>')

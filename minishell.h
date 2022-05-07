@@ -77,7 +77,7 @@ typedef	struct s_general
 	char	*error_name_file;
 	char	*home;
 	char	**tokens;
-	int		c;
+	int		indcmd;
 	char	*commands[50];
 	int		last_redir;
 	int		out_fd;
