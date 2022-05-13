@@ -6,7 +6,7 @@ void	run_commands(t_general *general)
 	int		fd[2];
 
 	j = 0;
-	general->indcmd = 0;
+	general->index_cmd = 0;
 	general->last_redir = 0;
 	// while (j < general->split.qtt_pipe)
 	// {
@@ -28,45 +28,61 @@ void	run_commands(t_general *general)
 
 void	run_commands_aux(t_general *general)
 {
-	//action(general);
-	if (general->commands[0][0] != '>')
-	{
-		tokenizer(general);
-		int i = -1;
-		while (general->tokens[++i])
-			printf("|%s|\n", general->tokens[i]);
+	action(general);
+
+	// int i = -1;
+	// while (general->commands[++i])
+	// 	printf("|%s|\n", general->commands[i]);
 
 
-		if (general->tokens[0])
-			is_builtin(general->tokens[0], general);
-		if (general->in_fd != -1)
-			exec_process(general, general->in_fd, general->out_fd);
-		// free_char_array(general->tokens);
-		// free(general->token.to_print);
-		// free(general->token.to_exec);
-	}
+
+	// if (general->commands[0][0] != '>')
+	// {
+	// 	tokenizer(general);
+
+
+	// 	if (general->tokens[0])
+	// 		is_builtin(general->tokens[0], general);
+	// 	if (general->in_fd != -1)
+	// 		exec_process(general, general->in_fd, general->out_fd);
+	// 	// free_char_array(general->tokens);
+	// 	// free(general->token.to_print);
+	// 	// free(general->token.to_exec);
+	// }
 	// if (general->name_file)
 	// 	unlink(general->name_file);
 }
 
 void	action(t_general *general)
 {
-	general->line = ft_strdup(general->commands[general->indcmd]);
-	if (general->split.n_comand > 1 )
-		general->indcmd++;
+	general->line = ft_strdup(general->commands[general->index_cmd]);
+
+	if (general->split.n_comand > 1)
+		general->index_cmd++;
+
 	general->error_name_file = NULL;
-	while (general->commands[general->indcmd] && general->commands[general->indcmd][0] != '|')
+
+	printf("!%d! index_cmd\n", general->index_cmd);
+	printf("!%d! n_comand\n", general->split.n_comand);
+	int i = -1;
+	while (general->commands[++i])
+		printf("cmd_%d : |%s|\n", i, general->commands[i]);
+	printf("=================\n");
+
+	while (general->commands[general->index_cmd]
+			&& general->commands[general->index_cmd][0] != '|')
 	{
-		redirect_out(general, general->indcmd);
-		redirect_in(general, general->indcmd, NULL);
-		general->indcmd++;
+		redirect_out(general, general->index_cmd);
+		redirect_in(general, general->index_cmd, NULL);
+		general->index_cmd++;
 	}
-	if (general->error_name_file != NULL)
-	{
-		g_ret_number = 1;
-		printf("minishellshell: %s: %s", general->error_name_file, ERROR_DIR);
-		free(general->error_name_file);
-	}
+	printf("|in =%d, out =%d|", general->in_fd, general->out_fd);
+	// if (general->error_name_file != NULL)
+	// {
+	// 	g_ret_number = 1;
+	// 	printf("minishellshell: %s: %s", general->error_name_file, ERROR_DIR);
+	// 	free(general->error_name_file);
+	// }
 }
 
 void	exec_process(t_general *general, int in, int out)

@@ -1,41 +1,49 @@
 #include "minishell.h"
 
-void	redirect_in(t_general *mini, int j, char *aux)
+int	redirect_in(t_general *general, int j, char *aux)
 {
 	char	**file;
 
-	if (mini->commands[j][0] == '<')
+	if (general->commands[j][0] == '<')
 	{
 		file = NULL;
-		if (mini->commands[j][1] == '<')
-			file = double_redir(mini, file, j);
+		if (general->commands[j][1] == '<')
+			file = double_redir(general, file, j);
 		else
 		{
-			file = ft_split(&mini->commands[j][1], ' ');
-			mini->in_fd = open(file[0], O_RDONLY, 0777);
-			if (mini->in_fd == -1 && mini->error_name_file == NULL)
-				mini->error_name_file = ft_strdup(file[0]);
+			file = ft_split(&general->commands[j][1], ' ');
+			if (!file)
+				return (-1);
+			general->in_fd = open(file[0], O_RDONLY, 644);
+			if (general->in_fd == -1 && general->error_name_file == NULL)
+			{
+				general->error_name_file = ft_strdup(file[0]);
+				if (!general->error_name_file)
+					return (-1);
+			}
 		}
-		aux = ft_strtrim(mini->line, " ");
-		if (mini->split.n_comand == 1 || (aux[0] == '|'
+		aux = ft_strtrim(general->line, " ");
+		if (general->split.n_comand == 1 || (aux[0] == '|'
 				&& ft_strlen(aux) == 1))
 		{
-			free(mini->line);
-			mini->line = new_comman(1, file);
+			free(general->line);
+			general->line = new_comman(1, file);
 		}
 		free(aux);
-		mini->last_redir = 0;
+		general->last_redir = 0;
 		free_char_array(file);
 	}
 }
 
-char	**double_redir(t_general *mini, char **file, int j)
+char	**double_redir(t_general *general, char **file, int j)
 {
-	file = ft_split(&mini->commands[j][2], ' ');
-	read_until (file[0]);
-	mini->in_fd = open(file[0], O_RDONLY | O_CREAT, 0777);
-	mini->name_file = ft_strdup(file[0]);
-	mini->is_append++;
+	file = ft_split(&general->commands[j][2], ' ');
+	if (!file)
+		return (NULL);
+	read_until(file[0]);
+	general->in_fd = open(file[0], O_RDONLY | O_CREAT, 644);
+	general->name_file = ft_strdup(file[0]);
+	general->is_append++;
 	return (file);
 }
 
@@ -47,7 +55,7 @@ void	read_until(char *end)
 
 	flags = O_WRONLY | O_CREAT | O_TRUNC;
 	line = ft_strdup("");
-	fd = open(end, flags, 0777);
+	fd = open(end, flags, 644);
 	while (ft_strncmp(line, end, ft_strlen(end))
 		|| ft_strlen(line) != ft_strlen(end))
 	{

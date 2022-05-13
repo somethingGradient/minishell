@@ -86,7 +86,6 @@ int	main_echo(t_general *general, char *str, int n)
 
 int check_n(char *str)
 {
-
 	if (!str)
 		return (0);
 	if (!ft_strcmp(str, "-n"))

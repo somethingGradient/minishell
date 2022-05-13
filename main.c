@@ -35,11 +35,14 @@ void	free_char_array(char **array)
 	int	i;
 
 	i = 0;
-	while (array[i] != NULL)
+	if (array)
 	{
-		free(array[i]);
-		array[i] = NULL;
-		i++;
+		while (array[i] != NULL)
+		{
+			free(array[i]);
+			array[i] = NULL;
+			i++;
+		}
 	}
 	free(array);
 }

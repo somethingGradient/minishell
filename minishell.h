@@ -77,7 +77,7 @@ typedef	struct s_general
 	char	*error_name_file;
 	char	*home;
 	char	**tokens;
-	int		indcmd;
+	int		index_cmd;
 	char	*commands[50];
 	int		last_redir;
 	int		out_fd;
@@ -116,10 +116,7 @@ void	split_cmd(t_general *general, char *in, int i);
 void	init_split_struct(t_general *general);
 char	*clean_spaces(char *in);
 int		count_pipe(t_general *general, char *in, int i);
-void	redirect_in(t_general *mini, int j, char *aux);
-char	**double_redir(t_general *mini, char **file, int j);
-void	read_until(char *end);
-char	*new_comman(int i, char **str);
+
 
 
 
@@ -142,10 +139,7 @@ void	ft_execve_pipe(t_general *general, int i, char *command);
 int	file_descriptor_handler(int in, int out);
 void	spaces_in_pipe(t_general *general, int i, char *command);
 void	execve_error(t_general *general);
-void	redirect_in(t_general *mini, int j, char *aux);
-char	**double_redir(t_general *mini, char **file, int j);
-void	read_until(char *end);
-char	*new_comman(int i, char **str);
+
 void	is_builtin(char *cmd, t_general *general);
 void	run_builtin(t_general *general);
 void	free_char_array2(char **array);
@@ -156,10 +150,20 @@ t_token	*init_tk(void);
 void	get_dollar_sign(t_general *general, t_token *tk);
 void	get_home_sign(t_general *general, t_token *tk);
 void	ft_exit2(t_general *general);
-void	redirect_out(t_general *general, int j);
-void	simple_redir_out(t_general *general, int j, int flags);
-int	find_char(char *string, char needle);
 
+
+
+
+// redir_out.c
+int		redirect_out(t_general *general, int j);
+int		simple_redir_out(t_general *general, int j, int flags);
+int		find_char(char *string, char needle);
+
+// redir_in.c
+int		redirect_in(t_general *general, int j, char *aux);
+char	**double_redir(t_general *general, char **file, int j);
+void	read_until(char *end);
+char	*new_comman(int i, char **str);
 
 
 #endif
