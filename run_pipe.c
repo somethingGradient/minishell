@@ -1,5 +1,32 @@
 #include "minishell.h"
 
+char	*mk_cmd_token(t_general *general, char *cmd)
+{
+	char	*temp;
+	int		i;
+	char	c;
+
+	i = -1;
+	if (!cmd || !ft_strlen(cmd))
+		return (cmd);
+	if (access(cmd, F_OK) > -1)
+		return (cmd);
+	general->paths = get_env_paths(general->env);
+	while (general->paths[++i])
+	{
+		temp = cmd;
+		cmd = ft_strjoin(general->paths[i], cmd);
+		if (access(cmd, F_OK) > -1)
+		{
+			free(temp);
+			return (cmd);
+		}
+		free(cmd);
+		cmd = temp;
+	}
+	return (NULL);
+}
+
 void	run_commands(t_general *general)
 {
 	int		j;
@@ -10,6 +37,7 @@ void	run_commands(t_general *general)
 	general->last_redir = 0;
 	while (j < general->split.qtt_pipe)
 	{
+		printf("пайп начинается\n");
 		if (pipe(fd) < 0)
 		{
 			printf("Pipe error\n");
@@ -32,6 +60,7 @@ void	run_commands_aux(t_general *general)
 	if (general->commands[0][0] != '>')
 	{
 		tokenizer(general);
+
 		if (general->tokens[0])
 			is_builtin(general->tokens[0], general);
 		if (general->in_fd != -1)
@@ -84,7 +113,6 @@ void	exec_process(t_general *general, int in, int out)
 			file_descriptor_handler(in, out);
 			g_ret_number = 127;
 			ft_execve_pipe(general, 0, "");
-			
 			exit(g_ret_number);
 		}
 		else
@@ -94,53 +122,19 @@ void	exec_process(t_general *general, int in, int out)
 	}
 }
 
-char *mk_cmd_token(t_general *general, char *cmd)
-{
-	char	*temp;
-	int		i;
-	char	c;
-
-	i = -1;
-	if (!cmd || !ft_strlen(cmd))
-		return (cmd);
-	if (access(cmd, F_OK) > -1)
-		return (cmd);
-	general->paths = get_env_paths(general->env);
-	while (general->paths[++i])
-	{
-		temp = cmd;
-		cmd = ft_strjoin(general->paths[i], cmd);
-		if (access(cmd, F_OK) > -1)
-		{
-			free(temp);
-			return (cmd);
-		}
-		free(cmd);
-		cmd = temp;
-	}
-	return (NULL);
-}
-
 void	ft_execve_pipe(t_general *general, int i, char *command)
 {
-	int k = -1;
-	while (general->tokens[++k])
-		printf("|%s|\n", general->tokens[k]);
-
 	if (general->tokens[0])
 	{
-
 		general->tokens[0] = mk_cmd_token(general, general->tokens[0]); // added
+		g_ret_number = execve(general->tokens[0], &general->tokens[0], general->env);
 
-		g_ret_number = execve(general->tokens[0], &general->tokens[0],
-				general->env);
-		while (general->path && general->path[i] != NULL)
+		while (general->paths && general->paths[i] != NULL)
 		{
-
 			command = ft_strdup(general->path[i]);
+
 			if (general->tokens[0][0] == '|' && general->tokens[1])
 			{
-
 				if (!general->tokens[0][1])
 					spaces_in_pipe(general, 2, command);
 				else

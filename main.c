@@ -206,8 +206,11 @@ int	minishell(t_general *general)
 	if (signal(SIGINT, sig_handler) == SIG_ERR)
 		printf("failed to register interrupts with kernel\n");
 
-	while (1)
+	while (1337)
 	{
+		general->out_fd = STDOUT_FILENO;
+		general->in_fd = STDIN_FILENO;
+
 		general->line = readline(general->title);
 		general->line[ft_strlen(general->line)] = '\0';
 
@@ -221,7 +224,7 @@ int	minishell(t_general *general)
 			}
 			split_cmd(general, general->line, 0);
 			
-			execute_cmd(general);
+			// execute_cmd(general);
 			
 			run_commands(general);
 

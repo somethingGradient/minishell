@@ -89,10 +89,10 @@ void	tokenizer(t_general *general)
 			{
 				if (general->token.quote == general->line[tk->i])
 					general->token.quote = 0;
-				// if (general->line[tk->i] == '~' && general->token.quote == 0)
-				// 	get_home_sign(general, tk);
-				// else if (general->line[tk->i] == '$' && general->token.quote == 0)
-				// 	get_dollar_sign(general, tk);
+				if (general->line[tk->i] == '~' && general->token.quote == 0)
+					get_home_sign(general, tk);
+				else if (general->line[tk->i] == '$' && general->token.quote == 0)
+					get_dollar_sign(general, tk);
 			}
 			tk->len++;
 			tk->i++;

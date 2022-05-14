@@ -445,3 +445,157 @@ ls | wc
 ls | wc
 ls | wc
 dsa
+alo | a
+ls
+ls -la
+ls -la | wc
+ls -la | wc
+ls -la | wc
+ls -la
+ls -la | wc
+ls -la | wc
+ls
+ls
+'ls'
+'ls -la'
+'ls -la'
+'ls -la'
+'ls -la'
+'ls -la'
+'ls -la'
+'ls -la'
+'ls -la'
+'ls -la'
+'ls -la'
+cd ~
+~
+~ cd
+~ cd
+cd ~
+cd ~
+cd ~
+'ls'
+'ls' -la
+'ls' -la
+'ls'
+ls
+ls
+ls -la
+echo a
+echo a
+echo a | a
+echo a | a
+echo a | ls | wc
+ls
+ls | wc
+ls | wc
+ls | wc
+ls | wc
+ls
+ls | wc
+ls | wc | wc
+\
+ls | wc | wc
+ls | wc
+ls
+ls
+ls | wc
+ls | wc
+ls | wc
+ls | wc
+ls
+wc
+wc
+ls
+wc
+ls < a
+ls > a
+cat a
+ls
+wc
+ls
+ls
+ls
+ls
+ls
+ls
+ls
+ls
+ls
+ls | a
+psa
+ps
+top
+top
+ps
+top
+ls
+ls
+ls "-a"
+ls "-a"
+ls "-a"
+ls "-a"
+ls "-a"
+ls "-a"
+a > a
+a > a
+a > a
+a > a
+a > a
+a | a
+a | a
+a | a
+a | a
+a | a
+a | a | a
+a | a | a
+a | a | a
+a | a | a | b
+a | a | a | b
+a | a | a | b | c
+ls 
+ls | wc
+ls | wc
+ls | wc
+ls | wc
+ls | wc
+ls | wc
+ls | wc
+ls | wc
+ls | wc
+ls | wc
+ls
+ls
+ls | wc
+ls | wc
+ls | wc
+ls | wc
+ls | wc
+ls | wc
+ls | wc
+ls | wc
+ls
+wc
+wc
+wc -c
+wc -c
+ls | wc
+wc
+wc
+cat
+ls | cat
+ls | cat
+ls | cat
+ls | cat
+ls | cat
+ls | cat
+ls | cat
+ls | cat
+ls | cat
+ls | cat
+ls | cat
+ls | cat
+ls | cat
+ls | cat
+ls | cat
+ls | cat
