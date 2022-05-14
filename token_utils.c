@@ -30,6 +30,7 @@ void	get_dollar_sign(t_general *general, t_token *tk)
 		extend = ft_itoa(g_ret_number);
 	else
 		extend = NULL;
+	printf("|%s|\n", extend);
 	if (extend)
 		tk->end = ft_strjoin(tk->end, extend);
 	free(extend);

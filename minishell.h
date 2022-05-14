@@ -90,7 +90,7 @@ typedef	struct s_general
 }	t_general;
 
 
-
+char *mk_cmd_token(t_general *general, char *cmd);
 
 /* ENV FUNCTIONS */
 char	**copy_env(char	**env);
@@ -156,7 +156,7 @@ void	ft_exit2(t_general *general);
 
 // redir_out.c
 int		redirect_out(t_general *general, int j);
-int		simple_redir_out(t_general *general, int j, int flags);
+void	simple_redir_out(t_general *general, int j, int flags);
 int		find_char(char *string, char needle);
 
 // redir_in.c

@@ -16,7 +16,7 @@ int	redirect_out(t_general *general, int j)
 			file = ft_strtrim(&general->commands[j][2], " ");
 			if (!file)
 				return (-1);
-			general->out_fd = open(file, flags | O_APPEND, 744);
+			general->out_fd = open(file, flags | O_APPEND, 0777);
 			free (file);
 		}
 		else
@@ -27,10 +27,11 @@ int	redirect_out(t_general *general, int j)
 		if (general->split.n_comand == 1)
 			free(general->line);
 	}
+	return (0);
 }
 
 // редирект >
-int	simple_redir_out(t_general *general, int j, int flags)
+void	simple_redir_out(t_general *general, int j, int flags)
 {
 	char	*aux;
 	char	*file;
@@ -39,7 +40,7 @@ int	simple_redir_out(t_general *general, int j, int flags)
 	file = ft_substr(aux, 0, find_char(aux, ' '));
 	if (!file || !aux)
 		general->out_fd = -1;
-	general->out_fd = open(file, flags | O_TRUNC, 744);
+	general->out_fd = open(file, flags | O_TRUNC, 0777);
 	free (aux);
 	free (file);
 }

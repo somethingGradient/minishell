@@ -2,16 +2,21 @@
 
 int	file_descriptor_handler(int in, int out)
 {
+
 	if (in != 0)
 	{
 		dup2(in, 0);
 		close(in);
 	}
+
 	if (out != 1)
 	{
 		dup2(out, 1);
 		close(out);
 	}
+
+	
+
 	return (0);
 }
 
@@ -31,6 +36,7 @@ void	spaces_in_pipe(t_general *general, int i, char *command)
 	free(general->tokens[i]);
 	general->tokens[i] = aux;
 	command = ft_strjoin(command, general->tokens[i - 1]);
+
 	g_ret_number = execve(command, &general->tokens[i - 1], general->env);
 	free(command);
 }
