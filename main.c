@@ -210,7 +210,7 @@ int	minishell(t_general *general)
 	{
 		general->out_fd = STDOUT_FILENO;
 		general->in_fd = STDIN_FILENO;
-
+		
 		general->line = readline(general->title);
 		general->line[ft_strlen(general->line)] = '\0';
 

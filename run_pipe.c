@@ -37,7 +37,6 @@ void	run_commands(t_general *general)
 	general->last_redir = 0;
 	while (j < general->split.qtt_pipe)
 	{
-		printf("пайп начинается\n");
 		if (pipe(fd) < 0)
 		{
 			printf("Pipe error\n");
@@ -60,6 +59,8 @@ void	run_commands_aux(t_general *general)
 	if (general->commands[0][0] != '>')
 	{
 		tokenizer(general);
+
+
 
 		if (general->tokens[0])
 			is_builtin(general->tokens[0], general);
@@ -126,13 +127,11 @@ void	ft_execve_pipe(t_general *general, int i, char *command)
 {
 	if (general->tokens[0])
 	{
-		general->tokens[0] = mk_cmd_token(general, general->tokens[0]); // added
+		// general->tokens[0] = mk_cmd_token(general, general->tokens[0]); // added
 		g_ret_number = execve(general->tokens[0], &general->tokens[0], general->env);
-
 		while (general->paths && general->paths[i] != NULL)
 		{
-			command = ft_strdup(general->path[i]);
-
+			command = ft_strdup(general->paths[i]);
 			if (general->tokens[0][0] == '|' && general->tokens[1])
 			{
 				if (!general->tokens[0][1])
