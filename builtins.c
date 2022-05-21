@@ -18,12 +18,12 @@ void	run_builtin(t_general *general)
 {
 	// if (!ft_strncmp(general->tokens[0], "exit", 4))
 	// 	ft_exit2(general);
-	// // if (!ft_strncmp(general->tokens[0], "pwd", 3))
-	// // 	ft_pwd(general);
+	if (!ft_strncmp(general->tokens[0], "pwd", 3))
+		ft_pwd(general);
 	if (!ft_strncmp(general->tokens[0], "echo", 4))
 		ft_echo(general);
-	// if (!ft_strncmp(general->tokens[0], "cd", 2))
-	// 	ft_cd(general);
+	if (!ft_strncmp(general->tokens[0], "cd", 2))
+		ft_cd(general);
 	if (!ft_strncmp(general->tokens[0], "env", 3))
 		ft_show_env(general);
 	// if (!ft_strncmp(general->tokens[0], "export", 6))

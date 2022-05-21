@@ -84,14 +84,13 @@ void	change_env(char	**env, char *key, char *value)
 	int	i;
 	char *temp;
 
-	key = ft_strjoin(temp, "=");
+	temp = ft_strjoin(key, "=");
 	i = -1;
 	while (env[++i])
 	{
 		if (ft_strnstr(env[i], key, ft_strlen(key)))
 		{
-			temp = env[i];
-			env[i] = ft_strjoin(key, value);
+			env[i] = ft_strjoin(temp, value);
 			free(temp);
 		}
 	}
