@@ -62,3 +62,7 @@ ls | wc
 ls | wc
 ls | wc
 ls | wc | cat
+env
+env > a
+env > a
+cat a

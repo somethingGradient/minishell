@@ -100,7 +100,6 @@ int	minishell(t_general *general)
 	read_history("history");
 	if (signal(SIGINT, sig_handler) == SIG_ERR)
 		printf("failed to register interrupts with kernel\n");
-
 	while (1337)
 	{
 		general->out_fd = STDOUT_FILENO;

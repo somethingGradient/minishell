@@ -24,8 +24,8 @@ void	run_builtin(t_general *general)
 		ft_echo(general);
 	// if (!ft_strncmp(general->tokens[0], "cd", 2))
 	// 	ft_cd(general);
-	// if (!ft_strncmp(general->tokens[0], "env", 3))
-	// 	ft_show_env(general->env);
+	if (!ft_strncmp(general->tokens[0], "env", 3))
+		ft_show_env(general);
 	// if (!ft_strncmp(general->tokens[0], "export", 6))
 	// 	ft_export(general);
 	/*if (!ft_strncmp(general->tokens[0], "unset", 5))
