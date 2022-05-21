@@ -105,7 +105,7 @@ int	pre_parser_main(char *str);
 /* BUILTINS */
 int	ft_echo(t_general *general);
 int	ft_cd(t_general *general);
-
+void	ft_unset(t_general *general);
 // New split funcs
 void	run_commands(t_general *general);
 void	run_commands_aux(t_general *general);

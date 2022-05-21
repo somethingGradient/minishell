@@ -74,7 +74,8 @@ void	ft_show_env(t_general *general)
 	while (general->env[++i])
 	{
 		ft_putstr_fd(general->env[i], general->out_fd);
-		ft_putchar_fd('\n', general->out_fd);
+		if (ft_strlen(general->env[i]))
+			ft_putchar_fd('\n', general->out_fd);
 	}
 }
 

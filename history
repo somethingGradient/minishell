@@ -62,7 +62,41 @@ ls | wc
 ls | wc
 ls | wc
 ls | wc | cat
+cd
+cd 
+pwd
 env
-env > a
-env > a
-cat a
+unset
+unset LANG
+env
+unset
+unset
+unset
+unset
+unset a
+ls
+unset
+unset
+unset
+unset
+unset aa
+unset
+unset
+unset
+unset
+unset
+unset lol
+unset lol
+env
+unset TERM
+unset lol
+unset TERM
+ennv
+env
+unset
+env
+unset TERM
+env
+unset TMPDIR
+env
+unset PPP

@@ -28,6 +28,6 @@ void	run_builtin(t_general *general)
 		ft_show_env(general);
 	// if (!ft_strncmp(general->tokens[0], "export", 6))
 	// 	ft_export(general);
-	/*if (!ft_strncmp(general->tokens[0], "unset", 5))
-		ft_unset(general);*/
+	if (!ft_strncmp(general->tokens[0], "unset", 5))
+		ft_unset(general);
 }
