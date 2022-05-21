@@ -48,7 +48,7 @@ typedef struct s_token
 	int		init;
 	int		len;
 	int		posic;
-}			t_token;
+}	t_token;
 
 typedef struct s_split
 {
@@ -57,16 +57,17 @@ typedef struct s_split
 	int		len;
 	int		quote;
 	int		qtt_pipe;
-}			t_split;
+}	t_split;
 
 typedef	struct s_general
 {
 	char	**env;
-
-	char	**paths;
-
 	char	*title;
+	char	**paths;
 	char	*line;
+	char	*commands[50];
+
+
 
 	char	**split_line;
 	char	*cmd;
@@ -78,7 +79,7 @@ typedef	struct s_general
 	char	*home;
 	char	**tokens;
 	int		index_cmd;
-	char	*commands[50];
+	
 	int		last_redir;
 	int		out_fd;
 	int		in_fd;
@@ -90,6 +91,32 @@ typedef	struct s_general
 }	t_general;
 
 
+/* pre_parser.c - запрещает многострочный режим */
+int		pre_parser_main(char *str);
+
+/* split_cmd.c - считает количество команд */
+void	split_cmd(t_general *general, char *in, int i);
+
+/* run_pipe.c - запускает команды */
+void	run_commands(t_general *general);
+
+/* redir_out.c - инициализирует поток вывода */
+int		redirect_out(t_general *general, int j);
+
+/* redir_in.c - инициализирует поток ввода */
+int		redirect_in(t_general *general, int j, char *aux);
+
+/* token.c - разделяет команды */
+void	tokenizer(t_general *general);
+
+/* token_utils.c */
+t_token	*init_tk(void);
+void	free_tk(t_token *tk);
+void	finish_tokenizer(t_general *general, t_token *tk);
+int		tokenizer_find_char(char *string, char needle);
+int		fixing_for_norminette(t_general *general, char c, char *aux, int nbr);
+void	tokenizer_clean_quotes(t_general *general, char *in);
+
 char *mk_cmd_token(t_general *general, char *cmd);
 
 /* ENV FUNCTIONS */
@@ -100,22 +127,17 @@ void	change_env(char	**env, char *key, char *value);
 void	ft_show_env(char **env, int out_fd);
 int		print_env_var(t_general *general, char *str, int *i);
 
-int	pre_parser_main(char *str);
+
 
 /* BUILTINS */
-int	ft_echo(t_general *general);
-int	ft_cd(t_general *general);
+	/* ft_cd.c */
+int		ft_echo(t_general *general);
+void	ft_cd(t_general *general);
+void	ft_pwd(t_general *general);
+
+
 void	ft_unset(t_general *general);
 // New split funcs
-void	run_commands(t_general *general);
-void	run_commands_aux(t_general *general);
-void	action(t_general *general);
-void	exec_process(t_general *general, int in, int out);
-//void	ft_execve_pipe(t_general *general, int i, char *command);
-void	split_cmd(t_general *general, char *in, int i);
-void	init_split_struct(t_general *general);
-char	*clean_spaces(char *in);
-int		count_pipe(t_general *general, char *in, int i);
 
 
 
@@ -123,19 +145,12 @@ void ft_sortenv(char **env);
 int	ft_exit(char *msg, int exit_code);
 void	ft_export(t_general *general);
 char *get_title(char *cwd);
-void	tokenizer_clean_quotes(t_general *general, char *in);
-int	fixing_for_norminette(t_general *general, char c, char *aux, int nbr);
-int	tokenizer_find_char(char *string, char needle);
-void	tokenizer(t_general *general);
-void	split_cmd(t_general *general, char *in, int i);
-void	init_split_struct(t_general *general);
-char	*clean_spaces(char *in);
-int	count_pipe(t_general *general, char *in, int i);
-void	run_commands(t_general *general);
-void	run_commands_aux(t_general *general);
-void	action(t_general *general);
-void	exec_process(t_general *general, int in, int out);
-void	ft_execve_pipe(t_general *general, int i, char *command);
+
+
+
+
+
+
 int	file_descriptor_handler(int in, int out);
 void	spaces_in_pipe(t_general *general, int i, char *command);
 void	execve_error(t_general *general);
@@ -144,9 +159,7 @@ void	is_builtin(char *cmd, t_general *general);
 void	run_builtin(t_general *general);
 void	free_char_array2(char **array);
 void	free_char_array(char **array);
-void	finish_tokenizer(t_general *general, t_token *tk);
-void	free_tk(t_token *tk);
-t_token	*init_tk(void);
+
 void	get_dollar_sign(t_general *general, t_token *tk);
 void	get_home_sign(t_general *general, t_token *tk);
 void	ft_exit2(t_general *general);
@@ -154,16 +167,9 @@ void	ft_exit2(t_general *general);
 
 
 
-// redir_out.c
-int		redirect_out(t_general *general, int j);
-void	simple_redir_out(t_general *general, int j, int flags);
-int		find_char(char *string, char needle);
 
-// redir_in.c
-int		redirect_in(t_general *general, int j, char *aux);
-char	**double_redir(t_general *general, char **file, int j);
-void	read_until(char *end);
-char	*new_comman(int i, char **str);
+
+
 
 
 #endif

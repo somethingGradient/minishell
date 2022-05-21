@@ -1,5 +1,6 @@
 #include "minishell.h"
 
+/*
 void	get_home_sign(t_general *general, t_token *tk)
 {
 	char	*extend;
@@ -38,6 +39,7 @@ void	get_dollar_sign(t_general *general, t_token *tk)
 	tk->len = 1;
 	tk->init = tk->i;
 }
+*/
 
 t_token	*init_tk(void)
 {

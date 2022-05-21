@@ -1,7 +1,30 @@
 #include "minishell.h"
 
-// файл записывает в переменную general->out_fd дескриптор файла, если встречается '>'
-// возвращает -1 в случае ошибки
+static int	find_char(char *string, char needle)
+{
+	int	i;
+
+	i = 0;
+	while (string[i])
+	{
+		if (string[i] == needle)
+			return (i);
+		i++;
+	}
+	return (i);
+}
+
+static void	simple_redir_out(t_general *general, int j, int flags)
+{
+	char	*aux;
+	char	*file;
+
+	aux = ft_strtrim(&general->commands[j][1], " ");
+	file = ft_substr(aux, 0, find_char(aux, ' '));
+	general->out_fd = open(file, flags | O_TRUNC, 0777);
+	free (aux);
+	free (file);
+}
 
 int	redirect_out(t_general *general, int j)
 {
@@ -28,34 +51,4 @@ int	redirect_out(t_general *general, int j)
 			free(general->line);
 	}
 	return (0);
-}
-
-// редирект >
-void	simple_redir_out(t_general *general, int j, int flags)
-{
-	char	*aux;
-	char	*file;
-
-	aux = ft_strtrim(&general->commands[j][1], " ");
-	file = ft_substr(aux, 0, find_char(aux, ' '));
-	if (!file || !aux)
-		general->out_fd = -1;
-	general->out_fd = open(file, flags | O_TRUNC, 0777);
-	free (aux);
-	free (file);
-}
-
-// находит символ needle в string и возвращает его индекс
-int	find_char(char *string, char needle)
-{
-	int	i;
-
-	i = 0;
-	while (string[i])
-	{
-		if (string[i] == needle)
-			return (i);
-		i++;
-	}
-	return (i);
 }

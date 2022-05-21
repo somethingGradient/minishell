@@ -54,18 +54,12 @@ void	ft_clear_data(t_general *general)
 
 	if (general)
 	{
-		if (general->title)
-			free(general->title);
-		if (general->line)
-			free(general->line);
-		if (general->cmd)
-			free(general->cmd);
-		if (general->split_line)
+		if (general->env)
 		{
 			i = -1;
-			while (general->split_line[++i])
-				free(general->split_line[i]);
-			free(general->split_line);
+			while (general->env[++i])
+				free(general->env[i]);
+			free(general->env);
 		}
 		if (general->paths)
 		{
@@ -74,13 +68,30 @@ void	ft_clear_data(t_general *general)
 				free(general->paths[i]);
 			free(general->paths);
 		}
-		if (general->env)
+		if (general->title)
+			free(general->title);
+
+		
+		if (general->commands[0])
 		{
 			i = -1;
-			while (general->env[++i])
-				free(general->env[i]);
-			free(general->env);
-		}
+			while (general->commands[++i])
+				free(general->commands[i]);
+		}	
+
+
+
+		// if (general->cmd)
+		// 	free(general->cmd);
+		// if (general->split_line)
+		// {
+		// 	i = -1;
+		// 	while (general->split_line[++i])
+		// 		free(general->split_line[i]);
+		// 	free(general->split_line);
+		// }
+		
+		
 		free(general);
 	}
 }
@@ -97,36 +108,48 @@ int	minishell(t_general *general)
 {
 	char	*title;
 
-	read_history("history");
+
+	general->line = ft_strdup("alo");
+
+
+
+	// read_history("history");
 	if (signal(SIGINT, sig_handler) == SIG_ERR)
 		printf("failed to register interrupts with kernel\n");
-	while (1337)
-	{
-		general->out_fd = STDOUT_FILENO;
-		general->in_fd = STDIN_FILENO;
+	// while (1337)
+	// {
+	// 	general->out_fd = STDOUT_FILENO;
+	// 	general->in_fd = STDIN_FILENO;
 		
-		general->line = readline(general->title);
-		general->line[ft_strlen(general->line)] = '\0';
+	// 	general->line = readline(general->title);
+	// 	general->line[ft_strlen(general->line)] = '\0';
 
 		if (general->line && *(general->line))
 		{
-			add_history(general->line);
-			if (pre_parser_main(general->line) != 0)
-			{
-				ft_putstr_fd("Error.\nNot closed quotes.\n", 1);
-				continue ;
-			}
+			// add_history(general->line);
+			// if (pre_parser_main(general->line) != 0)
+			// {
+			// 	ft_putstr_fd("Error.\nNot closed quotes.\n", 1);
+			// 	continue ;
+			// }
 			split_cmd(general, general->line, 0);
 			run_commands(general);
 
+
+
 		}
-		if (!general->line)
-		{
-			ft_putstr_fd("exit\n", 1);
-			return (0);
-		}
-		write_history("history");
-	}
+
+	free(general->line);
+	// 	if (!general->line)
+	// 	{
+	// 		ft_putstr_fd("exit\n", 1);
+	// 		return (0);
+	// 	}
+	// 	// write_history("history");
+	// }
+
+	// if (general->line)
+	// 	free(general->line);
 	return (0);
 }
 
@@ -142,7 +165,6 @@ int main(int argc, char **argv, char **env)
 	general->line = NULL;
 	general->cmd = NULL;
 	general->split_line = NULL;
-	general->exit_code = 0;
 
 	general->env = copy_env(env);
 	general->title = get_title(NULL);

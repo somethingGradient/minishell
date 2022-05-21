@@ -1,90 +1,63 @@
 
 #include "minishell.h"
 
-int	ft_cd(t_general *general)
+char	*get_cd_buf(t_general *general, char *cwd, char *user, int mode)
 {
-	char *buf;
-	char *temp;
+	char	*buf;
+	char	*temp;
 
-	// printf("|%s|\n", general->token.to_print);
-	// printf("|%s|\n", general->tokens[0]);
-
-	// if (ft_strlen(general->tokens[0]) && ft_strlen(general->token.to_print))
-	// {
-
-	// 	buf = ft_get_env(general->env, "PWD");
-	// 	temp = ft_strjoin(buf, "/");
-	// 	free(buf);
-	// 	buf = ft_strjoin(temp, general->token.to_print);
-	// 	free(temp);
-
-
-	// 	// printf("|%s|\n", buf);
-	// 	// if (chdir(buf) < 0)
-	// 	// {
-	// 	// 	ft_putstr_fd("No such file or directory.\n", 2);
-	// 	// 	return (-1);	
-	// 	// }
-
-	// 	printf("|%s|\n", getcwd(buf, 128));
-
-	// 	// change_env(general->env, "PWD", buf - 1);
-		
-	// }
-
-	// general->title = get_title(getenv("CWD"));
-	// temp = getcwd(NULL, 512);
-	
-	// free(temp);
-	// return (0);
-
-	// change_env(general->env, "PWD", temp);
-
-	char *user = NULL;
-
-	if (ft_strlen(general->tokens[0]) && !ft_strlen(general->token.to_print))
+	buf = NULL;
+	temp = NULL;
+	if (mode)
 	{
-		buf = ft_get_env(general->env, "PWD");
 		user = ft_get_env(general->env, "USER");
-
-		if (buf[1] == 'U')
+		if (cwd[1] == 'U')
 			temp = ft_strjoin("/Users/", user);
-		else if (buf[1] == 'h')
+		else if (cwd[1] == 'h')
 			temp = ft_strjoin("/home/", user);
-		free(buf);
 		free(user);
 		buf = ft_strjoin(temp, "/");
-		if (chdir(buf) < 0)
-		{
-			ft_putstr_fd("No such file or directory.\n", 2);
-			return (-1);	
-		}
-		change_env(general->env, "PWD", buf);
 	}
 	else
 	{
-		buf = ft_calloc(128, sizeof(char));
-		getcwd(buf, 128);
-		temp = general->line + 3;
-		if (chdir(temp) < 0)
-		{
-			ft_putstr_fd("No such file or directory.\n", 2);
-			return (-1);	
-		}
+		if (general->token.to_print[0] == '/')
+			cwd[ft_strlen(cwd) - 1] = '\0';
+		temp = ft_strjoin(cwd, "/");
+		buf = ft_strjoin(temp, general->token.to_print);
 	}
-
-	// general->title = get_title(getenv("CWD"));
-	// temp = getcwd(NULL, 512);
-	// change_env(general->env, "PWD", temp);
-	// free(temp);
-	return (0);
+	free(temp);
+	return (buf);
 }
 
+void	ft_cd(t_general *general)
+{
+	char	*buf;
+	char	*cwd;
 
+	buf = NULL;
+	cwd = NULL;
+	cwd = getcwd(NULL, 512);
+	if (ft_strlen(general->tokens[0]) &&
+			(!ft_strlen(general->token.to_print) ||
+				(ft_strlen(general->token.to_print) == 1
+					&& general->token.to_print[0] == '~')))
+		buf = get_cd_buf(general, cwd, NULL, 1);
+	else
+		buf = get_cd_buf(general, cwd, NULL, 0);
+	if (chdir(buf) < 0)
+	{
+		printf("ALO\n");
+		ft_putstr_fd("No such file or directory.\n", 1);
+		g_ret_number = 1;
+		return ;
+	}
+	buf[ft_strlen(buf) - 1] = '\0';
+	cwd = getcwd(NULL, 512);
+	change_env(general->env, "PWD", cwd);
+	general->title = get_title(cwd);
+}
 
-
-
-int	ft_pwd(t_general *general)
+void	ft_pwd(t_general *general)
 {
 	char	*temp;
 
@@ -92,4 +65,5 @@ int	ft_pwd(t_general *general)
 	ft_putstr_fd(temp, general->out_fd);
 	ft_putstr_fd("\n", general->out_fd);
 	free(temp);
+	g_ret_number = 0;
 }

@@ -1,5 +1,53 @@
 #include "minishell.h"
 
+static char	*new_comman(int i, char **str)
+{
+	char	*aux;
+
+	aux = ft_strdup("");
+	while (str[i] != NULL)
+	{
+		if (ft_strlen(aux) > 0)
+			aux = ft_strjoin(aux, " ");
+		aux = ft_strjoin(aux, str[i]);
+		i++;
+	}
+	return (aux);
+}
+
+static void	read_until(char *end)
+{
+	char	*line;
+	int		flags;
+	int		fd;
+
+	flags = O_WRONLY | O_CREAT | O_TRUNC;
+	line = ft_strdup("");
+	fd = open(end, flags, 0777);
+	while (ft_strncmp(line, end, ft_strlen(end))
+		|| ft_strlen(line) != ft_strlen(end))
+	{
+		free(line);
+		line = readline("> ");
+		if (ft_strlen(line) != ft_strlen(end))
+			ft_putendl_fd(line, fd);
+	}
+	close(fd);
+	free(line);
+}
+
+static char	**double_redir(t_general *general, char **file, int j)
+{
+	file = ft_split(&general->commands[j][2], ' ');
+	if (!file)
+		return (NULL);
+	read_until(file[0]);
+	general->in_fd = open(file[0], O_RDONLY | O_CREAT, 0777);
+	general->name_file = ft_strdup(file[0]);
+	general->is_append++;
+	return (file);
+}
+
 int	redirect_in(t_general *general, int j, char *aux)
 {
 	char	**file;
@@ -34,52 +82,4 @@ int	redirect_in(t_general *general, int j, char *aux)
 		free_char_array(file);
 	}
 	return (0);
-}
-
-char	**double_redir(t_general *general, char **file, int j)
-{
-	file = ft_split(&general->commands[j][2], ' ');
-	if (!file)
-		return (NULL);
-	read_until(file[0]);
-	general->in_fd = open(file[0], O_RDONLY | O_CREAT, 0777);
-	general->name_file = ft_strdup(file[0]);
-	general->is_append++;
-	return (file);
-}
-
-void	read_until(char *end)
-{
-	char	*line;
-	int		flags;
-	int		fd;
-
-	flags = O_WRONLY | O_CREAT | O_TRUNC;
-	line = ft_strdup("");
-	fd = open(end, flags, 0777);
-	while (ft_strncmp(line, end, ft_strlen(end))
-		|| ft_strlen(line) != ft_strlen(end))
-	{
-		free(line);
-		line = readline("> ");
-		if (ft_strlen(line) != ft_strlen(end))
-			ft_putendl_fd(line, fd);
-	}
-	close(fd);
-	free(line);
-}
-
-char	*new_comman(int i, char **str)
-{
-	char	*aux;
-
-	aux = ft_strdup("");
-	while (str[i] != NULL)
-	{
-		if (ft_strlen(aux) > 0)
-			aux = ft_strjoin(aux, " ");
-		aux = ft_strjoin(aux, str[i]);
-		i++;
-	}
-	return (aux);
 }
