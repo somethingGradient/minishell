@@ -31,7 +31,6 @@ void	spaces_in_pipe(t_general *general, int i, char *command)
 	free(general->tokens[i]);
 	general->tokens[i] = aux;
 	command = ft_strjoin(command, general->tokens[i - 1]);
-
 	g_ret_number = execve(command, &general->tokens[i - 1], general->env);
 	free(command);
 }

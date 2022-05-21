@@ -56,3 +56,9 @@ echo $?a$SHELL
 echo $?a$SHELL
 echo "$?"
 echo "'$?'"
+echo a
+echo a | cat
+ls | wc
+ls | wc
+ls | wc
+ls | wc | cat
