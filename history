@@ -100,39 +100,9 @@ env
 unset TMPDIR
 env
 unset PPP
-cd alo
-cd alo
-cd
-cd
-pwd
-pwd
-cd ..
-pwd
-pwd
 env
 env
-env | sort
 export
-cd ..
-ls
-cd ..
-cd ..
-cd ..
-cd ..
-cd
-cd
-cd
-pwd
-cd
-cd
-pwd
-cd
-cd
-cd
-cd
-cd
-cd
-pwd
-ls
-cd minishell
-ls
+export
+export
+export

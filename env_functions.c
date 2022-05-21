@@ -66,16 +66,16 @@ char	**get_env_paths(char **env)
 	return (paths);
 }
 
-void	ft_show_env(t_general *general)
+void	ft_show_env(char **env, int out_fd)
 {
 	int	i;
 
 	i = -1;
-	while (general->env[++i])
+	while (env[++i])
 	{
-		ft_putstr_fd(general->env[i], general->out_fd);
-		if (ft_strlen(general->env[i]))
-			ft_putchar_fd('\n', general->out_fd);
+		ft_putstr_fd(env[i], out_fd);
+		if (ft_strlen(env[i]))
+			ft_putchar_fd('\n', out_fd);
 	}
 }
 

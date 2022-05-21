@@ -97,7 +97,7 @@ char	**copy_env(char	**env);
 char	*ft_get_env(char **env, char *str);
 char	**get_env_paths(char **env);
 void	change_env(char	**env, char *key, char *value);
-void	ft_show_env(t_general *general);
+void	ft_show_env(char **env, int out_fd);
 int		print_env_var(t_general *general, char *str, int *i);
 
 int	pre_parser_main(char *str);
@@ -119,9 +119,9 @@ int		count_pipe(t_general *general, char *in, int i);
 
 
 
-
+void ft_sortenv(char **env);
 int	ft_exit(char *msg, int exit_code);
-int	ft_export(t_general *general);
+void	ft_export(t_general *general);
 char *get_title(char *cwd);
 void	tokenizer_clean_quotes(t_general *general, char *in);
 int	fixing_for_norminette(t_general *general, char c, char *aux, int nbr);
