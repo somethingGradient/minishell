@@ -35,8 +35,8 @@ all: $(NAME)
 
 $(NAME): $(OBJ) $(HEADER)
 		#$(MAKE) all -C $(LIBFT_PATH)
-		@$(CC) $(OBJ) $(LIBFT) -lreadline $(LDFLAGS) -o $(NAME) # for Mac
-		#@$(CC) -g $(OBJ) $(LIBFT) -lreadline -o $(NAME)  for Linux
+		#@$(CC) $(OBJ) $(LIBFT) -lreadline $(LDFLAGS) -o $(NAME) # for Mac
+		@$(CC) -g $(OBJ) $(LIBFT) -lreadline -o $(NAME)  #for Linux
 		
 
 #$(MAKE) all -C $(LIBFT_PATH)

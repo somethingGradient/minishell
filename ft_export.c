@@ -88,17 +88,86 @@
 
 // 	return (0);
 // }
+
+void	ft_show_env_withprefix(char **env, int out_fd)
+{
+	int	i;
+
+	i = -1;
+	while (env[++i])
+	{
+		ft_putstr_fd("declare -x ", out_fd);
+		ft_putstr_fd(env[i], out_fd);
+		if (ft_strlen(env[i]))
+			ft_putchar_fd('\n', out_fd);
+	}
+}
+
+int		check_name(char *name)
+{
+	int j;
+
+	j = 0;
+	while (name[j])
+	{
+		if (!ft_isalnum((int)name[j]) && name[j] != '_')
+		{
+			ft_putstr_fd("Invalid variable name\n", 1);
+			return (1);
+		}
+		j++;
+	}
+	return (0);
+}
+
 void ft_export(t_general *general)
 {
+	printf("|%s|\n", general->tokens[0]);
+	printf("|%s|\n", general->tokens[1]);
+	int	i;
+
+	i = 0;
 	if (!ft_strlen(general->token.to_print))
 	{
-		char **sortedenv = copy_env(general->env);
-		ft_sortenv(sortedenv);
-		ft_show_env(sortedenv, general->out_fd);
-		free_char_array(sortedenv);
+		char **unsortedenv = copy_env(general->env);
+		ft_sortenv(unsortedenv);
+		//char **sortedenv = ft_addprefix(unsortedenv);
+		ft_show_env_withprefix(unsortedenv, general->out_fd);
+		free_char_array(unsortedenv);
 	}
-
+	else
+	{
+		printf("|lol|\n");
+		if (!general->tokens[1] || !ft_strrchr(general->tokens[1], (int)'='))
+			return ;
+		while (general->tokens[1][i] && general->tokens[1][i] != '=')
+			i++;
+		char *name = ft_substr(general->tokens[1], 0, i);
+		printf("|%s|\n", name);
+		if (check_name(name))
+		{
+			free(name);
+			return ;
+		}
+		
+	}
 }
+
+char **ft_addprefix(char **env)
+{
+	int i;
+	char **newenv;
+
+	i = 0;
+	while(env[i])
+	{
+		//newenv[i] = malloc(sizeof(char) * (ft_strlen(env[i]) + ft_strlen("declare -x ")));
+		newenv[i] = ft_strjoin("declare -x ", env[i]);
+		i++;
+	}
+	free_char_array(env);
+	return (newenv);
+} 
 
 void ft_sortenv(char **env)
 {
@@ -110,13 +179,13 @@ void ft_sortenv(char **env)
 	count = 0;
 	while (env[count])
 		count++;
-		printf("|lol|\n");
 	while (i < count)
 	{
-		j = i + 1; 
+		j = i + 1;
 		while (j < count)
 		{
-			if(ft_strcmp(env[j], env[j]) < 0)
+			int temp  = ft_strcmp(env[i], env[j]);
+			if(temp > 0)
 			{
 				char *tmpstr;
 				tmpstr = env[i];
