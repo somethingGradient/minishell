@@ -81,16 +81,16 @@ static void	run_commands_aux(t_general *general)
 	if (general->commands[0][0] != '>')
 	{
 		tokenizer(general);
-		// if (general->tokens[0])
-		// 	is_builtin(general->tokens[0], general);
-		// if (general->in_fd != -1)
-		// 	exec_process(general, general->in_fd, general->out_fd);
-		// free_char_array(general->tokens);
-		// free(general->token.to_print);
-		// free(general->token.to_exec);
+		if (general->tokens[0])
+			is_builtin(general->tokens[0], general);
+		if (general->in_fd != -1)
+			exec_process(general, general->in_fd, general->out_fd);
+		free_char_array(general->tokens);
+		free(general->token.to_print);
+		free(general->token.to_exec);
 	}
-// 	if (general->name_file)
-// 		unlink(general->name_file);
+	if (general->name_file)
+		unlink(general->name_file);
 }
 
 void	run_commands(t_general *general)
@@ -109,7 +109,7 @@ void	run_commands(t_general *general)
 			g_ret_number = 127;
 		}
 		general->out_fd = fd[1];
-		// run_commands_aux(general);
+		run_commands_aux(general);
 		close(general->out_fd);
 		if (general->in_fd != 0)
 			close(general->in_fd);

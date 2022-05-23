@@ -116,13 +116,13 @@ int	minishell(t_general *general)
 	// read_history("history");
 	if (signal(SIGINT, sig_handler) == SIG_ERR)
 		printf("failed to register interrupts with kernel\n");
-	// while (1337)
-	// {
-	// 	general->out_fd = STDOUT_FILENO;
-	// 	general->in_fd = STDIN_FILENO;
+	while (1337)
+	{
+		general->out_fd = STDOUT_FILENO;
+		general->in_fd = STDIN_FILENO;
 		
-	// 	general->line = readline(general->title);
-	// 	general->line[ft_strlen(general->line)] = '\0';
+		general->line = readline(general->title);
+		general->line[ft_strlen(general->line)] = '\0';
 
 		if (general->line && *(general->line))
 		{
@@ -134,19 +134,16 @@ int	minishell(t_general *general)
 			// }
 			split_cmd(general, general->line, 0);
 			run_commands(general);
-
-
-
 		}
 
-	free(general->line);
+	// free(general->line);
 	// 	if (!general->line)
 	// 	{
 	// 		ft_putstr_fd("exit\n", 1);
 	// 		return (0);
 	// 	}
 	// 	// write_history("history");
-	// }
+	}
 
 	// if (general->line)
 	// 	free(general->line);
