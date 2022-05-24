@@ -141,7 +141,6 @@ void	ft_unset(t_general *general);
 
 
 
-void ft_sortenv(char **env);
 int	ft_exit(char *msg, int exit_code);
 void	ft_export(t_general *general);
 char *get_title(char *cwd);
