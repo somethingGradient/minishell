@@ -24,7 +24,7 @@ void	spaces_in_pipe(t_general *general, int i, char *command)
 		&& ft_strncmp(general->tokens[i - 1], "sed", 3))
 	{
 		aux = ft_strtrim(general->token.to_print, D_QUOTE_S);
-		free_char_array2(&general->tokens[i + 1]);
+		free_char_array(&general->tokens[i + 1]);
 	}
 	else
 		aux = ft_strtrim(general->tokens[i], D_QUOTE_S);

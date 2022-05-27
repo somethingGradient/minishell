@@ -4,12 +4,11 @@ static int	find_char(char *string, char needle)
 {
 	int	i;
 
-	i = 0;
-	while (string[i])
+	i = -1;
+	while (string[++i])
 	{
 		if (string[i] == needle)
 			return (i);
-		i++;
 	}
 	return (i);
 }
@@ -44,11 +43,14 @@ int	redirect_out(t_general *general, int j)
 		}
 		else
 			simple_redir_out(general, j, flags);
-		if (general->out_fd < 0)
-			return (-1);
 		general->last_redir = 1;
 		if (general->split.n_comand == 1)
+		{
 			free(general->line);
+			general->line = NULL;
+		}
+		if (general->out_fd < 0)
+			return (-1);
 	}
 	return (0);
 }

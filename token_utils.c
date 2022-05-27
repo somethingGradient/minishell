@@ -45,6 +45,7 @@ t_token	*init_tk(void)
 {
 	t_token	*tk;
 
+	tk = NULL;
 	tk = (t_token *)malloc(sizeof(t_token));
 	tk->end = NULL;
 	tk->new = NULL;
@@ -81,6 +82,7 @@ void	free_tk(t_token *tk)
 		tk->to_print = NULL;
 	}
 	free(tk);
+	tk = NULL;
 }
 
 void	finish_tokenizer(t_general *general, t_token *tk)
@@ -93,5 +95,6 @@ void	finish_tokenizer(t_general *general, t_token *tk)
 	tokenizer_clean_quotes(general, general->token.to_print);
 	general->tokens = ft_split(tk->end, ' ');
 	free_tk(tk);
-	free (general->line);
+	free(general->line);
+	general->line = NULL;
 }

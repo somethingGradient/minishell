@@ -11,15 +11,16 @@
 #include <fcntl.h>
 #include <sys/wait.h>
 #include <signal.h>
-#include <stdbool.h>
+
+#include <errno.h>
 
 /* for Linux */
-#include "/usr/include/readline/readline.h"
-#include "/usr/include/readline/history.h" 
+// #include "/usr/include/readline/readline.h"
+// #include "/usr/include/readline/history.h" 
 
 /* for Mac */
-//#include <readline/readline.h>
-//#include <readline/history.h>
+#include <readline/readline.h>
+#include <readline/history.h>
 
 # define D_QUOTE '\"'
 # define QUOTE '\''
@@ -34,8 +35,12 @@
 #define BLOD  "\001\033[1m\002"						// Подчеркнуть, жирным шрифтом, выделить
 #define BEGIN(x,y) "\001\033["#x";"#y"m\002"	// x: background, y: foreground
 #define CLOSE "\001\033[0m\002"						// Закрыть все свойства
+#define true 1
+#define false 0
 
 int	g_ret_number;
+
+typedef unsigned char bool;
 
 typedef struct s_token
 {
@@ -65,14 +70,10 @@ typedef	struct s_general
 	char	*title;
 	char	**paths;
 	char	*line;
-	char	*commands[50];
-
-
-
-	char	**split_line;
-	char	*cmd;
-	int		exit_code;
-	char	**path;
+	char	**commands;
+	t_split	split;
+	t_token	token;
+	
 	bool	is_builtin;
 	char	*name_file;
 	char	*error_name_file;
@@ -85,8 +86,8 @@ typedef	struct s_general
 	int		in_fd;
 	int		is_append;
 	bool	has_flag;
-	t_split	split;
-	t_token	token;
+	
+	
 
 }	t_general;
 
@@ -141,7 +142,7 @@ void	ft_unset(t_general *general);
 
 
 
-int	ft_exit(char *msg, int exit_code);
+int	ft_exit(char *err_msg, int exit_code);
 void	ft_export(t_general *general);
 char *get_title(char *cwd);
 
@@ -161,7 +162,13 @@ void	free_char_array(char **array);
 
 void	get_dollar_sign(t_general *general, t_token *tk);
 void	get_home_sign(t_general *general, t_token *tk);
-void	ft_exit2(t_general *general);
+
+
+
+
+
+
+// void	ft_exit2(t_general *general);
 
 
 

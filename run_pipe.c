@@ -56,7 +56,12 @@ static void	exec_process(t_general *general, int in, int out)
 
 static void	action(t_general *general)
 {
+	char	*temp;
+
+	temp = general->line;
 	general->line = ft_strdup(general->commands[general->index_cmd]);
+	free(temp);
+	temp = NULL;
 	if (general->split.n_comand > 1)
 		general->index_cmd++;
 	general->error_name_file = NULL;

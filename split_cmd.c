@@ -2,6 +2,7 @@
 
 static void	init_split_struct(t_general *general)
 {
+	general->commands = (char **)malloc(sizeof(char **) * 50);
 	general->split.n_comand = 0;
 	general->split.ini = 0;
 	general->split.len = 0;
@@ -66,8 +67,7 @@ void	split_cmd(t_general *general, char *in, int i)
 	}
 	if (ft_strlen(in) > 0)
 	{
-		general->commands[general->split.n_comand]
-			= ft_substr(in, general->split.ini, i);
+		general->commands[general->split.n_comand] = ft_substr(in, general->split.ini, i);
 		general->split.n_comand++;
 	}
 	free(in);

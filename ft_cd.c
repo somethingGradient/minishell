@@ -36,22 +36,24 @@ void	ft_cd(t_general *general)
 
 	buf = NULL;
 	cwd = NULL;
-	cwd = getcwd(NULL, 512);
-	if (ft_strlen(general->tokens[0]) &&
-			(!ft_strlen(general->token.to_print) ||
-				(ft_strlen(general->token.to_print) == 1
-					&& general->token.to_print[0] == '~')))
-		buf = get_cd_buf(general, cwd, NULL, 1);
-	else
-		buf = get_cd_buf(general, cwd, NULL, 0);
-	if (chdir(buf) < 0)
+	if (chdir(general->token.to_print) < 0)
 	{
-		printf("ALO\n");
-		ft_putstr_fd("No such file or directory.\n", 1);
-		g_ret_number = 1;
-		return ;
+		cwd = getcwd(NULL, 512);
+		if (ft_strlen(general->tokens[0]) &&
+				(!ft_strlen(general->token.to_print) ||
+					(ft_strlen(general->token.to_print) == 1
+						&& general->token.to_print[0] == '~')))
+			buf = get_cd_buf(general, cwd, NULL, 1);
+		else
+			buf = get_cd_buf(general, cwd, NULL, 0);
+		if (chdir(buf) < 0)
+		{
+			ft_putstr_fd("No such file or directory. Also maybe permission denied.\n", 2);
+			g_ret_number = 1;
+			return ;
+		}
+		buf[ft_strlen(buf) - 1] = '\0';
 	}
-	buf[ft_strlen(buf) - 1] = '\0';
 	cwd = getcwd(NULL, 512);
 	change_env(general->env, "PWD", cwd);
 	general->title = get_title(cwd);

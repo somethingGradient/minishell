@@ -25,16 +25,12 @@ char	*get_cwd(char *cwd)
 {
 	char	*temp;
 
+	temp = NULL;
 	if (!cwd)
-	{
 		temp = getcwd(NULL, 512);
-		cwd = ft_strjoin(BEGIN(49, 34), temp);
-	}
 	else
-	{
 		temp = cwd;
-		cwd = ft_strjoin(BEGIN(49, 34), temp);
-	}
+	cwd = ft_strjoin(BEGIN(49, 34), temp);
 	free(temp);
 	if (!cwd)
 		return (NULL);

@@ -20,7 +20,7 @@ char	**copy_env(char	**env)
 		copy[i] = NULL;
 		copy[i] = ft_strdup(env[i]);
 		if (!copy[i])
-			ft_exit("malloc: can't allocate region", 139);
+			return (NULL);
 	}
 	copy[i] = NULL;
 	return (copy);
@@ -51,8 +51,10 @@ char	**get_env_paths(char **env)
 	char	**paths;
 	int		i;
 
-	paths = NULL;
 	temp = NULL;
+	paths = NULL;
+	if (!env)
+		return (NULL);
 	temp = ft_get_env(env, "PATH");
 	paths = ft_split(temp, ':');
 	free(temp);
