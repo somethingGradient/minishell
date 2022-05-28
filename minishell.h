@@ -120,7 +120,7 @@ int		redirect_in(t_general *general, int j, char *aux);
 void	tokenizer(t_general *general);
 
 /* signal.c - обработчик сигналов*/
-void	run_signals(int sig);
+void	ft_sighandler(int signum, siginfo_t *sig, void *context);
 
 /* token_utils.c */
 t_token	*init_tk(void);
@@ -154,7 +154,7 @@ void	ft_unset(t_general *general);
 void	ft_export(t_general *general);
 void	get_title(t_general *general, char *cwd);
 
-
+void	ft_clear_data(t_general *general);
 
 
 
@@ -178,8 +178,7 @@ void	get_home_sign(t_general *general, t_token *tk);
 // void	ft_exit2(t_general *general);
 
 
-
-
+void	run_signals();
 
 
 

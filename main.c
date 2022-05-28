@@ -12,7 +12,7 @@
 
 #include "minishell.h"
 
-static void	ft_clear_data(t_general *general)
+void	ft_clear_data(t_general *general)
 {
 	if (general)
 	{
@@ -30,28 +30,34 @@ static void	ft_clear_data(t_general *general)
 
 static int	minishell(t_general *general)
 {
-	//general->line = ft_strdup("export lol=");
-
 	read_history("history");
-	run_signals(1);
 	while (1337)
 	{
+		run_signals();
 		general->line = readline(general->title);
-		general->line[ft_strlen(general->line)] = '\0';
-		if (general->line && *(general->line))
+		if (general->line)
 		{
-			add_history(general->line);
-			if (pre_parser_main(general->line) != 0)
+			general->line[ft_strlen(general->line)] = '\0';
+			if (*(general->line))
 			{
-				ft_putstr_fd("Error.\nLine is a not closed.\n", 2);
-				 continue ;
+				add_history(general->line);
+				if (pre_parser_main(general->line) != 0)
+				{
+					ft_putstr_fd("Error.\nLine is a not closed.\n", 2);
+					 continue ;
+				}
+				else
+				{
+					split_cmd(general, general->line, 0);
+					run_commands(general);
+				}
+		 		write_history("history");
 			}
-			else
-			{
-				split_cmd(general, general->line, 0);
-				run_commands(general);
-			}
-	 		write_history("history");
+		}
+		else
+		{
+			ft_putstr_fd("exit\n", 1);
+			exit(0);
 		}
 	 }
 	return (0);

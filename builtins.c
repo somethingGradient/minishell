@@ -28,6 +28,8 @@ void	is_builtin(char *cmd, t_general *general)
 
 void	run_builtin(t_general *general)
 {
+	signal(SIGINT, SIG_IGN);
+	signal(SIGQUIT, SIG_IGN);
 	// if (!ft_strncmp(general->tokens[0], "exit", 4))
 	// 	ft_exit2(general);
 	if (!ft_strncmp(general->tokens[0], "pwd", 3))

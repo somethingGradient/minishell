@@ -48,13 +48,15 @@ static void	exec_process(t_general *general, int in, int out)
 	else
 	{
 		pid = fork();
+		
 		if (pid < 0)
 		{
 			printf("Fork error\n");
 			g_ret_number = 127;
 		}
 		else if (pid == 0)
-		{
+		{signal(SIGINT, SIG_DFL);
+		signal(SIGQUIT, SIG_DFL);
 			file_descriptor_handler(in, out);
 			g_ret_number = 127;
 			ft_execve_pipe(general, 0, "");
