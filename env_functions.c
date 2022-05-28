@@ -108,4 +108,5 @@ void	change_env(char	**env, char *key, char *value)
 			free(temp);
 		}
 	}
+	free(temp);
 }

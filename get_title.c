@@ -59,7 +59,7 @@ char	*get_cwd(char *cwd)
 	return (cwd);
 }
 
-char	*get_title(char *cwd)
+char	*get_title(t_general *general, char *cwd)
 {
 	char	*title;
 	char	*username;

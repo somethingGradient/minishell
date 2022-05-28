@@ -48,22 +48,24 @@ void	ft_cd(t_general *general)
 
 	buf = NULL;
 	cwd = NULL;
-	if (chdir(general->token.to_print) < 0)
-	{
-		cwd = getcwd(NULL, 512);
-		// buf = select_buf(general, cwd);
-		// if (chdir(buf) < 0)
-		// {
-		// 	ft_putstr_fd("No such file or directory. Also maybe permission denied.\n", 2);
-		// 	g_ret_number = 1;
-		// 	return ;
-		// }
-		// buf[ft_strlen(buf) - 1] = '\0';
-		free(cwd);
-	}
-	// cwd = getcwd(NULL, 512);
-	// change_env(general->env, "PWD", cwd);
-	// general->title = get_title(cwd);
+	// if (chdir(general->token.to_print) < 0)
+	// {
+	// 	cwd = getcwd(NULL, 512);
+	// 	buf = select_buf(general, cwd);
+	// 	if (chdir(buf) < 0)
+	// 	{
+	// 		ft_putstr_fd("No such file or directory. Also maybe permission denied.\n", 2);
+	// 		g_ret_number = 1;
+	// 		return ;
+	// 	}
+	// 	buf[ft_strlen(buf) - 1] = '\0';
+	// 	free(cwd);
+	// }
+	cwd = getcwd(NULL, 512);
+	change_env(general->env, "PWD", cwd);
+	buf = general->title;
+	general->title = get_title(cwd);
+	free(buf);
 
 }
 

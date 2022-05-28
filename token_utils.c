@@ -102,13 +102,16 @@ void	finish_tokenizer(t_general *general, t_token *tk)
 	char	*temp;
 
 	tk->new = ft_substr(general->line, tk->init, tk->len);
+	temp = tk->end;
 	tk->end = ft_strjoin(tk->end, tk->new);
+	free(temp);
+	temp = NULL;
 	tk->posic = tokenizer_find_char(tk->end, ' ');
 	general->token.to_print = ft_strtrim(&(tk->end)[tk->posic], " ");
 	general->token.to_exec = ft_substr(tk->end, tk->i + 1, tk->posic);
 	tokenizer_clean_quotes(general, general->token.to_print);
 	general->tokens = ft_split(tk->end, ' ');
-	free_tk(tk);
 	free(general->line);
 	general->line = NULL;
+	free_tk(tk);
 }

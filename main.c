@@ -38,8 +38,8 @@ static void	sig_handler(int signal)
 
 static int	minishell(t_general *general)
 {
-	general->line = ft_strdup("export");
-
+	general->line = ft_strdup("cd");
+	
 	// read_history("history");
 	// if (signal(SIGINT, sig_handler) == SIG_ERR)
 	// 	printf("failed to register interrupts with kernel\n");
