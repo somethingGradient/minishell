@@ -26,7 +26,7 @@ static void	ft_show_env_withprefix(char **env, int out_fd)
 	}
 }
 
-static int	check_name(char *name)
+static int	check_name(char *name, char **env)
 {
 	int j;
 
@@ -38,6 +38,13 @@ static int	check_name(char *name)
 			ft_putstr_fd("Invalid variable name\n", 1);
 			return (1);
 		}
+		j++;
+	}
+	j = 0;
+	while (env[j])
+	{
+		if (!ft_strncmp(env[j], name, ft_strlen(name)))
+			return (1);
 		j++;
 	}
 	return (0);
@@ -119,7 +126,7 @@ void	ft_export(t_general *general)
 		while (general->tokens[1][i] && general->tokens[1][i] != '=')
 			i++;
 		char *name = ft_substr(general->tokens[1], 0, i);
-		if (check_name(name))
+		if (check_name(name, general->env))
 		{
 			free(name);
 			return ;
