@@ -147,6 +147,7 @@ void	ft_export(t_general *general)
 		name = ft_substr(general->tokens[1], 0, i);
 		if (check_name(name, general->env))
 			return ;
+		free(name);
 		put_var_to_env(general->env, general->tokens[1], general);
 	}
 }
