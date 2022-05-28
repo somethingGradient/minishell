@@ -70,7 +70,6 @@ static void	put_var_to_env(char **env, char *var, t_general *general)
 	newenv[i++] = NULL;
 	free_char_array(env);
 	general->env = newenv;
-	ft_show_env(general->env, 1);
 }
 
 static void	ft_sortenv(char **env)
