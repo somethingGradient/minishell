@@ -6,7 +6,7 @@
 /*   By: jannabel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 11:23:25 by jannabel          #+#    #+#             */
-/*   Updated: 2022/05/28 12:12:07 by jannabel         ###   ########.fr       */
+/*   Updated: 2022/05/28 15:39:14 by jannabel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,30 +45,26 @@ int	fixing_for_norminette(t_general *general, char c, char *aux, int nbr)
 	return (nbr);
 }
 
-int	cycles_for_tokenizer(t_general *general, char *in, char	*aux, int i, int c)
+int	cycles_for_tokenizer(t_general *general, char *in, char	*aux, int *i)
 {
-	if (in[0] == '-' && in[1] == 'n')
+	int	c;
+
+	c = 0;
+	while (in[*i])
 	{
-		general->has_flag = true;
-		i += 2;
-	}
-	while (in[i] == ' ')
-		i++;
-	while (in[i])
-	{
-		if (general->token.quote == 0 && (in[i] == QUOTE || in[i] == D_QUOTE))
-			general->token.quote = in[i];
+		if (general->token.quote == 0 && (in[*i] == QUOTE || in[*i] == D_QUOTE))
+			general->token.quote = in[*i];
 		else
 		{
-			if (general->token.quote == in[i])
+			if (general->token.quote == in[*i])
 				general->token.quote = 0;
 			else
 			{
-				aux[c] = in[i];
+				aux[c] = in[*i];
 				c++;
 			}
 		}
-		i++;
+		(*i)++;
 	}
 	return (c);
 }
@@ -76,12 +72,21 @@ int	cycles_for_tokenizer(t_general *general, char *in, char	*aux, int i, int c)
 void	tokenizer_clean_quotes(t_general *general, char *in)
 {
 	int		c;
+	int		i;
 	char	*aux;
 
+	i = 0;
 	general->token.quote = 0;
 	aux = ft_strtrim(in, " ");
 	general->has_flag = false;
-	c = cycles_for_tokenizer(general, in, aux, 0, 0);
+	if (in[0] == '-' && in[1] == 'n')
+	{
+		general->has_flag = true;
+		i += 2;
+	}
+	while (in[i] == ' ')
+		i++;
+	c = cycles_for_tokenizer(general, in, aux, &i);
 	aux[c] = '\0';
 	free(general->token.to_print);
 	general->token.to_print = aux;

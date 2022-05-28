@@ -6,7 +6,7 @@
 /*   By: jannabel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 12:29:01 by jannabel          #+#    #+#             */
-/*   Updated: 2022/05/28 12:35:27 by jannabel         ###   ########.fr       */
+/*   Updated: 2022/05/28 15:20:23 by jannabel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,7 +133,6 @@ void	run_commands(t_general *general)
 			close(general->in_fd);
 		general->in_fd = fd[0];
 		j++;
-	}
-	
+	}	
 	run_commands_aux(general);
 }

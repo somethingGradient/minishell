@@ -28,21 +28,12 @@ static void	ft_clear_data(t_general *general)
 	}
 }
 
-static void	sig_handler(int signal)
-{
-	ft_putchar_fd('\n', 1);
-	rl_on_new_line();
-	rl_replace_line("", 1);
-	rl_redisplay();
-}
-
 static int	minishell(t_general *general)
 {
-	general->line = ft_strdup("cd libft");
-	
+	//general->line = ft_strdup("export lol=");
+
 	read_history("history");
-	if (signal(SIGINT, sig_handler) == SIG_ERR)
-		printf("failed to register interrupts with kernel\n");
+	run_signals(1);
 	while (1337)
 	{
 		general->line = readline(general->title);
@@ -53,16 +44,16 @@ static int	minishell(t_general *general)
 			if (pre_parser_main(general->line) != 0)
 			{
 				ft_putstr_fd("Error.\nLine is a not closed.\n", 2);
-				continue ;
+				 continue ;
 			}
 			else
 			{
 				split_cmd(general, general->line, 0);
 				run_commands(general);
 			}
-			write_history("history");
+	 		write_history("history");
 		}
-	}
+	 }
 	return (0);
 }
 
