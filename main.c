@@ -33,7 +33,8 @@ static int	minishell(t_general *general)
 	read_history("history");
 	while (1337)
 	{
-		run_signals();
+		signal(SIGINT, ft_sighandler);
+		signal(SIGQUIT, SIG_IGN);
 		general->line = readline(general->title);
 		if (general->line)
 		{
@@ -91,8 +92,8 @@ int	main(int argc, char **argv, char **env)
 	t_general	*general;
 
 
-	signal(SIGINT, SIG_IGN);
-	signal(SIGQUIT, SIG_IGN);
+	//signal(SIGINT, SIG_IGN);
+	//signal(SIGQUIT, SIG_IGN);
 
 
 	general = init_general(general, env);

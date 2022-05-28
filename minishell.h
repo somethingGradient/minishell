@@ -125,7 +125,7 @@ int		redirect_in(t_general *general, int j, char *aux);
 void	tokenizer(t_general *general);
 
 /* signal.c - обработчик сигналов*/
-void	ft_sighandler(int signum, siginfo_t *sig, void *context);
+void	ft_sighandler(int sig);
 
 /* token_utils.c */
 t_token	*init_tk(void);
