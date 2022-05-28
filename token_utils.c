@@ -99,6 +99,8 @@ void	free_tk(t_token *tk)
 
 void	finish_tokenizer(t_general *general, t_token *tk)
 {
+	char	*temp;
+
 	tk->new = ft_substr(general->line, tk->init, tk->len);
 	tk->end = ft_strjoin(tk->end, tk->new);
 	tk->posic = tokenizer_find_char(tk->end, ' ');

@@ -39,7 +39,11 @@ void	run_builtin(t_general *general)
 	if (!ft_strncmp(general->tokens[0], "env", 3))
 		ft_show_env(general->env, general->out_fd);
 	if (!ft_strncmp(general->tokens[0], "export", 6))
+	{
+		
 		ft_export(general);
+
+	}
 	if (!ft_strncmp(general->tokens[0], "unset", 5))
 		ft_unset(general);
 }

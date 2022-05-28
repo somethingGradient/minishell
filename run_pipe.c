@@ -134,5 +134,6 @@ void	run_commands(t_general *general)
 		general->in_fd = fd[0];
 		j++;
 	}
+	
 	run_commands_aux(general);
 }

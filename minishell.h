@@ -54,9 +54,9 @@ typedef struct s_token
 {
 	char	*to_print;
 	char	*to_exec;
-	char	quote;
 	char	*end;
 	char	*new;
+	char	quote;
 	int		i;
 	int		init;
 	int		len;
