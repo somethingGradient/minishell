@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_title.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jannabel <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/28 14:27:12 by jannabel          #+#    #+#             */
+/*   Updated: 2022/05/28 14:27:39 by jannabel         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
 char	*get_username(void)
@@ -47,7 +59,7 @@ char	*get_cwd(char *cwd)
 	return (cwd);
 }
 
-char *get_title(char *cwd)
+char	*get_title(char *cwd)
 {
 	char	*title;
 	char	*username;

@@ -48,6 +48,7 @@ static int	check_name(char *name, char **env)
 		if (!ft_isalnum((int)name[j]) && name[j] != '_')
 		{
 			ft_putstr_fd("Invalid variable name\n", 1);
+			free(name);
 			return (1);
 		}
 		j++;
@@ -56,7 +57,10 @@ static int	check_name(char *name, char **env)
 	while (env[j])
 	{
 		if (!ft_strncmp(env[j], name, ft_strlen(name)))
+		{
+			free(name);
 			return (1);
+		}
 		j++;
 	}
 	return (0);
@@ -83,7 +87,7 @@ static void	put_var_to_env(char **env, char *var, t_general *general)
 		newenv[i] = NULL;
 		newenv[i] = ft_strdup(env[i]);
 		if (!newenv[i])
-			ft_exit("malloc: can't allocate region", 139);
+			return ;
 	}
 	newenv[i++] = ft_strdup(var);
 	newenv[i++] = NULL;
@@ -142,10 +146,7 @@ void	ft_export(t_general *general)
 			i++;
 		name = ft_substr(general->tokens[1], 0, i);
 		if (check_name(name, general->env))
-		{
-			free(name);
 			return ;
-		}
 		put_var_to_env(general->env, general->tokens[1], general);
 	}
 }

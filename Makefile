@@ -20,7 +20,7 @@ SRC		=	main.c \
 			builtins.c redir_in.c  \
 			run_pipe_aux.c run_pipe.c split_cmd.c \
 			token.c token_utils.c redir_out.c \
-			ft_unset.c pre_parser_utils.c
+			ft_unset.c pre_parser_utils.c utils.c
 			
 
 OBJ		=	$(SRC:.c=.o)

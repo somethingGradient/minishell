@@ -1,32 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jannabel <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/28 13:43:46 by jannabel          #+#    #+#             */
+/*   Updated: 2022/05/28 14:23:49 by jannabel         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
-int	ft_exit(char *err_msg, int exit_code)
-{
-	if (err_msg)
-		ft_putstr_fd(err_msg, 2);
-	exit(exit_code);
-}
-
-void	free_char_array(char **array)
-{
-	int	i;
-
-	i = -1;
-	if (array)
-	{
-		while (array[++i] != NULL)
-		{
-			free(array[i]);
-			array[i] = NULL;
-		}
-	}
-	else
-		return ;
-	free(array);
-	array = NULL;
-}
-
-void	ft_clear_data(t_general *general)
+static void	ft_clear_data(t_general *general)
 {
 	if (general)
 	{
@@ -42,7 +28,7 @@ void	ft_clear_data(t_general *general)
 	}
 }
 
-void	sig_handler(int signal)
+static void	sig_handler(int signal)
 {
 	ft_putchar_fd('\n', 1);
 	rl_on_new_line();
@@ -50,10 +36,8 @@ void	sig_handler(int signal)
 	rl_redisplay();
 }
 
-int	minishell(t_general *general)
+static int	minishell(t_general *general)
 {
-	// general->line = ft_strdup("abc");
-
 	read_history("history");
 	if (signal(SIGINT, sig_handler) == SIG_ERR)
 		printf("failed to register interrupts with kernel\n");
@@ -80,10 +64,8 @@ int	minishell(t_general *general)
 	return (0);
 }
 
-int main(int argc, char **argv, char **env)
+static t_general	*init_general(t_general *general, char **env)
 {
-	t_general	*general;
-
 	general = NULL;
 	general = (t_general *)malloc(sizeof(*general));
 	general->paths = NULL;
@@ -99,10 +81,18 @@ int main(int argc, char **argv, char **env)
 	if (!general || !general->env || !general->title || !general->paths)
 	{
 		ft_clear_data(general);
-		ft_putstr_fd("Error in setupping variables.", 2);
+		ft_putstr_fd("Error in setupping variables.\n", 2);
 		exit(EXIT_FAILURE);
 	}
+	return (general);
+}
+
+int	main(int argc, char **argv, char **env)
+{
+	t_general	*general;
+
+	general = init_general(general, env);
 	minishell(general);
 	ft_clear_data(general);
-    exit(EXIT_SUCCESS);
+	exit(EXIT_SUCCESS);
 }

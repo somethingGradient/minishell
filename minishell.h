@@ -149,9 +149,6 @@ void	ft_pwd(t_general *general);
 void	ft_unset(t_general *general);
 // New split funcs
 
-
-
-int	ft_exit(char *err_msg, int exit_code);
 void	ft_export(t_general *general);
 char *get_title(char *cwd);
 
@@ -166,7 +163,6 @@ void	execve_error(t_general *general);
 
 void	is_builtin(char *cmd, t_general *general);
 void	run_builtin(t_general *general);
-void	free_char_array2(char **array);
 void	free_char_array(char **array);
 
 void	get_dollar_sign(t_general *general, t_token *tk);
