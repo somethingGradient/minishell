@@ -1,6 +1,3 @@
-// clear && gcc main.c get_title.c libft/libft.a -lreadline && ./a.out
-//clear && gcc main.c get_title.c libft/libft.a -lreadline && valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./a.out
-
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
@@ -11,8 +8,8 @@
 #include <fcntl.h>
 #include <sys/wait.h>
 #include <signal.h>
+#include <sys/ioctl.h>
 
-#include <errno.h>
 
 /* for Linux */
 // #include "/usr/include/readline/readline.h"
@@ -37,6 +34,9 @@
 #define CLOSE "\001\033[0m\002"						// Закрыть все свойства
 #define true 1
 #define false 0
+
+# define GREEN "\001\033[1;49m\002"
+# define BLUE "\001\033[1;96m\002"
 
 int	g_ret_number;
 
@@ -94,12 +94,12 @@ typedef	struct s_general
 	int		in_fd;
 	int		is_append;
 	bool	has_flag;
-	
-	
-
 }	t_general;
 
-char **ft_addprefix(char **env);
+/* main.c */
+void	get_title(t_general *general, char *cwd);
+void	free_char_array(char **array);
+
 /* pre_parser.c - запрещает многострочный режим */
 int		pre_parser_main(char *str);
 void	pre_parser(char *str, t_flags *flags);
@@ -109,6 +109,11 @@ void	split_cmd(t_general *general, char *in, int i);
 
 /* run_pipe.c - запускает команды */
 void	run_commands(t_general *general);
+
+/* run_pipe_aux.c */
+int		file_descriptor_handler(int in, int out);
+void	spaces_in_pipe(t_general *general, int i, char *command);
+void	execve_error(t_general *general);
 
 /* redir_out.c - инициализирует поток вывода */
 int		redirect_out(t_general *general, int j);
@@ -124,12 +129,9 @@ void	ft_sighandler(int signum, siginfo_t *sig, void *context);
 
 /* token_utils.c */
 t_token	*init_tk(void);
-void	free_tk(t_token *tk);
 void	finish_tokenizer(t_general *general, t_token *tk);
 int		tokenizer_find_char(char *string, char needle);
 void	tokenizer_clean_quotes(t_general *general, char *in);
-
-char *mk_cmd_token(t_general *general, char *cmd);
 
 /* ENV FUNCTIONS */
 char	**copy_env(char	**env);
@@ -139,24 +141,18 @@ void	change_env(char	**env, char *key, char *value);
 void	ft_show_env(char **env, int out_fd);
 int		print_env_var(t_general *general, char *str, int *i);
 
-
-
 /* BUILTINS */
-	/* ft_cd.c */
-int		ft_echo(t_general *general);
+	/* builtins.c */
+void	is_builtin(char *cmd, t_general *general);
+void	run_builtin(t_general *general);
 void	ft_cd(t_general *general);
 void	ft_pwd(t_general *general);
-
-
+int		ft_echo(t_general *general);
 void	ft_unset(t_general *general);
-// New split funcs
-
 void	ft_export(t_general *general);
 void	get_title(t_general *general, char *cwd);
 
 void	ft_clear_data(t_general *general);
-
-
 
 
 int	file_descriptor_handler(int in, int out);
@@ -167,20 +163,15 @@ void	is_builtin(char *cmd, t_general *general);
 void	run_builtin(t_general *general);
 void	free_char_array(char **array);
 
-void	get_dollar_sign(t_general *general, t_token *tk);
-void	get_home_sign(t_general *general, t_token *tk);
-
-
-
-
-
-
-// void	ft_exit2(t_general *general);
 
 
 void	run_signals();
 
 
+/* SIGNALS */
+void	signal_ctlc(int sig);
+void	signal_ctlc_heredoc(int sig);
+int		termios_change(bool echo_ctl_chr);
 
 
 

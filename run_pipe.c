@@ -43,6 +43,9 @@ static void	exec_process(t_general *general, int in, int out)
 {
 	pid_t	pid;
 
+	signal(SIGINT, SIG_DFL);
+	signal(SIGQUIT, SIG_DFL);
+
 	if (general->is_builtin && general->tokens[0])
 		run_builtin(general);
 	else

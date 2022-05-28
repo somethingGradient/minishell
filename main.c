@@ -90,6 +90,11 @@ int	main(int argc, char **argv, char **env)
 {
 	t_general	*general;
 
+
+	signal(SIGINT, SIG_IGN);
+	signal(SIGQUIT, SIG_IGN);
+
+
 	general = init_general(general, env);
 	minishell(general);
 	ft_clear_data(general);
