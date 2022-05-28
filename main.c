@@ -38,31 +38,31 @@ static void	sig_handler(int signal)
 
 static int	minishell(t_general *general)
 {
-	general->line = ft_strdup("cd");
+	general->line = ft_strdup("cd libft");
 	
-	// read_history("history");
-	// if (signal(SIGINT, sig_handler) == SIG_ERR)
-	// 	printf("failed to register interrupts with kernel\n");
-	// while (1337)
-	// {
-	// 	general->line = readline(general->title);
-	// 	general->line[ft_strlen(general->line)] = '\0';
+	read_history("history");
+	if (signal(SIGINT, sig_handler) == SIG_ERR)
+		printf("failed to register interrupts with kernel\n");
+	while (1337)
+	{
+		general->line = readline(general->title);
+		general->line[ft_strlen(general->line)] = '\0';
 		if (general->line && *(general->line))
 		{
 			add_history(general->line);
 			if (pre_parser_main(general->line) != 0)
 			{
 				ft_putstr_fd("Error.\nLine is a not closed.\n", 2);
-				// continue ;
+				continue ;
 			}
 			else
 			{
 				split_cmd(general, general->line, 0);
 				run_commands(general);
 			}
-	// 		write_history("history");
+			write_history("history");
 		}
-	// }
+	}
 	return (0);
 }
 
@@ -78,7 +78,7 @@ static t_general	*init_general(t_general *general, char **env)
 	general->out_fd = STDOUT_FILENO;
 	general->in_fd = STDIN_FILENO;
 	general->env = copy_env(env);
-	general->title = get_title(NULL);
+	get_title(general, NULL);
 	general->paths = get_env_paths(general->env);
 	if (!general || !general->env || !general->title || !general->paths)
 	{

@@ -12,7 +12,7 @@
 
 #include "minishell.h"
 
-char	*get_username(void)
+static char	*get_username(void)
 {
 	char	*temp;
 	char	*name;
@@ -33,7 +33,7 @@ char	*get_username(void)
 	return (name);
 }
 
-char	*get_cwd(char *cwd)
+static char	*get_cwd(char *cwd)
 {
 	char	*temp;
 
@@ -59,22 +59,30 @@ char	*get_cwd(char *cwd)
 	return (cwd);
 }
 
-char	*get_title(char *cwd)
+static void	concat(t_general *general, char *username, char *cwd)
 {
-	char	*title;
-	char	*username;
-
-	username = get_username();
-	if (!username)
-		return (NULL);
-	cwd = get_cwd(cwd);
-	if (!cwd)
+	if (!username || !cwd)
 	{
-		free(username);
-		return (NULL);
+		if (username)
+			free(username);
+		if (cwd)
+			free(cwd);
+		username = NULL;
+		cwd = NULL;
+		return ;
 	}
-	title = ft_strjoin(username, cwd);
+	else
+		general->title = ft_strjoin(username, cwd);
 	free(username);
 	free(cwd);
-	return (title);
+}
+
+void	get_title(t_general *general, char *cwd)
+{
+	if (general->title)
+	{
+		free(general->title);
+		general->title = NULL;
+	}
+	concat(general, get_username(), get_cwd(cwd));
 }

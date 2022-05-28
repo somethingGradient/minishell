@@ -124,7 +124,6 @@ t_token	*init_tk(void);
 void	free_tk(t_token *tk);
 void	finish_tokenizer(t_general *general, t_token *tk);
 int		tokenizer_find_char(char *string, char needle);
-int		fixing_for_norminette(t_general *general, char c, char *aux, int nbr);
 void	tokenizer_clean_quotes(t_general *general, char *in);
 
 char *mk_cmd_token(t_general *general, char *cmd);
@@ -150,7 +149,7 @@ void	ft_unset(t_general *general);
 // New split funcs
 
 void	ft_export(t_general *general);
-char *get_title(char *cwd);
+void	get_title(t_general *general, char *cwd);
 
 
 

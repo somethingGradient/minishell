@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_cd.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: akitty <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/28 16:26:49 by akitty            #+#    #+#             */
+/*   Updated: 2022/05/28 16:26:51 by akitty           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "minishell.h"
 
@@ -32,13 +43,13 @@ static char	*get_cd_buf(t_general *general, char *cwd, char *user, int mode)
 
 static char	*select_buf(t_general *general, char *cwd)
 {
-	if (ft_strlen(general->tokens[0]) &&
-			(!ft_strlen(general->token.to_print) ||
-				(ft_strlen(general->token.to_print) == 1
-					&& general->token.to_print[0] == '~')))
-		return(get_cd_buf(general, cwd, NULL, 1));
+	if (ft_strlen(general->tokens[0])
+		&& (!ft_strlen(general->token.to_print)
+			|| (ft_strlen(general->token.to_print) == 1
+				&& general->token.to_print[0] == '~')))
+		return (get_cd_buf(general, cwd, NULL, 1));
 	else
-		return(get_cd_buf(general, cwd, NULL, 0));
+		return (get_cd_buf(general, cwd, NULL, 0));
 }
 
 void	ft_cd(t_general *general)
@@ -48,25 +59,23 @@ void	ft_cd(t_general *general)
 
 	buf = NULL;
 	cwd = NULL;
-	// if (chdir(general->token.to_print) < 0)
-	// {
-	// 	cwd = getcwd(NULL, 512);
-	// 	buf = select_buf(general, cwd);
-	// 	if (chdir(buf) < 0)
-	// 	{
-	// 		ft_putstr_fd("No such file or directory. Also maybe permission denied.\n", 2);
-	// 		g_ret_number = 1;
-	// 		return ;
-	// 	}
-	// 	buf[ft_strlen(buf) - 1] = '\0';
-	// 	free(cwd);
-	// }
+	if (chdir(general->token.to_print) < 0)
+	{
+		cwd = getcwd(NULL, 512);
+		buf = select_buf(general, cwd);
+		if (chdir(buf) < 0)
+		{
+			ft_putstr_fd("Invalid directory.\n", 2);
+			g_ret_number = 1;
+		}
+		free(buf);
+		free(cwd);
+		buf = NULL;
+		cwd = NULL;
+	}
 	cwd = getcwd(NULL, 512);
 	change_env(general->env, "PWD", cwd);
-	buf = general->title;
-	general->title = get_title(cwd);
-	free(buf);
-
+	get_title(general, cwd);
 }
 
 void	ft_pwd(t_general *general)
