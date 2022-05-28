@@ -42,6 +42,14 @@ int	g_ret_number;
 
 typedef unsigned char bool;
 
+typedef struct s_flags
+{
+	int	dobles_quotes;
+	int	single_quotes;
+	int	braces;
+	int	backslash;
+}	t_flags;
+
 typedef struct s_token
 {
 	char	*to_print;
@@ -94,6 +102,7 @@ typedef	struct s_general
 char **ft_addprefix(char **env);
 /* pre_parser.c - запрещает многострочный режим */
 int		pre_parser_main(char *str);
+void	pre_parser(char *str, t_flags *flags);
 
 /* split_cmd.c - считает количество команд */
 void	split_cmd(t_general *general, char *in, int i);

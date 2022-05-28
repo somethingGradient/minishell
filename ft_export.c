@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_export.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jannabel <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/28 12:42:35 by jannabel          #+#    #+#             */
+/*   Updated: 2022/05/28 12:52:33 by jannabel         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
 static void	ft_show_env_withprefix(char **env, int out_fd)
 {
 	int	i;
-	int j;
+	int	j;
 
 	i = 0;
 	while (env[i])
@@ -28,7 +40,7 @@ static void	ft_show_env_withprefix(char **env, int out_fd)
 
 static int	check_name(char *name, char **env)
 {
-	int j;
+	int	j;
 
 	j = 0;
 	while (name[j])
@@ -81,9 +93,11 @@ static void	put_var_to_env(char **env, char *var, t_general *general)
 
 static void	ft_sortenv(char **env)
 {
-	int i;
-	int j;
-	int count;
+	int		i;
+	int		j;
+	int		count;
+	int		temp;
+	char	*tmpstr;
 
 	i = -1;
 	count = 0;
@@ -94,14 +108,13 @@ static void	ft_sortenv(char **env)
 		j = i + 1;
 		while (j < count)
 		{
-			int temp  = ft_strcmp(env[i], env[j]);
-			if(temp > 0)
+			temp = ft_strcmp(env[i], env[j]);
+			if (temp > 0)
 			{
-				char *tmpstr;
 				tmpstr = env[i];
-                env[i] = env[j];
+				env[i] = env[j];
 				env[j] = tmpstr;
-            }
+			}
 			j++;
 		}
 	}
@@ -109,23 +122,25 @@ static void	ft_sortenv(char **env)
 
 void	ft_export(t_general *general)
 {
-	int	i;
+	int		i;
+	char	**unsortedenv;
+	char	*name;
 
 	i = 0;
 	if (!ft_strlen(general->token.to_print))
 	{
-		char **unsortedenv = copy_env(general->env);
+		unsortedenv = copy_env(general->env);
 		ft_sortenv(unsortedenv);
 		ft_show_env_withprefix(unsortedenv, general->out_fd);
 		free_char_array(unsortedenv);
 	}
 	else
 	{
-		if (!general->tokens[1] || !ft_strrchr(general->tokens[1], (int)'='))
+		if (!general->tokens[1] || !ft_strrchr(general->tokens[1], (int) '='))
 			return ;
 		while (general->tokens[1][i] && general->tokens[1][i] != '=')
 			i++;
-		char *name = ft_substr(general->tokens[1], 0, i);
+		name = ft_substr(general->tokens[1], 0, i);
 		if (check_name(name, general->env))
 		{
 			free(name);

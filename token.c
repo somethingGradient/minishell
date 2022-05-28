@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   token.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jannabel <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/28 11:23:25 by jannabel          #+#    #+#             */
+/*   Updated: 2022/05/28 12:12:07 by jannabel         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
 int	tokenizer_find_char(char *string, char needle)
@@ -33,17 +45,8 @@ int	fixing_for_norminette(t_general *general, char c, char *aux, int nbr)
 	return (nbr);
 }
 
-void	tokenizer_clean_quotes(t_general *general, char *in)
+int	cycles_for_tokenizer(t_general *general, char *in, char	*aux, int i, int c)
 {
-	int		i;
-	int		c;
-	char	*aux;
-
-	i = 0;
-	c = 0;
-	general->token.quote = 0;
-	aux = ft_strtrim(in, " ");
-	general->has_flag = false;
 	if (in[0] == '-' && in[1] == 'n')
 	{
 		general->has_flag = true;
@@ -67,6 +70,18 @@ void	tokenizer_clean_quotes(t_general *general, char *in)
 		}
 		i++;
 	}
+	return (c);
+}
+
+void	tokenizer_clean_quotes(t_general *general, char *in)
+{
+	int		c;
+	char	*aux;
+
+	general->token.quote = 0;
+	aux = ft_strtrim(in, " ");
+	general->has_flag = false;
+	c = cycles_for_tokenizer(general, in, aux, 0, 0);
 	aux[c] = '\0';
 	free(general->token.to_print);
 	general->token.to_print = aux;
@@ -89,10 +104,10 @@ void	tokenizer(t_general *general)
 			{
 				if (general->token.quote == general->line[tk->i])
 					general->token.quote = 0;
-				// if (general->line[tk->i] == '~' && general->token.quote == 0)
-				// 	get_home_sign(general, tk);
-				// else if (general->line[tk->i] == '$' && general->token.quote == 0)
-				// 	get_dollar_sign(general, tk);
+				/* if (general->line[tk->i] == '~' && general->token.quote == 0)
+				 	get_home_sign(general, tk);
+					else if (general->line[tk->i] == '$' && general->token.quote == 0)
+				 	get_dollar_sign(general, tk); */
 			}
 			tk->len++;
 			tk->i++;

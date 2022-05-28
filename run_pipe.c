@@ -1,10 +1,23 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   run_pipe.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jannabel <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/28 12:29:01 by jannabel          #+#    #+#             */
+/*   Updated: 2022/05/28 12:35:27 by jannabel         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
 static void	ft_execve_pipe(t_general *general, int i, char *command)
 {
 	if (general->tokens[0])
 	{
-		g_ret_number = execve(general->tokens[0], &general->tokens[0], general->env);
+		g_ret_number
+			= execve(general->tokens[0], &general->tokens[0], general->env);
 		while (general->paths && general->paths[i] != NULL)
 		{
 			command = ft_strdup(general->paths[i]);
@@ -66,7 +79,7 @@ static void	action(t_general *general)
 		general->index_cmd++;
 	general->error_name_file = NULL;
 	while (general->commands[general->index_cmd]
-			&& general->commands[general->index_cmd][0] != '|')
+		&& general->commands[general->index_cmd][0] != '|')
 	{
 		redirect_out(general, general->index_cmd);
 		redirect_in(general, general->index_cmd, NULL);
@@ -123,4 +136,3 @@ void	run_commands(t_general *general)
 	}
 	run_commands_aux(general);
 }
-

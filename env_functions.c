@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   env_functions.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jannabel <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/28 10:12:05 by jannabel          #+#    #+#             */
+/*   Updated: 2022/05/28 10:14:50 by jannabel         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
 char	**copy_env(char	**env)
@@ -37,7 +49,7 @@ char	*ft_get_env(char **env, char *str)
 		return (NULL);
 	i = -1;
 	len = ft_strlen(str);
-	while(env[++i])
+	while (env[++i])
 	{
 		if (ft_strnstr(env[i], str, len))
 			env_value = ft_substr(env[i], len + 1, ft_strlen(env[i]) - len);
@@ -83,8 +95,8 @@ void	ft_show_env(char **env, int out_fd)
 
 void	change_env(char	**env, char *key, char *value)
 {
-	int	i;
-	char *temp;
+	int		i;
+	char	*temp;
 
 	temp = ft_strjoin(key, "=");
 	i = -1;
