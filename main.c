@@ -23,6 +23,8 @@ void	ft_clear_data(t_general *general)
 			free(general->title);
 		if (general->line)
 			free(general->line);
+		general->line = NULL;
+		general->title = NULL;
 		free(general);
 		general = NULL;
 	}
@@ -33,34 +35,43 @@ static int	minishell(t_general *general)
 	read_history("history");
 	while (1337)
 	{
-		signal(SIGINT, ft_sighandler);
+		general->out_fd = STDOUT_FILENO;
+		general->in_fd = STDIN_FILENO;
+		
+		// SIGNAL(ctrl_C)
+		signal(SIGINT, sig_handler);
 		signal(SIGQUIT, SIG_IGN);
+
 		general->line = readline(general->title);
 		if (general->line)
 		{
-			general->line[ft_strlen(general->line)] = '\0';
 			if (*(general->line))
 			{
+				general->line[ft_strlen(general->line)] = '\0';
 				add_history(general->line);
 				if (pre_parser_main(general->line) != 0)
 				{
 					ft_putstr_fd("Error.\nLine is a not closed.\n", 2);
-					 continue ;
+					continue ;
 				}
-				else
-				{
-					split_cmd(general, general->line, 0);
+				split_cmd(general, general->line, 0);
+				if (general->split.n_comand > 0 && general->commands[0][0] != '|')
 					run_commands(general);
-				}
+				if (general->commands[0] && general->commands[0][0] == '|')
+					printf(ERROR_PIPE);
+				free(general->line);
+				general->line = NULL;
+				free_char_array(general->commands);
 		 		write_history("history");
+
 			}
+			continue ;
 		}
-		else
-		{
-			ft_putstr_fd("exit\n", 1);
-			exit(0);
-		}
-	 }
+		// else SIGNAL(ctrl_D)
+		printf("exit\n");
+		exit(0);
+		
+	}
 	return (0);
 }
 
@@ -73,9 +84,11 @@ static t_general	*init_general(t_general *general, char **env)
 	general->title = NULL;
 	general->line = NULL;
 	general->commands = NULL;
-	general->out_fd = STDOUT_FILENO;
-	general->in_fd = STDIN_FILENO;
+	general->tokens = NULL;
+	general->name_file = NULL;
+	general->error_name_file = NULL;
 	general->env = copy_env(env);
+	general->home = ft_get_env(general->env, "HOME");
 	get_title(general, NULL);
 	general->paths = get_env_paths(general->env);
 	if (!general || !general->env || !general->title || !general->paths)
@@ -91,12 +104,7 @@ int	main(int argc, char **argv, char **env)
 {
 	t_general	*general;
 
-
-	//signal(SIGINT, SIG_IGN);
-	//signal(SIGQUIT, SIG_IGN);
-
-
-	general = init_general(general, env);
+	general = init_general(general, env);	
 	minishell(general);
 	ft_clear_data(general);
 	exit(EXIT_SUCCESS);

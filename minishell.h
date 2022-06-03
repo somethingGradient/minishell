@@ -10,12 +10,6 @@
 #include <signal.h>
 #include <sys/ioctl.h>
 
-
-/* for Linux */
-// #include "/usr/include/readline/readline.h"
-// #include "/usr/include/readline/history.h" 
-
-/* for Mac */
 #include <readline/readline.h>
 #include <readline/history.h>
 
@@ -29,16 +23,19 @@
 # define ERROR_HOME "minishell: cd: HOME not set\n"
 # define ERROR_CMD "command not found\n"
 
-#define BLOD  "\001\033[1m\002"						// Подчеркнуть, жирным шрифтом, выделить
-#define BEGIN(x,y) "\001\033["#x";"#y"m\002"	// x: background, y: foreground
-#define CLOSE "\001\033[0m\002"						// Закрыть все свойства
-#define true 1
-#define false 0
+# define true 1
+# define false 0
 
-# define GREEN "\001\033[1;49m\002"
-# define BLUE "\001\033[1;96m\002"
-
-int	g_ret_number;
+# define DEFAULT "\001\033[0;39m\002"
+# define GRAY "\001\033[1;90m\002"
+# define RED "\001\033[1;91m\002"
+# define GREEN "\001\033[1;92m\002"
+# define YELLOW "\001\033[1;93m\002"
+# define BLUE "\001\033[1;94m\002"
+# define MAGENTA "\001\033[1;95m\002"
+# define CYAN "\001\033[1;96m\002"
+# define WHITE "\001\033[0;97m\002"
+# define CLOSE "\001\033[0m\002"
 
 typedef unsigned char bool;
 
@@ -81,7 +78,7 @@ typedef	struct s_general
 	char	**commands;
 	t_split	split;
 	t_token	token;
-	
+
 	bool	is_builtin;
 	char	*name_file;
 	char	*error_name_file;
@@ -95,6 +92,8 @@ typedef	struct s_general
 	int		is_append;
 	bool	has_flag;
 }	t_general;
+
+int		g_ret_number;
 
 /* main.c */
 void	get_title(t_general *general, char *cwd);
@@ -124,9 +123,6 @@ int		redirect_in(t_general *general, int j, char *aux);
 /* token.c - разделяет команды */
 void	tokenizer(t_general *general);
 
-/* signal.c - обработчик сигналов*/
-void	ft_sighandler(int sig);
-
 /* token_utils.c */
 t_token	*init_tk(void);
 void	finish_tokenizer(t_general *general, t_token *tk);
@@ -150,12 +146,11 @@ void	ft_pwd(t_general *general);
 int		ft_echo(t_general *general);
 void	ft_unset(t_general *general);
 void	ft_export(t_general *general);
-void	get_title(t_general *general, char *cwd);
 
 void	ft_clear_data(t_general *general);
 
 
-int	file_descriptor_handler(int in, int out);
+int		file_descriptor_handler(int in, int out);
 void	spaces_in_pipe(t_general *general, int i, char *command);
 void	execve_error(t_general *general);
 
@@ -163,15 +158,16 @@ void	is_builtin(char *cmd, t_general *general);
 void	run_builtin(t_general *general);
 void	free_char_array(char **array);
 
-
-
-void	run_signals();
-
-
 /* SIGNALS */
+void	run_signals();
 void	signal_ctlc(int sig);
 void	signal_ctlc_heredoc(int sig);
 int		termios_change(bool echo_ctl_chr);
+
+
+void	sig_handler(int signal);
+void	ctrl_c(int signal);
+void	back_slash(int signal);
 
 
 

@@ -17,7 +17,10 @@ static char	*get_username(void)
 	char	*temp;
 	char	*name;
 
-	name = ft_strjoin(BEGIN(49, 32), getenv("USER"));
+	temp = NULL;
+	name = NULL;
+	name = ft_strjoin(GREEN, getenv("USER"));
+	free(temp);
 	if (!name)
 		return (NULL);
 	temp = name;
@@ -33,16 +36,39 @@ static char	*get_username(void)
 	return (name);
 }
 
-static char	*get_cwd(char *cwd)
+static char	*check_home(t_general *general, char *cwd)
 {
 	char	*temp;
+	char	*temp2;
 
 	temp = NULL;
+	temp2 = NULL;
 	if (!cwd)
 		temp = getcwd(NULL, 512);
 	else
 		temp = cwd;
-	cwd = ft_strjoin(BEGIN(49, 34), temp);
+	if (!ft_strncmp(general->home, temp, ft_strlen(general->home)))
+	{
+		temp2 = ft_substr(temp, ft_strlen(general->home), ft_strlen(temp));
+		free(temp);
+		temp = NULL;
+		temp = ft_strdup("~");
+		cwd = temp;
+		temp = ft_strjoin(temp, temp2);
+		free(cwd);
+		free(temp2);
+		cwd = NULL;
+		temp2 = NULL;
+	}
+	return (temp);
+}
+
+static char	*get_cwd(t_general *general, char *cwd)
+{
+	char	*temp;
+
+	temp = check_home(general, cwd);
+	cwd = ft_strjoin(BLUE, temp);
 	free(temp);
 	if (!cwd)
 		return (NULL);
@@ -79,10 +105,11 @@ static void	concat(t_general *general, char *username, char *cwd)
 
 void	get_title(t_general *general, char *cwd)
 {
+
 	if (general->title)
 	{
 		free(general->title);
 		general->title = NULL;
 	}
-	concat(general, get_username(), get_cwd(cwd));
+	concat(general, get_username(), get_cwd(general, cwd));
 }

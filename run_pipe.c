@@ -43,14 +43,14 @@ static void	exec_process(t_general *general, int in, int out)
 {
 	pid_t	pid;
 
-	//signal(SIGINT, SIG_DFL);
-	//signal(SIGQUIT, SIG_DFL);
-
 	if (general->is_builtin && general->tokens[0])
 		run_builtin(general);
 	else
 	{
 		pid = fork();
+		
+		signal(SIGINT, ctrl_c);
+		signal(SIGQUIT, back_slash);
 		
 		if (pid < 0)
 		{
@@ -59,8 +59,6 @@ static void	exec_process(t_general *general, int in, int out)
 		}
 		else if (pid == 0)
 		{
-			//signal(SIGINT, ft_sighandler);
-			//signal(SIGQUIT, SIG_IGN);
 			file_descriptor_handler(in, out);
 			g_ret_number = 127;
 			ft_execve_pipe(general, 0, "");

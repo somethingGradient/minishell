@@ -1,12 +1,28 @@
 #include "minishell.h"
 
-void	ft_sighandler(int sig)
+
+void	sig_handler(int signal)
 {
-	if (sig == SIGINT)
+	if (signal == SIGINT)
 	{
-		//g_status = 130;
-		ioctl(STDIN_FILENO, TIOCSTI, "\n");
+		g_ret_number = 130;
+		ft_putchar_fd('\n', 1);
 		rl_replace_line("", 0);
 		rl_on_new_line();
+		rl_redisplay();
 	}
+}
+
+void	ctrl_c(int signal)
+{
+	g_ret_number = 130;
+	write(1, "\n", 1);
+	(void)signal;
+}
+
+void	back_slash(int signal)
+{
+	g_ret_number = 131;
+	printf("Quit (core dumped)\n");
+	(void)signal;
 }

@@ -98,15 +98,17 @@ void	change_env(char	**env, char *key, char *value)
 	int		i;
 	char	*temp;
 
+	temp = NULL;
 	temp = ft_strjoin(key, "=");
 	i = -1;
 	while (env[++i])
 	{
-		if (ft_strnstr(env[i], key, ft_strlen(key)))
+		if (ft_strnstr(env[i], temp, ft_strlen(temp)))
 		{
 			env[i] = ft_strjoin(temp, value);
-			free(temp);
+			break ;	
 		}
 	}
 	free(temp);
+	temp = NULL;
 }
