@@ -78,10 +78,10 @@ void	tokenizer_clean_quotes(t_general *general, char *in)
 	i = 0;
 	general->token.quote = 0;
 	aux = ft_strtrim(in, " ");
-	general->has_flag = false;
+	general->has_flag = FALSE;
 	if (in[0] == '-' && in[1] == 'n')
 	{
-		general->has_flag = true;
+		general->has_flag = TRUE;
 		i += 2;
 	}
 	while (in[i] == ' ')

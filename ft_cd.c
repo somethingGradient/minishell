@@ -25,15 +25,6 @@ static char	*get_cd_buf(t_general *general, char *cwd, char *user, int mode)
 		buf = ft_strjoin(temp, "/");
 		free(temp);
 		temp = NULL;
-
-
-		// user = ft_get_env(general->env, "USER");
-		// if (cwd[1] == 'U')
-		// 	temp = ft_strjoin("/Users/", user);
-		// else if (cwd[1] == 'h')
-		// 	temp = ft_strjoin("/home/", user);
-		// free(user);
-		// buf = ft_strjoin(temp, "/");
 	}
 	else
 	{

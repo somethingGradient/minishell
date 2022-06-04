@@ -160,3 +160,6 @@ ls
 wc
 wc
 wc
+ls
+echo a | cat
+ls

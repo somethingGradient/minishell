@@ -21,9 +21,9 @@ void	is_builtin(char *cmd, t_general *general)
 		|| (!ft_strncmp("unset", cmd, 5) && ft_strlen(cmd) == 5)
 		|| (!ft_strncmp("env", cmd, 3) && ft_strlen(cmd) == 3)
 		|| (!ft_strncmp("exit", cmd, 4) && ft_strlen(cmd) == 4))
-		general->is_builtin = true;
+		general->is_builtin = TRUE;
 	else
-		general->is_builtin = false;
+		general->is_builtin = FALSE;
 }
 
 void	run_builtin(t_general *general)

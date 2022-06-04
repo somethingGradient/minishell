@@ -1,16 +1,28 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   minishell.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: akitty <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/06/04 12:43:13 by akitty            #+#    #+#             */
+/*   Updated: 2022/06/04 12:43:54 by akitty           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
-#include "libft/libft.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <fcntl.h>
-#include <sys/wait.h>
-#include <signal.h>
+# include "libft/libft.h"
+# include <stdio.h>
+# include <stdlib.h>
+# include <unistd.h>
+# include <fcntl.h>
+# include <sys/wait.h>
+# include <signal.h>
 
-#include <readline/readline.h>
-#include <readline/history.h>
+# include <readline/readline.h>
+# include <readline/history.h>
 
 # define D_QUOTE '\"'
 # define QUOTE '\''
@@ -21,8 +33,8 @@
 # define ERROR_DIR "No such file or directory\n"
 # define ERROR_CMD "command not found\n"
 
-# define true 1
-# define false 0
+# define TRUE 1
+# define FALSE 0
 
 # define DEFAULT "\001\033[0;39m\002"
 # define GRAY "\001\033[1;90m\002"
@@ -35,7 +47,9 @@
 # define WHITE "\001\033[0;97m\002"
 # define CLOSE "\001\033[0m\002"
 
-typedef unsigned char bool;
+int	g_ret_number;
+
+typedef unsigned char	t_bool;
 
 typedef struct s_flags
 {
@@ -67,7 +81,7 @@ typedef struct s_split
 	int		qtt_pipe;
 }	t_split;
 
-typedef	struct s_general
+typedef struct s_general
 {
 	char	**env;
 	char	*title;
@@ -76,26 +90,23 @@ typedef	struct s_general
 	char	**commands;
 	t_split	split;
 	t_token	token;
-
-	bool	is_builtin;
+	t_bool	is_builtin;
 	char	*name_file;
 	char	*error_name_file;
 	char	*home;
 	char	**tokens;
 	int		index_cmd;
-	
 	int		last_redir;
 	int		out_fd;
 	int		in_fd;
 	int		is_append;
-	bool	has_flag;
+	t_bool	has_flag;
 }	t_general;
-
-int		g_ret_number;
 
 /* main.c */
 void	get_title(t_general *general, char *cwd);
 void	free_char_array(char **array);
+void	ft_clear_data(t_general *general);
 
 /* pre_parser.c - запрещает многострочный режим */
 int		pre_parser_main(char *str);
@@ -127,16 +138,15 @@ void	finish_tokenizer(t_general *general, t_token *tk);
 int		tokenizer_find_char(char *string, char needle);
 void	tokenizer_clean_quotes(t_general *general, char *in);
 
-/* ENV FUNCTIONS */
+/* env_functions.c */
 char	**copy_env(char	**env);
 char	*ft_get_env(char **env, char *str);
 char	**get_env_paths(char **env);
 void	change_env(char	**env, char *key, char *value);
 void	ft_show_env(char **env, int out_fd);
-int		print_env_var(t_general *general, char *str, int *i);
+int	print_env_var(t_general *general, char *str, int *i, char *buf);
 
-/* BUILTINS */
-	/* builtins.c */
+/* builtins.c */
 void	is_builtin(char *cmd, t_general *general);
 void	run_builtin(t_general *general);
 void	ft_cd(t_general *general);
@@ -145,18 +155,12 @@ int		ft_echo(t_general *general);
 void	ft_unset(t_general *general);
 void	ft_export(t_general *general);
 
-void	ft_clear_data(t_general *general);
-
-
+/* run_pupe_aux.c */
 int		file_descriptor_handler(int in, int out);
 void	spaces_in_pipe(t_general *general, int i, char *command);
 void	execve_error(t_general *general);
 
-void	is_builtin(char *cmd, t_general *general);
-void	run_builtin(t_general *general);
-void	free_char_array(char **array);
-
-/* SIGNALS */
+/* signal.c */
 void	sig_handler(t_general *general, int mode);
 
 #endif

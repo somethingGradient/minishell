@@ -29,7 +29,7 @@ int	parse_backslash(char *str, int *i, int out_fd)
 void	parse_env_and_bs(t_general *general, char *str, int *i)
 {
 	while (parse_backslash(str, i, general->out_fd)
-		|| print_env_var(general, str, i))
+		|| print_env_var(general, str, i, NULL))
 		parse_env_and_bs(general, str, i);
 }
 

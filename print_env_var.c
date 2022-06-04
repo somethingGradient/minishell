@@ -57,9 +57,8 @@ void	buf_env(char **str, int *i, char **buf)
 	(*buf)[k + 1] = '\0';
 }
 
-int	print_env_var(t_general *general, char *str, int *i)
+int	print_env_var(t_general *general, char *str, int *i, char *buf)
 {
-	char	*buf;
 	char	*temp;
 
 	if (!check_dollar(&str, i, general->out_fd))
@@ -83,6 +82,6 @@ int	print_env_var(t_general *general, char *str, int *i)
 		ft_putnbr_fd(g_ret_number, general->out_fd);
 		(*i)++;
 	}
-	print_env_var(general, str, i);
+	print_env_var(general, str, i, NULL);
 	return (1);
 }

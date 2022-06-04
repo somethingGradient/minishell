@@ -32,6 +32,30 @@ void	ft_clear_data(t_general *general)
 	}
 }
 
+static int	sh_kernel(t_general *general)
+{
+	if (*(general->line))
+	{
+		general->line[ft_strlen(general->line)] = '\0';
+		add_history(general->line);
+		if (pre_parser_main(general->line) != 0)
+		{
+			ft_putstr_fd("Error.\nLine is a not closed.\n", 2);
+			return (-1);
+		}
+		split_cmd(general, general->line, 0);
+		if (general->split.n_comand > 0 && general->commands[0][0] != '|')
+			run_commands(general);
+		if (general->commands[0] && general->commands[0][0] == '|')
+			printf(ERROR_PIPE);
+		free(general->line);
+		general->line = NULL;
+		free_char_array(general->commands);
+		write_history("history");
+	}
+	return (0);
+}
+
 static int	minishell(t_general *general)
 {
 	read_history("history");
@@ -43,25 +67,8 @@ static int	minishell(t_general *general)
 		general->line = readline(general->title);
 		if (general->line)
 		{
-			if (*(general->line))
-			{
-				general->line[ft_strlen(general->line)] = '\0';
-				add_history(general->line);
-				if (pre_parser_main(general->line) != 0)
-				{
-					ft_putstr_fd("Error.\nLine is a not closed.\n", 2);
-					continue ;
-				}
-				split_cmd(general, general->line, 0);
-				if (general->split.n_comand > 0 && general->commands[0][0] != '|')
-					run_commands(general);
-				if (general->commands[0] && general->commands[0][0] == '|')
-					printf(ERROR_PIPE);
-				free(general->line);
-				general->line = NULL;
-				free_char_array(general->commands);
-		 		write_history("history");
-			}
+			if (sh_kernel(general) == -1)
+				continue ;
 			continue ;
 		}
 		else
