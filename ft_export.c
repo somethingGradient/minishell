@@ -61,6 +61,7 @@ static int	check_name(char **name, char **env, t_general *general)
 	}
 	return (0);
 }
+
 static void	put_var_to_env(char **env, char *var, t_general *general)
 {
 	char	**newenv;
@@ -119,9 +120,8 @@ static void	ft_sortenv(char **env)
 	}
 }
 
-void	ft_export(t_general *general)
+void	ft_export(t_general *general, int i)
 {
-	int		i;
 	char	**unsortedenv;
 	char	**name;
 
@@ -138,10 +138,10 @@ void	ft_export(t_general *general)
 		name = ft_split(general->tokens[1], '=');
 		if (is_env_contain_name(name[0], general->env)
 			&& !ft_strrchr(general->tokens[1], (int) '='))
-			{
-				free_char_array(name);
-				return ;
-			}
+		{
+			free_char_array(name);
+			return ;
+		}
 		if (check_name(name, general->env, general))
 			return ;
 		free_char_array(name);

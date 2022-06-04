@@ -14,8 +14,22 @@
 
 static void	ft_exit(t_general *general)
 {
-	ft_putstr_fd("exit\n", 1);
+	int	i;
+
+	i = -1;
+	printf("exit\n");
+	while (general->token.to_print[++i])
+	{
+		if (!ft_isdigit(general->token.to_print[i]))
+		{
+			printf("minishell: exit: %s: numeric argument required\n",
+				general->token.to_print);
+			exit(255);
+		}
+	}
+	g_ret_number = ft_atoi(general->token.to_print) % 256;
 	free_char_array(general->tokens);
+	free_char_array(general->commands);
 	free(general->token.to_print);
 	free(general->token.to_exec);
 	if (general->line)
@@ -23,9 +37,8 @@ static void	ft_exit(t_general *general)
 		free(general->line);
 		general->line = NULL;
 	}
-	free_char_array(general->commands);
 	ft_clear_data(general);
-	exit(0);
+	exit(g_ret_number);
 }
 
 void	is_builtin(char *cmd, t_general *general)
@@ -57,7 +70,7 @@ void	run_builtin(t_general *general)
 	if (!ft_strncmp(general->tokens[0], "env", 3))
 		ft_show_env(general->env, general->out_fd);
 	if (!ft_strncmp(general->tokens[0], "export", 6))
-		ft_export(general);
+		ft_export(general, 0);
 	if (!ft_strncmp(general->tokens[0], "unset", 5))
 		ft_unset(general);
 }

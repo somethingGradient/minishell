@@ -87,7 +87,6 @@ static void	change_shlvl(t_general *general)
 
 static t_general	*init_general(t_general *general, char **env)
 {
-	general = NULL;
 	general = (t_general *)malloc(sizeof(*general));
 	general->paths = NULL;
 	general->env = NULL;
@@ -116,8 +115,11 @@ int	main(int argc, char **argv, char **env)
 {
 	t_general	*general;
 
+	argc = 0;
+	argv = NULL;
+	general = NULL;
 	general = init_general(general, env);
 	minishell(general);
 	ft_clear_data(general);
-	exit(EXIT_SUCCESS);
+	return (0);
 }

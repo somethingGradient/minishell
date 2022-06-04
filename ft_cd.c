@@ -12,7 +12,7 @@
 
 #include "minishell.h"
 
-static char	*get_cd_buf(t_general *general, char *cwd, char *user, int mode)
+static char	*get_cd_buf(t_general *general, char *cwd, int mode)
 {
 	char	*buf;
 	char	*temp;
@@ -44,9 +44,9 @@ static char	*select_buf(t_general *general, char *cwd)
 		&& (!ft_strlen(general->token.to_print)
 			|| (ft_strlen(general->token.to_print) == 1
 				&& general->token.to_print[0] == '~')))
-		return (get_cd_buf(general, cwd, NULL, 1));
+		return (get_cd_buf(general, cwd, 1));
 	else
-		return (get_cd_buf(general, cwd, NULL, 0));
+		return (get_cd_buf(general, cwd, 0));
 }
 
 void	ft_cd(t_general *general)
