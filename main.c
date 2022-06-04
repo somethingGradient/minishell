@@ -18,11 +18,13 @@ void	ft_clear_data(t_general *general)
 	{
 		free_char_array(general->env);
 		free_char_array(general->paths);
-		free_char_array(general->commands);
 		if (general->title)
 			free(general->title);
 		if (general->line)
 			free(general->line);
+		if (general->home)
+			free(general->home);
+		general->home = NULL;
 		general->line = NULL;
 		general->title = NULL;
 		free(general);
@@ -37,11 +39,7 @@ static int	minishell(t_general *general)
 	{
 		general->out_fd = STDOUT_FILENO;
 		general->in_fd = STDIN_FILENO;
-		
-		// SIGNAL(ctrl_C)
-		signal(SIGINT, sig_handler);
-		signal(SIGQUIT, SIG_IGN);
-
+		sig_handler(general, 1);
 		general->line = readline(general->title);
 		if (general->line)
 		{
@@ -63,14 +61,11 @@ static int	minishell(t_general *general)
 				general->line = NULL;
 				free_char_array(general->commands);
 		 		write_history("history");
-
 			}
 			continue ;
 		}
-		// else SIGNAL(ctrl_D)
-		printf("exit\n");
-		exit(0);
-		
+		else
+			sig_handler(general, 3);
 	}
 	return (0);
 }
@@ -83,6 +78,7 @@ static t_general	*init_general(t_general *general, char **env)
 	general->env = NULL;
 	general->title = NULL;
 	general->line = NULL;
+	general->home = NULL;
 	general->commands = NULL;
 	general->tokens = NULL;
 	general->name_file = NULL;
@@ -104,7 +100,7 @@ int	main(int argc, char **argv, char **env)
 {
 	t_general	*general;
 
-	general = init_general(general, env);	
+	general = init_general(general, env);
 	minishell(general);
 	ft_clear_data(general);
 	exit(EXIT_SUCCESS);

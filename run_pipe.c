@@ -48,10 +48,7 @@ static void	exec_process(t_general *general, int in, int out)
 	else
 	{
 		pid = fork();
-		
-		signal(SIGINT, ctrl_c);
-		signal(SIGQUIT, back_slash);
-		
+		sig_handler(general, 2);
 		if (pid < 0)
 		{
 			printf("Fork error\n");

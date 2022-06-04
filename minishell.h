@@ -8,7 +8,6 @@
 #include <fcntl.h>
 #include <sys/wait.h>
 #include <signal.h>
-#include <sys/ioctl.h>
 
 #include <readline/readline.h>
 #include <readline/history.h>
@@ -20,7 +19,6 @@
 
 # define ERROR_PIPE "minishell: syntax error near unexpected token `|'\n"
 # define ERROR_DIR "No such file or directory\n"
-# define ERROR_HOME "minishell: cd: HOME not set\n"
 # define ERROR_CMD "command not found\n"
 
 # define true 1
@@ -159,16 +157,6 @@ void	run_builtin(t_general *general);
 void	free_char_array(char **array);
 
 /* SIGNALS */
-void	run_signals();
-void	signal_ctlc(int sig);
-void	signal_ctlc_heredoc(int sig);
-int		termios_change(bool echo_ctl_chr);
-
-
-void	sig_handler(int signal);
-void	ctrl_c(int signal);
-void	back_slash(int signal);
-
-
+void	sig_handler(t_general *general, int mode);
 
 #endif

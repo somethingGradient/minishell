@@ -105,7 +105,6 @@ static void	concat(t_general *general, char *username, char *cwd)
 
 void	get_title(t_general *general, char *cwd)
 {
-
 	if (general->title)
 	{
 		free(general->title);

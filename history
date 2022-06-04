@@ -118,3 +118,45 @@ export
 ls
 ./minishell
 ls
+echo $HOME
+echo $HOME
+rm -rf minishell
+echo ALO
+echo $HOME
+echo $HOME
+echo $HOME
+echo $HOME
+echo $HOME
+echo $HOME
+echo $HOME
+echo $HOME
+echo $HOME
+echo $HOME
+echo $HOME
+echo $HOME | cat
+echo $HOME | ls
+echo $HOME | ls
+echo $HOME > a
+rm a
+ls
+cat Makefile 
+ls
+./minishell
+echo $?
+./minishell
+echo $?
+ls
+cd ..
+cd Desktop/
+ls
+cd ../minishell/libft/
+cd
+cd asd
+         cd alo
+ls
+cd  a
+cd          minishell/
+ls
+wc
+wc
+wc

@@ -48,12 +48,18 @@ char	*ft_get_env(char **env, char *str)
 	if (!str)
 		return (NULL);
 	i = -1;
+	str = ft_strjoin(str, "=");
 	len = ft_strlen(str);
 	while (env[++i])
 	{
 		if (ft_strnstr(env[i], str, len))
-			env_value = ft_substr(env[i], len + 1, ft_strlen(env[i]) - len);
+		{
+			env_value = ft_substr(env[i], len, ft_strlen(env[i]) - len);
+			break ;
+		}
 	}
+	free(str);
+	str = NULL;
 	return (env_value);
 }
 
