@@ -74,6 +74,8 @@ char	**get_env_paths(char **env)
 	if (!env)
 		return (NULL);
 	temp = ft_get_env(env, "PATH");
+	if (!temp)
+		return (NULL);
 	paths = ft_split(temp, ':');
 	free(temp);
 	i = -1;
@@ -99,22 +101,31 @@ void	ft_show_env(char **env, int out_fd)
 	}
 }
 
-void	change_env(char	**env, char *key, char *value)
+void	change_env(t_general *general, char *key, char *value)
 {
 	int		i;
 	char	*temp;
+	char	*temp2;
 
 	temp = NULL;
+	temp2 = NULL;
 	temp = ft_strjoin(key, "=");
+	if (!value)
+		temp2 = NULL;
+	else
+		temp2 = ft_strjoin(temp, value);
 	i = -1;
-	while (env[++i])
+	while (general->env[++i])
 	{
-		if (ft_strnstr(env[i], temp, ft_strlen(temp)))
+		if (ft_strnstr(general->env[i], temp, ft_strlen(temp)))
 		{
-			env[i] = ft_strjoin(temp, value);
+			free(temp);
+			temp = general->env[i];
 			break ;
 		}
 	}
-	free(temp);
+	free(general->env[i]);
+	general->env[i] = temp2;
+	temp2 = NULL;
 	temp = NULL;
 }

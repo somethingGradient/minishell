@@ -1,0 +1,119 @@
+alo
+ls
+dsad
+ls
+env
+ls
+ls | wc
+ls | wc
+wc
+echo $HOME
+echo $HOME$USER$SHELL
+echo "
+echo '
+echo ''
+cd ..
+cd minishell/
+env
+./minishell
+foo
+/bin/ls
+/bin/ls -laF
+clear
+env
+bin/ls
+/bin/ls
+ls
+export PATH=
+env
+env | grep PATH
+export PATH=""
+env | grep PATH
+env
+export PATH="asd"
+env
+export PATH_SEC="asd"
+export PATH2="asd"
+unset PATH
+ls
+export
+env
+ls
+ls
+unset PATH
+env
+exoprt
+bash
+env
+export QWE="NEW@"
+env
+bash
+env
+ls
+env
+export UYU="ASD"
+env
+./minishell
+env
+ls > 2 > 3 > 4
+cat < 2 < 3 < 4
+cat < 2 < 3
+cd ..
+cd minishell/
+cat
+echo $?
+cat
+echo $?
+./minishell
+ls
+export PATH=""
+env
+unset PATH
+env
+ls
+ls
+/bin/ls
+env
+ls
+/bin/ls
+/bin/ls
+unset PATH
+/bin/ls
+ls
+ls
+ls
+env
+env
+ls
+ls
+env
+env
+ls
+ls
+ls
+ls
+ls
+ls
+ls
+ls
+env
+ls
+ls
+ls
+ls
+ls
+ls
+ls
+ls
+ls
+ls
+ls
+ls
+/bin/ls
+ls
+env
+unset PATH
+env
+ls
+env
+ls

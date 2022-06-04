@@ -12,26 +12,6 @@
 
 #include "minishell.h"
 
-void	ft_clear_data(t_general *general)
-{
-	if (general)
-	{
-		free_char_array(general->env);
-		free_char_array(general->paths);
-		if (general->title)
-			free(general->title);
-		if (general->line)
-			free(general->line);
-		if (general->home)
-			free(general->home);
-		general->home = NULL;
-		general->line = NULL;
-		general->title = NULL;
-		free(general);
-		general = NULL;
-	}
-}
-
 static int	sh_kernel(t_general *general)
 {
 	if (*(general->line))
@@ -77,6 +57,34 @@ static int	minishell(t_general *general)
 	return (0);
 }
 
+static void	change_shlvl(t_general *general)
+{
+	int		i;
+	char	*current;
+	char	*temp;
+
+	temp = NULL;
+	current = NULL;
+	temp = ft_get_env(general->env, "SHLVL");
+	current = ft_itoa(ft_atoi(temp) + 1);
+	free(temp);
+	temp = ft_strjoin("SHLVL=", current);
+	free(current);
+	i = -1;
+	while (general->env[++i])
+	{
+		if (ft_strnstr(general->env[i], "SHLVL=", 6))
+		{
+			current = general->env[i];
+			break ;
+		}
+	}
+	free(general->env[i]);
+	general->env[i] = temp;
+	current = NULL;
+	temp = NULL;
+}
+
 static t_general	*init_general(t_general *general, char **env)
 {
 	general = NULL;
@@ -90,11 +98,12 @@ static t_general	*init_general(t_general *general, char **env)
 	general->tokens = NULL;
 	general->name_file = NULL;
 	general->error_name_file = NULL;
+	general->paths = NULL;
 	general->env = copy_env(env);
 	general->home = ft_get_env(general->env, "HOME");
 	get_title(general, NULL);
-	general->paths = get_env_paths(general->env);
-	if (!general || !general->env || !general->title || !general->paths)
+	change_shlvl(general);
+	if (!general || !general->env || !general->title)
 	{
 		ft_clear_data(general);
 		ft_putstr_fd("Error in setupping variables.\n", 2);

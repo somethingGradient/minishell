@@ -71,7 +71,7 @@ void	ft_cd(t_general *general)
 		cwd = NULL;
 	}
 	cwd = getcwd(NULL, 512);
-	change_env(general->env, "PWD", cwd);
+	change_env(general, "PWD", cwd);
 	get_title(general, cwd);
 }
 

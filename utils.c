@@ -30,3 +30,23 @@ void	free_char_array(char **array)
 	free(array);
 	array = NULL;
 }
+
+void	ft_clear_data(t_general *general)
+{
+	if (general)
+	{
+		free_char_array(general->env);
+		free_char_array(general->paths);
+		if (general->title)
+			free(general->title);
+		if (general->line)
+			free(general->line);
+		if (general->home)
+			free(general->home);
+		general->home = NULL;
+		general->line = NULL;
+		general->title = NULL;
+		free(general);
+		general = NULL;
+	}
+}

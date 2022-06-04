@@ -1,4 +1,4 @@
-make --dry-run --always-make --keep-going --print-directory
+make --dry-run --keep-going --print-directory
 make: Entering directory `/Users/akitty/minishell'
 gcc -c -o main.o main.c "-I/Users/jannabel/.brew/opt/readline/include"
  
@@ -7,18 +7,18 @@ gcc -c -o print_env_var.o print_env_var.c "-I/Users/jannabel/.brew/opt/readline/
 gcc -c -o get_title.o get_title.c "-I/Users/jannabel/.brew/opt/readline/include"
 gcc -c -o ft_echo.o ft_echo.c "-I/Users/jannabel/.brew/opt/readline/include"
 gcc -c -o ft_cd.o ft_cd.c "-I/Users/jannabel/.brew/opt/readline/include"
+ 
 gcc -c -o ft_export.o ft_export.c "-I/Users/jannabel/.brew/opt/readline/include"
 gcc -c -o pre_parser.o pre_parser.c "-I/Users/jannabel/.brew/opt/readline/include"
 gcc -c -o builtins.o builtins.c "-I/Users/jannabel/.brew/opt/readline/include"
- 
 gcc -c -o redir_in.o redir_in.c "-I/Users/jannabel/.brew/opt/readline/include"
 gcc -c -o run_pipe_aux.o run_pipe_aux.c "-I/Users/jannabel/.brew/opt/readline/include"
 gcc -c -o run_pipe.o run_pipe.c "-I/Users/jannabel/.brew/opt/readline/include"
 gcc -c -o split_cmd.o split_cmd.c "-I/Users/jannabel/.brew/opt/readline/include"
 gcc -c -o token.o token.c "-I/Users/jannabel/.brew/opt/readline/include"
+ 
 gcc -c -o token_utils.o token_utils.c "-I/Users/jannabel/.brew/opt/readline/include"
 gcc -c -o redir_out.o redir_out.c "-I/Users/jannabel/.brew/opt/readline/include"
- 
 gcc -c -o ft_unset.o ft_unset.c "-I/Users/jannabel/.brew/opt/readline/include"
 gcc -c -o pre_parser_utils.o pre_parser_utils.c "-I/Users/jannabel/.brew/opt/readline/include"
 gcc -c -o utils.o utils.c "-I/Users/jannabel/.brew/opt/readline/include"
@@ -27,6 +27,5 @@ gcc -c -o signal.o signal.c "-I/Users/jannabel/.brew/opt/readline/include"
  
 #@gcc main.o env_functions.o print_env_var.o get_title.o ft_echo.o ft_cd.o ft_export.o pre_parser.o builtins.o redir_in.o run_pipe_aux.o run_pipe.o split_cmd.o token.o token_utils.o redir_out.o ft_unset.o pre_parser_utils.o utils.o signal.o libft/libft.a -lreadline "-L/Users/jannabel/.brew/opt/readline/lib" -o minishell # for Mac
 gcc -g main.o env_functions.o print_env_var.o get_title.o ft_echo.o ft_cd.o ft_export.o pre_parser.o builtins.o redir_in.o run_pipe_aux.o run_pipe.o split_cmd.o token.o token_utils.o redir_out.o ft_unset.o pre_parser_utils.o utils.o signal.o libft/libft.a -lreadline -o minishell  #for Linux
- 
 make: Leaving directory `/Users/akitty/minishell'
  

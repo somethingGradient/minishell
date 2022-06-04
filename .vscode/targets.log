@@ -6,9 +6,8 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # PARTICULAR PURPOSE.
 
 # This program built for i386-apple-darwin11.3.0
- 
 
-# Make data base, printed on Sat Jun  4 15:02:55 2022
+# Make data base, printed on Sat Jun  4 15:14:08 2022
 
 # Variables
 
@@ -18,7 +17,6 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 ?F = $(notdir $?)
 # makefile (from `Makefile', line 27)
 OBJ = $(SRC:.c=.o)
- 
 # makefile (from `Makefile', line 16)
 SRC = main.c env_functions.c print_env_var.c get_title.c	ft_echo.c ft_cd.c ft_export.c pre_parser.c builtins.c redir_in.c run_pipe_aux.c run_pipe.c split_cmd.c token.c token_utils.c redir_out.c ft_unset.c pre_parser_utils.c utils.c signal.c
 # environment
@@ -68,6 +66,7 @@ SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.M3B3rQBQZB/Listeners
 # environment
 HOMEBREW_TEMP = /tmp/akitty/Homebrew/Temp
 # environment
+ 
 VSCODE_PIPE_LOGGING = true
 # environment
 PWD = /Users/akitty/minishell
@@ -170,9 +169,9 @@ VSCODE_PID = 6659
 
 # Directories
 
-# . (device 16777227, inode 224222): 29 files, no impossibilities.
+# . (device 16777227, inode 224222): 28 files, no impossibilities.
 
-# 29 files, no impossibilities in 1 directories.
+# 28 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -248,7 +247,7 @@ ft_export.o:
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-06-04 11:29:45
+#  Last modified 2022-06-04 15:14:03
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -286,7 +285,7 @@ get_title.o:
 
 minishell: main.o env_functions.o print_env_var.o get_title.o ft_echo.o ft_cd.o ft_export.o pre_parser.o builtins.o redir_in.o run_pipe_aux.o run_pipe.o split_cmd.o token.o token_utils.o redir_out.o ft_unset.o pre_parser_utils.o utils.o signal.o minishell.h
 #  Implicit rule search has not been done.
-#  Last modified 2022-06-04 14:26:29
+#  File does not exist.
 #  File has been updated.
 #  Needs to be updated (-q is set).
 # variable set hash-table stats:
@@ -320,7 +319,6 @@ fclean: clean
 
 # Not a target:
 .DEFAULT:
- 
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
@@ -403,6 +401,7 @@ run_pipe_aux.o:
 minishell.h:
 #  Implicit rule search has been done.
 #  Last modified 2022-06-04 13:48:43
+ 
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -439,6 +438,6 @@ ft_cd.o:
 # strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
 # strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
 
-# Finished Make data base on Sat Jun  4 15:02:55 2022
+# Finished Make data base on Sat Jun  4 15:14:08 2022
 
  

@@ -16,6 +16,8 @@ static void	ft_execve_pipe(t_general *general, int i, char *command)
 {
 	if (general->tokens[0])
 	{
+		free_char_array(general->paths);
+		general->paths = get_env_paths(general->env);
 		g_ret_number
 			= execve(general->tokens[0], &general->tokens[0], general->env);
 		while (general->paths && general->paths[i] != NULL)
