@@ -60,19 +60,19 @@ static char	**double_redir(t_general *general, char **file, int j)
 	return (file);
 }
 
-static bool for_norm(t_general *general, char **file, int j)
+static t_bool for_norm(t_general *general, char **file, int j)
 {
 	file = ft_split(&general->commands[j][1], ' ');
 	if (!file)
-		return (false);
+		return (FALSE);
 	general->in_fd = open(file[0], O_RDONLY, 0777);
 	if (general->in_fd == -1 && general->error_name_file == NULL)
 	{
 		general->error_name_file = ft_strdup(file[0]);
 		if (!general->error_name_file)
-			return (false);
+			return (FALSE);
 	}
-	return (true);
+	return (TRUE);
 }
 
 int	redirect_in(t_general *general, int j, char *aux)
