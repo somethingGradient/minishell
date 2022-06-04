@@ -12,26 +12,52 @@
 
 #include "minishell.h"
 
+static void pull_from_env(int k, char *var, char **env, t_general *general)
+{
+	char	**newenv;
+	int		res;
+	int		i;
+	int     j;
+	res = 0;
+	i = -1;
+	while (env[++i])
+		res += ft_strlen(env[i]);
+	res += ft_strlen(var);
+	newenv = NULL;
+	newenv = (char **)malloc(sizeof(char **) * res * i);
+	if (!newenv)
+		return ;
+	i = -1;
+	j = 0;
+	while (env[++i])
+	{
+		if (!strcmp(var, env[i]))
+			i = i + 1;
+		newenv[j] = NULL;
+		newenv[j] = ft_strdup(env[i]);
+		if (!newenv[j])
+			return ;
+		j++;
+	}
+	newenv[j++] = NULL;
+	free_char_array(env);
+	general->env = newenv;
+}
+
 void	ft_unset(t_general *general)
 {
 	int		i;
-	char	**envname;
-
-	if (ft_strlen(general->token.to_print))
+	if (general->tokens[1] != NULL)
 	{
-		i = 0;
-		while (general->env[i])
+		i = -1;
+		while (general->env[++i])
 		{
-			envname = ft_split(general->env[i], '=');
-			if (!ft_strcmp(general->token.to_print, envname[0]))
+			if (!ft_strncmp(general->tokens[1], general->env[i], ft_strlen(general->tokens[1]))
+				&& general->env[i][ft_strlen(general->tokens[1])] == '=')
 			{
-				general->env[i] = "\0";
+				pull_from_env(i, general->env[i], general->env, general);
 				break ;
 			}
-			i++;
 		}
-		return ;
 	}
-	else
-		ft_putstr_fd("unset: not enough arguments\n", 1);
 }

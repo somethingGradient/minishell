@@ -38,34 +38,58 @@ static void	ft_show_env_withprefix(char **env, int out_fd)
 	}
 }
 
-static int	check_name(char *name, char **env)
+//////////////////////////////////////////////////
+int is_env_contain_name(char *name, char **env)
 {
-	int	j;
-
-	j = 0;
-	while (name[j])
+	int i;
+	
+	i = -1;
+	while (env[++i])
 	{
-		if (!ft_isalnum((int)name[j]) && name[j] != '_')
-		{
-			ft_putstr_fd("Invalid variable name\n", 1);
-			free(name);
+		if (!ft_strncmp(env[i], name, ft_strlen(name))
+		&& env[i][ft_strlen(name)] == '=')
 			return (1);
-		}
-		j++;
-	}
-	j = 0;
-	while (env[j])
-	{
-		if (!ft_strncmp(env[j], name, ft_strlen(name)))
-		{
-			free(name);
-			return (1);
-		}
-		j++;
 	}
 	return (0);
 }
 
+int is_env_contain_var(char *var, char **env)
+{
+	int i;
+	
+	i = -1;
+	while (env[++i])
+	{
+		if (!ft_strcmp(env[i], var))
+			return (1);
+	}
+	return (0);
+}
+//////////////////////////////////////////////////
+
+static int	check_name(char **name, char **env, t_general *general)
+{
+	int	j;
+
+	j = 0;
+	while (name[0][j])
+	{
+		if (!ft_isalnum((int)name[0][j]) && name[0][j] != '_')
+		{
+			ft_putstr_fd("Invalid variable name\n", 1);
+			free_char_array(name);
+			return (1);
+		}
+		j++;
+	}
+	if (is_env_contain_name(name[0], env))
+	{
+		change_env(general, name[0], name[1]);
+		free_char_array(name);
+		return (1);
+	}
+	return (0);
+}
 static void	put_var_to_env(char **env, char *var, t_general *general)
 {
 	char	**newenv;
@@ -128,7 +152,7 @@ void	ft_export(t_general *general)
 {
 	int		i;
 	char	**unsortedenv;
-	char	*name;
+	char	**name;
 
 	i = 0;
 	if (!ft_strlen(general->token.to_print))
@@ -140,14 +164,18 @@ void	ft_export(t_general *general)
 	}
 	else
 	{
-		if (!general->tokens[1] || !ft_strrchr(general->tokens[1], (int) '='))
+		name = ft_split(general->tokens[1], '=');
+		printf("|%s|\n", general->tokens[1]);
+		if (is_env_contain_name(name[0], general->env)
+			&& !ft_strrchr(general->tokens[1], (int) '='))
+			{
+				printf("|lol|\n");
+				free_char_array(name);
+				return ;
+			}
+		if (check_name(name, general->env, general))
 			return ;
-		while (general->tokens[1][i] && general->tokens[1][i] != '=')
-			i++;
-		name = ft_substr(general->tokens[1], 0, i);
-		if (check_name(name, general->env))
-			return ;
-		free(name);
+		free_char_array(name);
 		put_var_to_env(general->env, general->tokens[1], general);
 	}
 }
