@@ -38,35 +38,6 @@ static void	ft_show_env_withprefix(char **env, int out_fd)
 	}
 }
 
-//////////////////////////////////////////////////
-int is_env_contain_name(char *name, char **env)
-{
-	int i;
-	
-	i = -1;
-	while (env[++i])
-	{
-		if (!ft_strncmp(env[i], name, ft_strlen(name))
-		&& env[i][ft_strlen(name)] == '=')
-			return (1);
-	}
-	return (0);
-}
-
-int is_env_contain_var(char *var, char **env)
-{
-	int i;
-	
-	i = -1;
-	while (env[++i])
-	{
-		if (!ft_strcmp(env[i], var))
-			return (1);
-	}
-	return (0);
-}
-//////////////////////////////////////////////////
-
 static int	check_name(char **name, char **env, t_general *general)
 {
 	int	j;
@@ -165,11 +136,9 @@ void	ft_export(t_general *general)
 	else
 	{
 		name = ft_split(general->tokens[1], '=');
-		printf("|%s|\n", general->tokens[1]);
 		if (is_env_contain_name(name[0], general->env)
 			&& !ft_strrchr(general->tokens[1], (int) '='))
 			{
-				printf("|lol|\n");
 				free_char_array(name);
 				return ;
 			}

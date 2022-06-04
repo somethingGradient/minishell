@@ -12,8 +12,9 @@
 
 #include "minishell.h"
 
-static void pull_from_env(int k, char *var, char **env, t_general *general)
+static void pull_from_env(char *var, char **env, t_general *general)
 {
+	printf("|lol|\n");
 	char	**newenv;
 	int		res;
 	int		i;
@@ -25,13 +26,15 @@ static void pull_from_env(int k, char *var, char **env, t_general *general)
 	res += ft_strlen(var);
 	newenv = NULL;
 	newenv = (char **)malloc(sizeof(char **) * res * i);
+	printf("|lol|\n");
 	if (!newenv)
 		return ;
 	i = -1;
 	j = 0;
 	while (env[++i])
 	{
-		if (!strcmp(var, env[i]))
+		if (!strncmp(var, env[i], ft_strlen(var))
+			&& env[i][ft_strlen(var)] == '=')
 			i = i + 1;
 		newenv[j] = NULL;
 		newenv[j] = ft_strdup(env[i]);
@@ -46,18 +49,12 @@ static void pull_from_env(int k, char *var, char **env, t_general *general)
 
 void	ft_unset(t_general *general)
 {
-	int		i;
+	printf("|lol2|\n");
 	if (general->tokens[1] != NULL)
 	{
-		i = -1;
-		while (general->env[++i])
-		{
-			if (!ft_strncmp(general->tokens[1], general->env[i], ft_strlen(general->tokens[1]))
-				&& general->env[i][ft_strlen(general->tokens[1])] == '=')
-			{
-				pull_from_env(i, general->env[i], general->env, general);
-				break ;
-			}
-		}
+		printf("|lol1|\n");
+		if (is_env_contain_name(general->tokens[1], general->env))
+			pull_from_env(general->tokens[1], general->env, general);
 	}
+	return ;
 }

@@ -21,7 +21,7 @@ SRC		=	main.c \
 			run_pipe_aux.c run_pipe.c split_cmd.c \
 			token.c token_utils.c redir_out.c \
 			ft_unset.c pre_parser_utils.c utils.c \
-			signal.c
+			signal.c env_functions2.c
 			
 
 OBJ		=	$(SRC:.c=.o)

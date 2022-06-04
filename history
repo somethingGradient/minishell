@@ -117,3 +117,29 @@ env
 ls
 env
 ls
+export USER
+export USER
+env
+export USER=""
+env
+env
+lol
+pwd
+unset
+uset LOL
+unset LOL
+unset
+unset LOL
+unset LOL
+unset TERM
+env
+env
+unset TERM
+env
+env
+unset TERM
+env
+unset PATH
+s
+ls
+env
