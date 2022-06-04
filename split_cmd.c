@@ -6,7 +6,7 @@
 /*   By: jannabel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 12:17:15 by jannabel          #+#    #+#             */
-/*   Updated: 2022/05/28 12:17:20 by jannabel         ###   ########.fr       */
+/*   Updated: 2022/06/04 12:57:05 by jannabel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,8 @@ void	split_cmd(t_general *general, char *in, int i)
 	}
 	if (ft_strlen(in) > 0)
 	{
-		general->commands[general->split.n_comand] = ft_substr(in, general->split.ini, i);
+		general->commands[general->split.n_comand]
+			= ft_substr(in, general->split.ini, i);
 		general->split.n_comand++;
 	}
 	free(in);

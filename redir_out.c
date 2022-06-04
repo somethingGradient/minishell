@@ -6,7 +6,7 @@
 /*   By: jannabel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 12:41:06 by jannabel          #+#    #+#             */
-/*   Updated: 2022/05/28 12:41:08 by jannabel         ###   ########.fr       */
+/*   Updated: 2022/06/04 13:07:17 by jannabel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,12 @@ static void	simple_redir_out(t_general *general, int j, int flags)
 	free (file);
 }
 
+static void	for_norm(t_general *general)
+{
+	free(general->line);
+	general->line = NULL;
+}
+
 int	redirect_out(t_general *general, int j)
 {
 	int		flags;
@@ -57,10 +63,7 @@ int	redirect_out(t_general *general, int j)
 			simple_redir_out(general, j, flags);
 		general->last_redir = 1;
 		if (general->split.n_comand == 1)
-		{
-			free(general->line);
-			general->line = NULL;
-		}
+			for_norm(general);
 		if (general->out_fd < 0)
 			return (-1);
 	}

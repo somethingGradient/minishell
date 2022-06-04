@@ -6,7 +6,7 @@
 /*   By: jannabel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 12:40:58 by jannabel          #+#    #+#             */
-/*   Updated: 2022/05/28 12:41:01 by jannabel         ###   ########.fr       */
+/*   Updated: 2022/06/04 13:08:42 by jannabel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,21 @@ static char	**double_redir(t_general *general, char **file, int j)
 	return (file);
 }
 
+static bool for_norm(t_general *general, char **file, int j)
+{
+	file = ft_split(&general->commands[j][1], ' ');
+	if (!file)
+		return (false);
+	general->in_fd = open(file[0], O_RDONLY, 0777);
+	if (general->in_fd == -1 && general->error_name_file == NULL)
+	{
+		general->error_name_file = ft_strdup(file[0]);
+		if (!general->error_name_file)
+			return (false);
+	}
+	return (true);
+}
+
 int	redirect_in(t_general *general, int j, char *aux)
 {
 	char	**file;
@@ -71,16 +86,8 @@ int	redirect_in(t_general *general, int j, char *aux)
 			file = double_redir(general, file, j);
 		else
 		{
-			file = ft_split(&general->commands[j][1], ' ');
-			if (!file)
+			if (!for_norm(general, file, j))
 				return (-1);
-			general->in_fd = open(file[0], O_RDONLY, 0777);
-			if (general->in_fd == -1 && general->error_name_file == NULL)
-			{
-				general->error_name_file = ft_strdup(file[0]);
-				if (!general->error_name_file)
-					return (-1);
-			}
 		}
 		aux = ft_strtrim(general->line, " ");
 		if (general->split.n_comand == 1 || (aux[0] == '|'
