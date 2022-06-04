@@ -12,6 +12,22 @@
 
 #include "minishell.h"
 
+static void	ft_exit(t_general *general)
+{
+	ft_putstr_fd("exit\n", 1);
+	free_char_array(general->tokens);
+	free(general->token.to_print);
+	free(general->token.to_exec);
+	if (general->line)
+	{
+		free(general->line);
+		general->line = NULL;
+	}
+	free_char_array(general->commands);
+	ft_clear_data(general);
+	exit(0);
+}
+
 void	is_builtin(char *cmd, t_general *general)
 {
 	if ((!ft_strncmp("echo", cmd, 4) && ft_strlen(cmd) == 4)
@@ -30,8 +46,8 @@ void	run_builtin(t_general *general)
 {
 	signal(SIGINT, SIG_IGN);
 	signal(SIGQUIT, SIG_IGN);
-	// if (!ft_strncmp(general->tokens[0], "exit", 4))
-	// 	ft_exit2(general);
+	if (!ft_strncmp(general->tokens[0], "exit", 4))
+		ft_exit(general);
 	if (!ft_strncmp(general->tokens[0], "pwd", 3))
 		ft_pwd(general);
 	if (!ft_strncmp(general->tokens[0], "echo", 4))

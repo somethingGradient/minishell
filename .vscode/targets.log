@@ -8,7 +8,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This program built for i386-apple-darwin11.3.0
  
 
-# Make data base, printed on Sat Jun  4 11:30:06 2022
+# Make data base, printed on Sat Jun  4 15:02:55 2022
 
 # Variables
 
@@ -18,6 +18,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 ?F = $(notdir $?)
 # makefile (from `Makefile', line 27)
 OBJ = $(SRC:.c=.o)
+ 
 # makefile (from `Makefile', line 16)
 SRC = main.c env_functions.c print_env_var.c get_title.c	ft_echo.c ft_cd.c ft_export.c pre_parser.c builtins.c redir_in.c run_pipe_aux.c run_pipe.c split_cmd.c token.c token_utils.c redir_out.c ft_unset.c pre_parser_utils.c utils.c signal.c
 # environment
@@ -45,11 +46,11 @@ MAKEFILE_LIST :=  Makefile
 # environment
 VSCODE_VERBOSE_LOGGING = true
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /var/folders/zz/zyxvpxvq6csfxvn_n003vqy400yxzj/T/vscode-ipc-f1a879a2-5768-46a5-8229-ef5f0a9bb8d0.sock
+VSCODE_IPC_HOOK_EXTHOST = /var/folders/zz/zyxvpxvq6csfxvn_n003vqy400yxzj/T/vscode-ipc-f08464bf-4b78-412c-b768-ea605215562f.sock
 # environment
 VSCODE_CWD = /
 # environment
-Apple_PubSub_Socket_Render = /private/tmp/com.apple.launchd.wpOiZgWsvP/Render
+Apple_PubSub_Socket_Render = /private/tmp/com.apple.launchd.V0OkikDqPD/Render
 # environment
 PATH = /Users/akitty/.brew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/go/bin:/usr/local/share/dotnet:/usr/local/munki:~/.dotnet/tools:/Library/Frameworks/Mono.framework/Versions/Current/Commands
 # environment
@@ -61,7 +62,7 @@ LDFLAGS = "-L/Users/jannabel/.brew/opt/readline/lib"
 # default
 .FEATURES := target-specific order-only second-expansion else-if archives jobserver check-symlink
 # environment
-SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.AYTNfaymsq/Listeners
+SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.M3B3rQBQZB/Listeners
 # automatic
 %F = $(notdir $%)
 # environment
@@ -121,7 +122,6 @@ TMPDIR = /var/folders/zz/zyxvpxvq6csfxvn_n003vqy400yxzj/T/
 # automatic
 *F = $(notdir $*)
 # environment
- 
 VSCODE_IPC_HOOK = /Users/akitty/Library/Application Support/Code/1.67.1-main.sock
 # makefile
 MAKEFLAGS = Rrqp
@@ -130,15 +130,13 @@ MFLAGS = -Rrqp
 # automatic
 *D = $(patsubst %/,%,$(dir $*))
 # environment
-XPC_SERVICE_NAME = com.apple.xpc.launchd.oneshot.0x1000000a.Electron
+XPC_SERVICE_NAME = com.microsoft.VSCode.2544
 # automatic
 +D = $(patsubst %/,%,$(dir $+))
 # automatic
 +F = $(notdir $+)
 # environment
 __CF_USER_TEXT_ENCODING = 0xF77F1:0x0:0x0
-# environment
-COMMAND_MODE = unix2003
 # default
 MAKEFILES := 
 # automatic
@@ -149,8 +147,6 @@ LIBFT_PATH = libft/
 LC_ALL = C
 # makefile (from `Makefile', line 6)
 HEADER = minishell.h
-# environment
-SECURITYSESSIONID = 1878b
 # automatic
 ^F = $(notdir $^)
 # default
@@ -164,9 +160,9 @@ MAKELEVEL := 0
 # environment
 LANG = C
 # environment
-VSCODE_PID = 84277
+VSCODE_PID = 6659
 # variable set hash-table stats:
-# Load=76/1024=7%, Rehash=0, Collisions=3/110=3%
+# Load=74/1024=7%, Rehash=0, Collisions=3/108=3%
 
 # Pattern-specific Variable Values
 
@@ -174,9 +170,9 @@ VSCODE_PID = 84277
 
 # Directories
 
-# . (device 16777227, inode 224222): 28 files, no impossibilities.
+# . (device 16777227, inode 224222): 29 files, no impossibilities.
 
-# 28 files, no impossibilities in 1 directories.
+# 29 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -219,7 +215,7 @@ redir_in.o:
 # Not a target:
 main.c:
 #  Implicit rule search has been done.
-#  Last modified 2022-06-04 11:29:45
+#  Last modified 2022-06-04 13:41:15
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -290,7 +286,7 @@ get_title.o:
 
 minishell: main.o env_functions.o print_env_var.o get_title.o ft_echo.o ft_cd.o ft_export.o pre_parser.o builtins.o redir_in.o run_pipe_aux.o run_pipe.o split_cmd.o token.o token_utils.o redir_out.o ft_unset.o pre_parser_utils.o utils.o signal.o minishell.h
 #  Implicit rule search has not been done.
-#  File does not exist.
+#  Last modified 2022-06-04 14:26:29
 #  File has been updated.
 #  Needs to be updated (-q is set).
 # variable set hash-table stats:
@@ -324,6 +320,7 @@ fclean: clean
 
 # Not a target:
 .DEFAULT:
+ 
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
@@ -405,7 +402,7 @@ run_pipe_aux.o:
 # Not a target:
 minishell.h:
 #  Implicit rule search has been done.
-#  Last modified 2022-06-04 11:29:45
+#  Last modified 2022-06-04 13:48:43
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -442,6 +439,6 @@ ft_cd.o:
 # strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
 # strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
 
-# Finished Make data base on Sat Jun  4 11:30:06 2022
+# Finished Make data base on Sat Jun  4 15:02:55 2022
 
  
