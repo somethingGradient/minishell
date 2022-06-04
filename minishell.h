@@ -144,7 +144,7 @@ char	*ft_get_env(char **env, char *str);
 char	**get_env_paths(char **env);
 void	change_env(char	**env, char *key, char *value);
 void	ft_show_env(char **env, int out_fd);
-int	print_env_var(t_general *general, char *str, int *i, char *buf);
+int		print_env_var(t_general *general, char *str, int *i, char *buf);
 
 /* builtins.c */
 void	is_builtin(char *cmd, t_general *general);

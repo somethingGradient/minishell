@@ -34,10 +34,7 @@ void	spaces_in_pipe(t_general *general, int i, char *command)
 	if (ft_strlen(general->token.to_print) && general->tokens[i]
 		&& (general->tokens[i][0] == QUOTE || general->tokens[i][0] == D_QUOTE)
 		&& ft_strncmp(general->tokens[i - 1], "sed", 3))
-	{
 		aux = ft_strtrim(general->token.to_print, D_QUOTE_S);
-		free_char_array(&general->tokens[i + 1]);
-	}
 	else
 		aux = ft_strtrim(general->tokens[i], D_QUOTE_S);
 	free(general->tokens[i]);

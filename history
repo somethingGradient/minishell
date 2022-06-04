@@ -163,3 +163,14 @@ wc
 ls
 echo a | cat
 ls
+ls " wc
+ls " wc "
+ls " wc "
+ls " wc "
+ls " wc "
+ls " wc "
+ls
+ls " wc "
+ls " wc "
+ls
+ls " wc "

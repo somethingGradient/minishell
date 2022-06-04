@@ -60,7 +60,7 @@ static char	**double_redir(t_general *general, char **file, int j)
 	return (file);
 }
 
-static t_bool for_norm(t_general *general, char **file, int j)
+static t_bool	for_norm(t_general *general, char **file, int j)
 {
 	file = ft_split(&general->commands[j][1], ' ');
 	if (!file)

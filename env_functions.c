@@ -112,7 +112,7 @@ void	change_env(char	**env, char *key, char *value)
 		if (ft_strnstr(env[i], temp, ft_strlen(temp)))
 		{
 			env[i] = ft_strjoin(temp, value);
-			break ;	
+			break ;
 		}
 	}
 	free(temp);
