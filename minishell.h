@@ -6,7 +6,7 @@
 /*   By: akitty <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/04 12:43:13 by akitty            #+#    #+#             */
-/*   Updated: 2022/06/04 20:22:54 by jannabel         ###   ########.fr       */
+/*   Updated: 2022/06/05 15:50:36 by jannabel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,6 +148,8 @@ void	ft_show_env(char **env, int out_fd);
 int		print_env_var(t_general *general, char *str, int *i, char *buf);
 int		is_env_contain_var(char *var, char **env);
 int		is_env_contain_name(char *name, char **env);
+void	expr_utils(t_general *general, int j);
+void	check_name_utils(char **name, t_general *general);
 
 /* builtins.c */
 void	is_builtin(char *cmd, t_general *general);

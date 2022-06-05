@@ -55,7 +55,10 @@ static int	check_name(char **name, char **env, t_general *general)
 	}
 	if (is_env_contain_name(name[0], env))
 	{
-		change_env(general, name[0], name[1]);
+		if (name[1][0] == '$' && ft_strlen(name[1]) > 1)
+			check_name_utils(name, general);
+		else
+			change_env(general, name[0], name[1]);
 		free_char_array(name);
 		return (1);
 	}
