@@ -49,8 +49,6 @@
 
 int	g_exit_code;
 
-typedef unsigned char	t_bool;
-
 typedef struct s_flags
 {
 	int	dobles_quotes;
@@ -90,7 +88,7 @@ typedef struct s_general
 	char	**commands;
 	t_split	split;
 	t_token	token;
-	t_bool	is_builtin;
+	int		is_builtin;
 	char	*name_file;
 	char	*error_name_file;
 	char	*home;
@@ -100,7 +98,7 @@ typedef struct s_general
 	int		out_fd;
 	int		in_fd;
 	int		is_append;
-	t_bool	has_flag;
+	int		has_flag;
 }	t_general;
 
 /* main.c */
