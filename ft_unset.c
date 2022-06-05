@@ -6,7 +6,7 @@
 /*   By: jannabel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 10:58:39 by jannabel          #+#    #+#             */
-/*   Updated: 2022/06/04 20:44:13 by jannabel         ###   ########.fr       */
+/*   Updated: 2022/06/05 16:41:15 by jannabel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ static int	init_newenv(char **newenv, char **env, char *var)
 		if (!strncmp(var, env[i], ft_strlen(var))
 			&& env[i][ft_strlen(var)] == '=')
 			i = i + 1;
+		if (env[i] == NULL)
+			break ;
 		newenv[j] = NULL;
 		newenv[j] = ft_strdup(env[i]);
 		if (!newenv[j])
