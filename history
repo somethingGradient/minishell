@@ -1,0 +1,11 @@
+env
+export TERM
+env
+export TERM=""
+env
+unset TERM
+env
+unset PATH
+ls
+/bin/ls
+./minishell

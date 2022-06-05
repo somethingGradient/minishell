@@ -53,6 +53,7 @@ all: $(NAME)
 $(NAME): $(OBJ) $(HEADER)
 		@$(MAKE) all -C $(LIBFT_PATH)
 		@$(CC) -g $(FLAGS) $(OBJ) $(LIBFT) -lreadline -o $(NAME)
+		@echo Compiled!
 	
 
 %.o: %.c $(HEADER)
@@ -61,10 +62,12 @@ $(NAME): $(OBJ) $(HEADER)
 clean:
 		@$(MAKE) clean -C $(dir $(LIBFT))
 		@rm -rf $(OBJ)
+		@echo Cleaned!
 		
 fclean: clean
 		@$(MAKE) fclean -C $(dir $(LIBFT))
 		@rm -rf $(NAME)
+		@echo Full cleaned!
 
 re: fclean all
 

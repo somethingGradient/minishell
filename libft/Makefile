@@ -36,7 +36,7 @@ $(NAME):	${OBJ}
 				@ar rcs $(NAME) ${OBJ}
 
 %.o : 		%.c
-				gcc $(FLAGS) -c $< -o ${<:.c=.o}
+				@gcc $(FLAGS) -c $< -o ${<:.c=.o}
 
 all :		$(NAME)
 
