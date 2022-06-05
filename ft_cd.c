@@ -63,7 +63,7 @@ void	ft_cd(t_general *general)
 		if (chdir(buf) < 0)
 		{
 			ft_putstr_fd("Invalid directory.\n", 2);
-			g_ret_number = 1;
+			g_exit_code = 1;
 		}
 		free(buf);
 		free(cwd);
@@ -85,5 +85,5 @@ void	ft_pwd(t_general *general)
 	ft_putstr_fd("\n", general->out_fd);
 	free(temp);
 	temp = NULL;
-	g_ret_number = 0;
+	g_exit_code = 0;
 }

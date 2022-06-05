@@ -32,21 +32,20 @@ void	spaces_in_pipe(t_general *general, int i, char *command)
 	char	*aux;
 
 	if (ft_strlen(general->token.to_print) && general->tokens[i]
-		&& (general->tokens[i][0] == QUOTE || general->tokens[i][0] == D_QUOTE)
-		&& ft_strncmp(general->tokens[i - 1], "sed", 3))
+		&& (general->tokens[i][0] == QUOTE || general->tokens[i][0] == D_QUOTE))
 		aux = ft_strtrim(general->token.to_print, D_QUOTE_S);
 	else
 		aux = ft_strtrim(general->tokens[i], D_QUOTE_S);
 	free(general->tokens[i]);
 	general->tokens[i] = aux;
 	command = ft_strjoin(command, general->tokens[i - 1]);
-	g_ret_number = execve(command, &general->tokens[i - 1], general->env);
+	g_exit_code = execve(command, &general->tokens[i - 1], general->env);
 	free(command);
 }
 
 void	execve_error(t_general *general)
 {
-	g_ret_number = 127;
+	g_exit_code = 127;
 	if (general->tokens[0][0] != '|')
 		printf("minishell: %s: %s", general->tokens[0], ERROR_CMD);
 	else if (general->tokens[1])
@@ -64,7 +63,7 @@ void	expr_utils(t_general *general, int j)
 	{
 		if ((general->tokens[j][0] == '$' && general->tokens[j][1] == '?')
 			&& ft_strlen(general->tokens[j]) == 2)
-			general->tokens[j] = ft_itoa(g_ret_number);
+			general->tokens[j] = ft_itoa(g_exit_code);
 		else if (general->tokens[j][0] == '$'
 			&& ft_isalpha(general->tokens[j][1]))
 		{
@@ -74,5 +73,5 @@ void	expr_utils(t_general *general, int j)
 			temp = NULL;
 		}
 	}
-	g_ret_number = 127;
+	g_exit_code = 127;
 }

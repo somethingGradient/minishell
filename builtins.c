@@ -27,7 +27,7 @@ static void	ft_exit(t_general *general)
 			exit(255);
 		}
 	}
-	g_ret_number = ft_atoi(general->token.to_print) % 256;
+	g_exit_code = ft_atoi(general->token.to_print) % 256;
 	free_char_array(general->tokens);
 	free_char_array(general->commands);
 	free(general->token.to_print);
@@ -38,7 +38,7 @@ static void	ft_exit(t_general *general)
 		general->line = NULL;
 	}
 	ft_clear_data(general);
-	exit(g_ret_number);
+	exit(g_exit_code);
 }
 
 void	is_builtin(char *cmd, t_general *general)

@@ -79,7 +79,7 @@ int	print_env_var(t_general *general, char *str, int *i, char *buf)
 	}
 	else if (str[*i] == '?')
 	{
-		ft_putnbr_fd(g_ret_number, general->out_fd);
+		ft_putnbr_fd(g_exit_code, general->out_fd);
 		(*i)++;
 	}
 	print_env_var(general, str, i, NULL);

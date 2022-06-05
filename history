@@ -259,3 +259,51 @@ echo $USER
 echo '"$USER"'
 echo "'$USER'"
 echo "$USER"
+echo $?
+echo $?
+echo $?
+cat
+echo $?
+wc
+echo $?
+echo $?
+echo $?
+echo $?
+echo $?
+echo $SHLVL
+./minishell
+wc
+cat
+cat
+echo $?
+wc
+echo $?
+wc
+echo $?
+wc
+echo $?
+wc
+echo $?
+wc
+echo $?
+echo $?
+wc
+echo $?
+ls
+cat
+cat
+echo $?
+ls
+echo $?
+wc
+echo $?
+wc
+wc
+echo $?
+ls | wc
+expr $SHLVL | wc
+expr $SHLVL
+echo $?
+wc
+wc
+echo $?

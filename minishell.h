@@ -47,7 +47,7 @@
 # define WHITE "\001\033[0;97m\002"
 # define CLOSE "\001\033[0m\002"
 
-int	g_ret_number;
+int	g_exit_code;
 
 typedef unsigned char	t_bool;
 

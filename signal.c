@@ -16,7 +16,7 @@ static void	ctrl_c(int signal)
 {
 	if (signal == SIGINT)
 	{
-		g_ret_number = 130;
+		g_exit_code = 130;
 		ft_putchar_fd('\n', 1);
 		rl_replace_line("", 0);
 		rl_on_new_line();
@@ -26,9 +26,12 @@ static void	ctrl_c(int signal)
 
 void	ctrl_backslash(int signal)
 {
-	g_ret_number = 131;
-	printf("Quit (core dumped)\n");
-	(void)signal;
+	if (signal == SIGQUIT)
+	{
+		g_exit_code = 131;
+		printf("Quit (core dumped)\n");
+		(void)signal;
+	}
 }
 
 void	sig_handler(t_general *general, int mode)

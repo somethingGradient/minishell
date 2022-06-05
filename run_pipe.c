@@ -19,7 +19,7 @@ static void	ft_execve_pipe(t_general *general, int i, char *command)
 		expr_utils(general, 0);
 		free_char_array(general->paths);
 		general->paths = get_env_paths(general->env);
-		g_ret_number = execve(general->tokens[0],
+		g_exit_code = execve(general->tokens[0],
 				general->tokens, general->env);
 		while (general->paths && general->paths[++i] != NULL)
 		{
@@ -54,18 +54,18 @@ static void	exec_process(t_general *general, int in, int out)
 		if (pid < 0)
 		{
 			printf("Fork error\n");
-			g_ret_number = 127;
+			g_exit_code = 127;
 		}
 		else if (pid == 0)
 		{
 			file_descriptor_handler(in, out);
 			ft_execve_pipe(general, -1, "");
-			exit(g_ret_number);
+			exit(g_exit_code);
 		}
 		else
-			waitpid(pid, &g_ret_number, WUNTRACED);
-		if (WIFEXITED(g_ret_number))
-			g_ret_number = WEXITSTATUS(g_ret_number);
+			waitpid(pid, &g_exit_code, WUNTRACED);
+		if (WIFEXITED(g_exit_code))
+			g_exit_code = WEXITSTATUS(g_exit_code);
 	}
 }
 
@@ -89,7 +89,7 @@ static void	action(t_general *general)
 	}
 	if (general->error_name_file != NULL)
 	{
-		g_ret_number = 1;
+		g_exit_code = 1;
 		printf("minishell: %s: %s", general->error_name_file, ERROR_DIR);
 		free(general->error_name_file);
 	}
@@ -126,7 +126,7 @@ void	run_commands(t_general *general)
 		if (pipe(fd) < 0)
 		{
 			printf("Pipe error\n");
-			g_ret_number = 127;
+			g_exit_code = 127;
 		}
 		general->out_fd = fd[1];
 		run_commands_aux(general);
