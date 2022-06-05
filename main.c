@@ -21,6 +21,7 @@ static int	sh_kernel(t_general *general)
 		if (pre_parser_main(general->line) != 0)
 		{
 			ft_putstr_fd("Error.\nLine is a not closed.\n", 2);
+			g_ret_number = -1;
 			return (-1);
 		}
 		split_cmd(general, general->line, 0);

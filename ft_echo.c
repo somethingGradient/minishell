@@ -48,5 +48,6 @@ int	ft_echo(t_general *general)
 	}
 	if (!general->has_flag)
 		ft_putchar_fd('\n', general->out_fd);
+	g_ret_number = 0;
 	return (0);
 }

@@ -122,6 +122,7 @@ void	run_commands(t_general *general);
 int		file_descriptor_handler(int in, int out);
 void	spaces_in_pipe(t_general *general, int i, char *command);
 void	execve_error(t_general *general);
+void	expr_utils(t_general *general, int j);
 
 /* redir_out.c - инициализирует поток вывода */
 int		redirect_out(t_general *general, int j);
@@ -147,7 +148,6 @@ void	ft_show_env(char **env, int out_fd);
 int		print_env_var(t_general *general, char *str, int *i, char *buf);
 int		is_env_contain_var(char *var, char **env);
 int		is_env_contain_name(char *name, char **env);
-void	expr_utils(t_general *general, int j);
 
 /* builtins.c */
 void	is_builtin(char *cmd, t_general *general);
@@ -157,11 +157,6 @@ void	ft_pwd(t_general *general);
 int		ft_echo(t_general *general);
 void	ft_unset(t_general *general);
 void	ft_export(t_general *general);
-
-/* run_pupe_aux.c */
-int		file_descriptor_handler(int in, int out);
-void	spaces_in_pipe(t_general *general, int i, char *command);
-void	execve_error(t_general *general);
 
 /* signal.c */
 void	sig_handler(t_general *general, int mode);

@@ -158,3 +158,104 @@ alo | alo | expr $SHLVL + 3
 ls
 cd .
 pwd
+echo << end;
+echo $s
+echo $s
+echo $s
+export s
+export
+export eba
+export
+env
+export a=5
+export
+alo | expr $?
+unset PATH
+alo | expr $?
+alo | /bin/expr $?
+alo | bin/expr $?
+/bin/expr $?
+/bin/expr $?
+export
+export a
+export
+/bin/expr $?
+/bin/expr $SHLVL
+ls
+unset PATH
+/bin/expr $SHLVL
+/bin/expr $SHLVL + 5
+expr $SHLVL + 5
+echo $?
+echo $?
+echo $?
+echo $?
+echo $?
+echo $?
+echo $?
+alo
+echo $?
+echo $?
+echo "dsa
+echo $?
+echo "dsa
+echo $?
+cdsad
+echo $?
+cd asfasd
+echo $?
+unset
+echo $?
+export
+echo $?
+pwd sadasd
+echo $?
+echo
+echo                             
+echo                             a
+          echo                             a
+alo | echo a
+echo $?
+echo $? | alo
+echo $?
+alo | echo a
+alo | echo a
+alo | echo a
+alo | echo a
+alo | echo a
+alo | echo a
+alo | echo a
+sda
+sda | cat
+sda | echo a
+sda | echo a
+sda | echo a
+sda | echo a
+.
+ls
+dsadas
+sda | echo a
+sda | echo a
+sda | echo a
+echo a | sad
+echo $?
+cat file | grep bla | more
+touch file
+cat file | grep bla | more
+cat file | grep bla | more
+rm file
+'ls filethatdoesntexist | grep bla | more
+ls filethatdoesntexist | grep bla | more
+echo $?
+cat | cat | ls
+echo "$?"
+echo "$SHELL"
+echo "$SHELL$USER"
+echo "$SHELL$USER" $TERM
+echo "$SHELL$USER" $TERM /
+echo "$SHELL$USER" $TERM \
+echo "$SHELL$USER" $TERM \\
+echo $USER
+echo '"$USER"'
+echo "'$USER'"
+echo "$USER"

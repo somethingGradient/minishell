@@ -60,21 +60,18 @@ void	expr_utils(t_general *general, int j)
 	temp = NULL;
 	if (general->tokens[0][0] == '|')
 		j = 1;
-	if (!ft_strcmp(general->tokens[j], "expr"))
+	while (general->tokens[++j])
 	{
-		while (general->tokens[++j])
+		if ((general->tokens[j][0] == '$' && general->tokens[j][1] == '?')
+			&& ft_strlen(general->tokens[j]) == 2)
+			general->tokens[j] = ft_itoa(g_ret_number);
+		else if (general->tokens[j][0] == '$'
+			&& ft_isalpha(general->tokens[j][1]))
 		{
-			if ((general->tokens[j][0] == '$' && general->tokens[j][1] == '?')
-				&& ft_strlen(general->tokens[j]) == 2)
-				general->tokens[j] = ft_itoa(g_ret_number);
-			else if (general->tokens[j][0] == '$'
-				&& ft_isalpha(general->tokens[j][1]))
-			{
-				temp = ft_get_env_value(general->env, &general->tokens[j][1]);
-				free(general->tokens[j]);
-				general->tokens[j] = temp;
-				temp = NULL;
-			}
+			temp = ft_get_env_value(general->env, &general->tokens[j][1]);
+			free(general->tokens[j]);
+			general->tokens[j] = temp;
+			temp = NULL;
 		}
 	}
 	g_ret_number = 127;
