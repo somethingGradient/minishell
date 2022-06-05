@@ -38,7 +38,7 @@ char	**copy_env(char	**env)
 	return (copy);
 }
 
-char	*ft_get_env(char **env, char *str)
+char	*ft_get_env_value(char **env, char *str)
 {
 	int		i;
 	int		len;
@@ -73,7 +73,7 @@ char	**get_env_paths(char **env)
 	paths = NULL;
 	if (!env)
 		return (NULL);
-	temp = ft_get_env(env, "PATH");
+	temp = ft_get_env_value(env, "PATH");
 	if (!temp)
 		return (NULL);
 	paths = ft_split(temp, ':');

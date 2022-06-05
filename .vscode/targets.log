@@ -8,14 +8,13 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This program built for i386-apple-darwin11.3.0
  
 
-# Make data base, printed on Sat Jun  4 20:32:38 2022
+# Make data base, printed on Sun Jun  5 11:22:03 2022
 
 # Variables
 
 # automatic
 <D = $(patsubst %/,%,$(dir $<))
 # automatic
- 
 ?F = $(notdir $?)
 # makefile (from `Makefile', line 43)
 OBJ = $(SRC:.c=.o)
@@ -43,12 +42,13 @@ _ = /usr/bin/make
 MAKEFILE_LIST :=  Makefile
 # environment
 VSCODE_VERBOSE_LOGGING = true
+ 
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /var/folders/zz/zyxvpxvq6csfxvn_n003vqy400yxzj/T/vscode-ipc-8f1e257d-555c-4209-8424-64bc9ff80bf3.sock
+VSCODE_IPC_HOOK_EXTHOST = /var/folders/zz/zyxvpxvq6csfxvn_n003vqy400yxzj/T/vscode-ipc-71d601e7-0b13-45a8-b979-c0516fe7438d.sock
 # environment
 VSCODE_CWD = /
 # environment
-Apple_PubSub_Socket_Render = /private/tmp/com.apple.launchd.V0OkikDqPD/Render
+Apple_PubSub_Socket_Render = /private/tmp/com.apple.launchd.yW9ncXpLWb/Render
 # environment
 PATH = /Users/akitty/.brew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/go/bin:/usr/local/share/dotnet:/usr/local/munki:~/.dotnet/tools:/Library/Frameworks/Mono.framework/Versions/Current/Commands
 # environment
@@ -58,7 +58,7 @@ ELECTRON_RUN_AS_NODE = 1
 # default
 .FEATURES := target-specific order-only second-expansion else-if archives jobserver check-symlink
 # environment
-SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.M3B3rQBQZB/Listeners
+SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.uuZxGedx4G/Listeners
 # automatic
 %F = $(notdir $%)
 # environment
@@ -126,13 +126,15 @@ MFLAGS = -Rrqp
 # automatic
 *D = $(patsubst %/,%,$(dir $*))
 # environment
-XPC_SERVICE_NAME = com.microsoft.VSCode.2544
+XPC_SERVICE_NAME = com.apple.xpc.launchd.oneshot.0x10000004.Electron
 # automatic
 +D = $(patsubst %/,%,$(dir $+))
 # automatic
 +F = $(notdir $+)
 # environment
 __CF_USER_TEXT_ENCODING = 0xF77F1:0x0:0x0
+# environment
+COMMAND_MODE = unix2003
 # default
 MAKEFILES := 
 # automatic
@@ -143,12 +145,13 @@ LIBFT_PATH = libft/
 LC_ALL = C
 # makefile (from `Makefile', line 17)
 HEADER = minishell.h
+# environment
+SECURITYSESSIONID = 186a8
 # automatic
 ^F = $(notdir $^)
 # default
 SUFFIXES := 
 # makefile (from `Makefile', line 21)
- 
 FLAGS = -Wall -Wextra -Werror
 # default
 .INCLUDE_DIRS = /usr/local/include
@@ -157,9 +160,9 @@ MAKELEVEL := 0
 # environment
 LANG = C
 # environment
-VSCODE_PID = 60548
+VSCODE_PID = 99266
 # variable set hash-table stats:
-# Load=72/1024=7%, Rehash=0, Collisions=3/108=3%
+# Load=74/1024=7%, Rehash=0, Collisions=3/110=3%
 
 # Pattern-specific Variable Values
 
@@ -167,14 +170,14 @@ VSCODE_PID = 60548
 
 # Directories
 
-# . (device 16777227, inode 224222): 30 files, no impossibilities.
+# . (device 16777227, inode 224222): 31 files, no impossibilities.
 
-# 30 files, no impossibilities in 1 directories.
+# 31 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
 %.o: %.c minishell.h
-#  commands to execute (from `Makefile', line 59):
+#  commands to execute (from `Makefile', line 60):
 	@$(CC) $(FLAGS) -c -o $@ $< $(CPPFLAGS)
 	
 
@@ -212,7 +215,8 @@ redir_in.o:
 # Not a target:
 main.c:
 #  Implicit rule search has been done.
-#  Last modified 2022-06-04 20:30:40
+ 
+#  Last modified 2022-06-05 11:21:11
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -245,7 +249,7 @@ ft_export.o:
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-06-04 20:32:27
+#  Last modified 2022-06-05 11:22:02
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -283,7 +287,7 @@ get_title.o:
 
 minishell: main.o env_functions.o print_env_var.o get_title.o ft_echo.o ft_cd.o ft_export.o pre_parser.o builtins.o redir_in.o run_pipe_aux.o run_pipe.o split_cmd.o token.o token_utils.o redir_out.o ft_unset.o pre_parser_utils.o utils.o signal.o env_functions2.o minishell.h
 #  Implicit rule search has not been done.
-#  File does not exist.
+#  Last modified 2022-06-05 11:21:16
 #  File has been updated.
 #  Needs to be updated (-q is set).
 # variable set hash-table stats:
@@ -291,6 +295,7 @@ minishell: main.o env_functions.o print_env_var.o get_title.o ft_echo.o ft_cd.o 
 #  commands to execute (from `Makefile', line 54):
 	@$(MAKE) all -C $(LIBFT_PATH)
 	@$(CC) -g $(FLAGS) $(OBJ) $(LIBFT) -lreadline -o $(NAME)
+	@echo Compiled!
 	
 
 # Not a target:
@@ -304,9 +309,10 @@ fclean: clean
 #  Implicit rule search has not been done.
 #  File does not exist.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 66):
+#  commands to execute (from `Makefile', line 68):
 	@$(MAKE) fclean -C $(dir $(LIBFT))
 	@rm -rf $(NAME)
+	@echo Full cleaned!
 	
 
 .SILENT: all clean fclean re
@@ -343,9 +349,10 @@ clean:
 #  Implicit rule search has not been done.
 #  File does not exist.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 62):
+#  commands to execute (from `Makefile', line 63):
 	@$(MAKE) clean -C $(dir $(LIBFT))
 	@rm -rf $(OBJ)
+	@echo Cleaned!
 	
 
 # Not a target:
@@ -384,7 +391,7 @@ main.o: main.c minishell.h
 # ? := main.c minishell.h
 # variable set hash-table stats:
 # Load=8/32=25%, Rehash=0, Collisions=1/15=7%
-#  commands to execute (from `Makefile', line 59):
+#  commands to execute (from `Makefile', line 60):
 	@$(CC) $(FLAGS) -c -o $@ $< $(CPPFLAGS)
 	
 
@@ -403,7 +410,7 @@ run_pipe_aux.o:
 # Not a target:
 minishell.h:
 #  Implicit rule search has been done.
-#  Last modified 2022-06-04 20:30:34
+#  Last modified 2022-06-05 11:15:22
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -440,6 +447,6 @@ ft_cd.o:
 # strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
 # strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
 
-# Finished Make data base on Sat Jun  4 20:32:38 2022
+# Finished Make data base on Sun Jun  5 11:22:03 2022
 
  

@@ -69,7 +69,7 @@ int	print_env_var(t_general *general, char *str, int *i, char *buf)
 		if (!buf)
 			return (-1);
 		buf_env(&str, i, &buf);
-		temp = ft_get_env(general->env, buf);
+		temp = ft_get_env_value(general->env, buf);
 		free(buf);
 		if (temp)
 		{

@@ -65,7 +65,7 @@ static void	change_shlvl(t_general *general)
 
 	temp = NULL;
 	current = NULL;
-	temp = ft_get_env(general->env, "SHLVL");
+	temp = ft_get_env_value(general->env, "SHLVL");
 	current = ft_itoa(ft_atoi(temp) + 1);
 	free(temp);
 	temp = ft_strjoin("SHLVL=", current);
@@ -99,7 +99,7 @@ static t_general	*init_general(t_general *general, char **env)
 	general->error_name_file = NULL;
 	general->paths = NULL;
 	general->env = copy_env(env);
-	general->home = ft_get_env(general->env, "HOME");
+	general->home = ft_get_env_value(general->env, "HOME");
 	get_title(general, NULL);
 	change_shlvl(general);
 	if (!general || !general->env || !general->title)

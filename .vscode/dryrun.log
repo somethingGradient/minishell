@@ -6,10 +6,10 @@ gcc -Wall -Wextra -Werror -c -o env_functions.o env_functions.c
 gcc -Wall -Wextra -Werror -c -o print_env_var.o print_env_var.c 
 gcc -Wall -Wextra -Werror -c -o get_title.o get_title.c 
 gcc -Wall -Wextra -Werror -c -o ft_echo.o ft_echo.c 
+ 
 gcc -Wall -Wextra -Werror -c -o ft_cd.o ft_cd.c 
 gcc -Wall -Wextra -Werror -c -o ft_export.o ft_export.c 
 gcc -Wall -Wextra -Werror -c -o pre_parser.o pre_parser.c 
- 
 gcc -Wall -Wextra -Werror -c -o builtins.o builtins.c 
 gcc -Wall -Wextra -Werror -c -o redir_in.o redir_in.c 
 gcc -Wall -Wextra -Werror -c -o run_pipe_aux.o run_pipe_aux.c 
@@ -18,23 +18,23 @@ gcc -Wall -Wextra -Werror -c -o split_cmd.o split_cmd.c
 gcc -Wall -Wextra -Werror -c -o token.o token.c 
 gcc -Wall -Wextra -Werror -c -o token_utils.o token_utils.c 
 gcc -Wall -Wextra -Werror -c -o redir_out.o redir_out.c 
+ 
 gcc -Wall -Wextra -Werror -c -o ft_unset.o ft_unset.c 
 gcc -Wall -Wextra -Werror -c -o pre_parser_utils.o pre_parser_utils.c 
 gcc -Wall -Wextra -Werror -c -o utils.o utils.c 
- 
 gcc -Wall -Wextra -Werror -c -o signal.o signal.c 
 gcc -Wall -Wextra -Werror -c -o env_functions2.o env_functions2.c 
 /Applications/Xcode.app/Contents/Developer/usr/bin/make all -C libft/
  
 make[1]: Entering directory `/Users/akitty/minishell/libft'
 gcc -Wall -Wextra -Werror -c ft_isalpha.c -o ft_isalpha.o
-gcc -Wall -Wextra -Werror -c ft_isdigit.c -o ft_isdigit.o
  
+gcc -Wall -Wextra -Werror -c ft_isdigit.c -o ft_isdigit.o
 gcc -Wall -Wextra -Werror -c ft_isalnum.c -o ft_isalnum.o
 gcc -Wall -Wextra -Werror -c ft_isascii.c -o ft_isascii.o
 gcc -Wall -Wextra -Werror -c ft_isprint.c -o ft_isprint.o
-gcc -Wall -Wextra -Werror -c ft_strlen.c -o ft_strlen.o
  
+gcc -Wall -Wextra -Werror -c ft_strlen.c -o ft_strlen.o
 gcc -Wall -Wextra -Werror -c ft_memset.c -o ft_memset.o
 gcc -Wall -Wextra -Werror -c ft_bzero.c -o ft_bzero.o
 gcc -Wall -Wextra -Werror -c ft_memcpy.c -o ft_memcpy.o
@@ -42,11 +42,11 @@ gcc -Wall -Wextra -Werror -c ft_memmove.c -o ft_memmove.o
 gcc -Wall -Wextra -Werror -c ft_strlcpy.c -o ft_strlcpy.o
 gcc -Wall -Wextra -Werror -c ft_strlcat.c -o ft_strlcat.o
 gcc -Wall -Wextra -Werror -c ft_toupper.c -o ft_toupper.o
+ 
 gcc -Wall -Wextra -Werror -c ft_tolower.c -o ft_tolower.o
 gcc -Wall -Wextra -Werror -c ft_strchr.c -o ft_strchr.o
 gcc -Wall -Wextra -Werror -c ft_strrchr.c -o ft_strrchr.o
 gcc -Wall -Wextra -Werror -c ft_strncmp.c -o ft_strncmp.o
- 
 gcc -Wall -Wextra -Werror -c ft_memchr.c -o ft_memchr.o
 gcc -Wall -Wextra -Werror -c ft_memcmp.c -o ft_memcmp.o
 gcc -Wall -Wextra -Werror -c ft_strnstr.c -o ft_strnstr.o
@@ -58,7 +58,6 @@ gcc -Wall -Wextra -Werror -c ft_strjoin.c -o ft_strjoin.o
 gcc -Wall -Wextra -Werror -c ft_strtrim.c -o ft_strtrim.o
 gcc -Wall -Wextra -Werror -c ft_split.c -o ft_split.o
 gcc -Wall -Wextra -Werror -c ft_itoa.c -o ft_itoa.o
- 
 gcc -Wall -Wextra -Werror -c ft_strmapi.c -o ft_strmapi.o
 gcc -Wall -Wextra -Werror -c ft_striteri.c -o ft_striteri.o
 gcc -Wall -Wextra -Werror -c ft_putchar_fd.c -o ft_putchar_fd.o
@@ -72,6 +71,6 @@ ar rcs libft.a ft_isalpha.o ft_isdigit.o ft_isalnum.o ft_isascii.o ft_isprint.o 
 make[1]: Leaving directory `/Users/akitty/minishell/libft'
  
 gcc -g -Wall -Wextra -Werror main.o env_functions.o print_env_var.o get_title.o ft_echo.o ft_cd.o ft_export.o pre_parser.o builtins.o redir_in.o run_pipe_aux.o run_pipe.o split_cmd.o token.o token_utils.o redir_out.o ft_unset.o pre_parser_utils.o utils.o signal.o env_functions2.o libft/libft.a -lreadline -o minishell
- 
+echo Compiled!
 make: Leaving directory `/Users/akitty/minishell'
  

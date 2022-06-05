@@ -21,7 +21,7 @@ static char	*get_cd_buf(t_general *general, char *cwd, int mode)
 	temp = NULL;
 	if (mode)
 	{
-		temp = ft_get_env(general->env, "HOME");
+		temp = ft_get_env_value(general->env, "HOME");
 		buf = ft_strjoin(temp, "/");
 		free(temp);
 		temp = NULL;
@@ -80,7 +80,7 @@ void	ft_pwd(t_general *general)
 	char	*temp;
 
 	temp = NULL;
-	temp = ft_get_env(general->env, "PWD");
+	temp = ft_get_env_value(general->env, "PWD");
 	ft_putstr_fd(temp, general->out_fd);
 	ft_putstr_fd("\n", general->out_fd);
 	free(temp);

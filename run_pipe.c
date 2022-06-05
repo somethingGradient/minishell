@@ -16,11 +16,12 @@ static void	ft_execve_pipe(t_general *general, int i, char *command)
 {
 	if (general->tokens[0])
 	{
+		expr_utils(general, 0);
 		free_char_array(general->paths);
 		general->paths = get_env_paths(general->env);
 		g_ret_number
-			= execve(general->tokens[0], &general->tokens[0], general->env);
-		while (general->paths && general->paths[i] != NULL)
+			= execve(general->tokens[0], general->tokens, general->env);
+		while (general->paths && general->paths[++i] != NULL)
 		{
 			command = ft_strdup(general->paths[i]);
 			if (general->tokens[0][0] == '|' && general->tokens[1])
@@ -35,7 +36,6 @@ static void	ft_execve_pipe(t_general *general, int i, char *command)
 			}
 			else
 				spaces_in_pipe(general, 1, command);
-			i++;
 		}
 		execve_error(general);
 	}
@@ -59,8 +59,7 @@ static void	exec_process(t_general *general, int in, int out)
 		else if (pid == 0)
 		{
 			file_descriptor_handler(in, out);
-			g_ret_number = 127;
-			ft_execve_pipe(general, 0, "");
+			ft_execve_pipe(general, -1, "");
 			exit(g_ret_number);
 		}
 		else

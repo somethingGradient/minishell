@@ -140,13 +140,14 @@ void	tokenizer_clean_quotes(t_general *general, char *in);
 
 /* env_functions.c */
 char	**copy_env(char	**env);
-char	*ft_get_env(char **env, char *str);
+char	*ft_get_env_value(char **env, char *str);
 char	**get_env_paths(char **env);
 void	change_env(t_general *general, char *key, char *value);
 void	ft_show_env(char **env, int out_fd);
 int		print_env_var(t_general *general, char *str, int *i, char *buf);
 int		is_env_contain_var(char *var, char **env);
 int		is_env_contain_name(char *name, char **env);
+void	expr_utils(t_general *general, int j);
 
 /* builtins.c */
 void	is_builtin(char *cmd, t_general *general);
@@ -155,7 +156,7 @@ void	ft_cd(t_general *general);
 void	ft_pwd(t_general *general);
 int		ft_echo(t_general *general);
 void	ft_unset(t_general *general);
-void	ft_export(t_general *general, int i);
+void	ft_export(t_general *general);
 
 /* run_pupe_aux.c */
 int		file_descriptor_handler(int in, int out);

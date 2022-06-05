@@ -120,12 +120,11 @@ static void	ft_sortenv(char **env)
 	}
 }
 
-void	ft_export(t_general *general, int i)
+void	ft_export(t_general *general)
 {
 	char	**unsortedenv;
 	char	**name;
 
-	i = 0;
 	if (!ft_strlen(general->token.to_print))
 	{
 		unsortedenv = copy_env(general->env);
